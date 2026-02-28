@@ -6,6 +6,12 @@
       ./hardware-configuration.nix
     ];
 
+  nix.settings.substituters = [ 
+    "https://mirror.sjtu.edu.cn/nix-channels/store"
+    "https://mirrors.ustc.edu.cn/nix-channels/store"
+    "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+  ];
+
   # 使用 systemd-boot EFI 引导加载程序
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
