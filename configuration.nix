@@ -10,25 +10,33 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # networking.hostName = "nixos"; # 定义主机名
+  # 定义主机名
+  networking.hostName = "nixos";
 
   # 使用 nmcli 或 nmtui 交互式配置网络连接
   networking.networkmanager.enable = true;
 
   # 设置时区
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Asia/Shanghai";
 
   # 如有需要，配置网络代理
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # 选择国际化属性
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
+  i18n.defaultLocale = "zh_CN.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "zh_CN.UTF-8";
+    LC_IDENTIFICATION = "zh_CN.UTF-8";
+    LC_MEASUREMENT = "zh_CN.UTF-8";
+    LC_MONETARY = "zh_CN.UTF-8";
+    LC_NAME = "zh_CN.UTF-8";
+    LC_NUMERIC = "zh_CN.UTF-8";
+    LC_PAPER = "zh_CN.UTF-8";
+    LC_TELEPHONE = "zh_CN.UTF-8";
+    LC_TIME = "zh_CN.UTF-8";
+  };
 
   # 启用 X11 窗口系统
   # services.xserver.enable = true;
@@ -41,33 +49,32 @@
   # services.printing.enable = true;
 
   # 启用声音
-  # services.pulseaudio.enable = true;
-  # 或者
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
 
   # 启用触摸板支持(在大多数桌面管理器中默认启用)
-  # services.libinput.enable = true;
+  services.libinput.enable = true;
 
   # 定义用户账户
-  # users.users.alice = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+  users.users.admin = {
+    isNormalUser = true;
+    initialPassword = "$6$fQf/1e/OVHKQhhvh$sOx4GGwXPvSmcrMh.Hhui9ecAbale8ELF1BOB.5rdNdTzo5AdOK7HzjIlwz6h0CJ4f.FtZzggoaV87eVcUB8L0";
+    extraGroups = [ "wheel" "networkmanager" ];
   #   packages = with pkgs; [
   #     tree
   #   ];
-  # };
+  };
 
+  # 启用 Firefox 浏览器
   # programs.firefox.enable = true;
 
   # 列出系统配置文件中安装的软件包
   # 您可以使用 https://search.nixos.org/ 来查找更多软件包(和选项)
-  # environment.systemPackages = with pkgs; [
-  #   vim
-  #   wget
-  # ];
+  environment.systemPackages = with pkgs; [
+    fastfetch
+  ];
 
   # 某些程序需要 SUID 包装器, 可以进一步配置或在用户会话中启动
   # programs.mtr.enable = true;
@@ -76,13 +83,13 @@
   #   enableSSHSupport = true;
   # };
 
-  # 列出您想要启用的服务：
+  # 列出您想要启用的服务:
 
-  # 启用 OpenSSH 守护进程。
-  # services.openssh.enable = true;
+  # 启用 OpenSSH 守护进程
+  services.openssh.enable = true;
 
   # 在防火墙中打开端口
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # 或者完全关闭防火墙
   # networking.firewall.enable = false;
