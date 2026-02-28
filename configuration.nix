@@ -1,32 +1,28 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [
+      # 包含硬件扫描的结果
       ./hardware-configuration.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
+  # 使用 systemd-boot EFI 引导加载程序
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # networking.hostName = "nixos"; # Define your hostname.
+  # networking.hostName = "nixos"; # 定义主机名
 
-  # Configure network connections interactively with nmcli or nmtui.
+  # 使用 nmcli 或 nmtui 交互式配置网络连接
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  # 设置时区
   # time.timeZone = "Europe/Amsterdam";
 
-  # Configure network proxy if necessary
+  # 如有需要，配置网络代理
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Select internationalisation properties.
+  # 选择国际化属性
   # i18n.defaultLocale = "en_US.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
@@ -34,31 +30,28 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
-  # Enable the X11 windowing system.
+  # 启用 X11 窗口系统
   # services.xserver.enable = true;
 
-
-  
-
-  # Configure keymap in X11
+  # 在 X11 中配置键盘布局
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
-  # Enable CUPS to print documents.
+  # 启用 CUPS 打印服务以打印文档
   # services.printing.enable = true;
 
-  # Enable sound.
+  # 启用声音
   # services.pulseaudio.enable = true;
-  # OR
+  # 或者
   # services.pipewire = {
   #   enable = true;
   #   pulse.enable = true;
   # };
 
-  # Enable touchpad support (enabled default in most desktopManager).
+  # 启用触摸板支持(在大多数桌面管理器中默认启用)
   # services.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # 定义用户账户
   # users.users.alice = {
   #   isNormalUser = true;
   #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
@@ -69,55 +62,34 @@
 
   # programs.firefox.enable = true;
 
-  # List packages installed in system profile.
-  # You can use https://search.nixos.org/ to find more packages (and options).
+  # 列出系统配置文件中安装的软件包
+  # 您可以使用 https://search.nixos.org/ 来查找更多软件包(和选项)
   # environment.systemPackages = with pkgs; [
-  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #   vim
   #   wget
   # ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
+  # 某些程序需要 SUID 包装器, 可以进一步配置或在用户会话中启动
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
   #   enable = true;
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
+  # 列出您想要启用的服务：
 
-  # Enable the OpenSSH daemon.
+  # 启用 OpenSSH 守护进程。
   # services.openssh.enable = true;
 
-  # Open ports in the firewall.
+  # 在防火墙中打开端口
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
+  # 或者完全关闭防火墙
   # networking.firewall.enable = false;
 
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
+  # 复制 NixOS 配置文件并将其链接到生成的系统(/run/current-system/configuration.nix)
+  # 这在您不小心删除 configuration.nix 时非常有用
   # system.copySystemConfiguration = true;
 
-  # This option defines the first version of NixOS you have installed on this particular machine,
-  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
-  #
-  # Most users should NEVER change this value after the initial install, for any reason,
-  # even if you've upgraded your system to a new NixOS release.
-  #
-  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
-  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
-  # to actually do that.
-  #
-  # This value being lower than the current NixOS release does NOT mean your system is
-  # out of date, out of support, or vulnerable.
-  #
-  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
-  # and migrated your data accordingly.
-  #
-  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "25.11"; # Did you read the comment?
-
+  system.stateVersion = "25.11";
 }
-
