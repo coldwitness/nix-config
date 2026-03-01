@@ -29,10 +29,10 @@
     # 完全关闭防火墙
     # firewall.enable = false;
     # 网络代理
-    proxy = {
-      # default = "http://user:password@proxy:port/";
-      # noProxy = "127.0.0.1,localhost,internal.domain";
-    };
+    # proxy = {
+    #   default = "http://user:password@proxy:port/";
+    #   noProxy = "127.0.0.1,localhost,internal.domain";
+    # };
   };
 
   # 时区配置
@@ -49,8 +49,13 @@
     # 默认官方源
     "https://cache.nixos.org"
     ];
-    # 启用实验性功能: nix 命令增强和 flakes 支持
-    experimental-features = [ "nix-command" "flakes" ];
+    # 启用实验性功能
+    experimental-features = [
+      # nix 命令增强
+      "nix-command"
+      # flakes 支持
+      "flakes"
+    ];
   };
 
   # Nixpkgs 配置
@@ -92,12 +97,6 @@
 
   # 服务配置
   services = {
-    # 启用 X11 窗口系统
-    xserver = {
-      enable = true;
-      # 启用 X11 键盘布局为美式
-      xkb.layout = "us";
-    };
     # 启用触摸板支持(在大多数桌面管理器中默认启用)
     libinput.enable = true;
     # 禁用 PulseAudio(使用 PipeWire 替代)
@@ -116,6 +115,12 @@
     # printing.enable = true;
     # 启用 OpenSSH 守护进程
     openssh.enable = true;
+    # 合盖管理
+    logind.settings.Login = {
+      HandleLidSwitchExternalPower = "ignore";
+      HandleLidSwitchDocked = "ignore";
+      HandleLidSwitch = "ignore";
+    };
   };
 
   # 指定 NixOS 状态版本(保持为首次安装版本)

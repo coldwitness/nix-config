@@ -33,8 +33,10 @@
   fonts = {
   packages = with pkgs; [
     noto-fonts
-    noto-fonts-cjk-sans    # 思源黑体 (无衬线)
-    noto-fonts-cjk-serif   # 思源宋体 (衬线)
+    # 思源黑体(无衬线)
+    noto-fonts-cjk-sans
+    # 思源宋体(衬线)
+    noto-fonts-cjk-serif
     ];
   fontconfig = {
     defaultFonts = {
