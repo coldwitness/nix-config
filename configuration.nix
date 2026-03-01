@@ -4,7 +4,6 @@
   imports = [
       # 导入硬件配置模块, 用于加载硬件扫描结果
       ./hardware-configuration.nix
-      ./chinese.nix
     ];
 
   # 引导加载器配置
@@ -60,9 +59,6 @@
     allowUnfree = true;  
   };
 
-  # 启用 X11 窗口系统
-  # services.xserver.enable = true;
-
   # 用户账户配置
   users = {
     # 开启完全声明式管理
@@ -70,32 +66,38 @@
     # 用户配置
     users = {
       root = {
-        # 哈希密码
-        hashedPassword = "$6$yk.jU.kxIAVwaoaj$zFEdwFofY8P88Ad7/a62sm5j3QxyXcQxKTvTpRMIYDgw6G4RDXZCQgHRyeOyZHLN10lKov55WJESL8t2Ia1US0";
-      };
+      # 哈希密码
+      hashedPassword = "$6$yk.jU.kxIAVwaoaj$zFEdwFofY8P88Ad7/a62sm5j3QxyXcQxKTvTpRMIYDgw6G4RDXZCQgHRyeOyZHLN10lKov55WJESL8t2Ia1US0";
+    };
       admin = {
         # 普通用户
-        isNormalUser = true;
-        # 用户描述
-        description = "管理员";
-        # 添加用户到额外组
-        extraGroups = [ "wheel" "networkmanager" ];
-        hashedPassword = "$6$Yq2f2308VGQlSDxb$v6tOVrxDvVJYSB40g8t/n2ZVw9pSARf5Gxe.ph2n.TvyXDPiruSi8Y9pEuPNi0regGL8AB8dQBmge/kNTZqxh1";
-        # 用户专属包列表
-        packages = with pkgs; [ ];
+      isNormalUser = true;
+      # 用户描述
+      description = "管理员";
+      # 添加用户到额外组
+      extraGroups = [ "wheel" "networkmanager" ];
+      hashedPassword = "$6$Yq2f2308VGQlSDxb$v6tOVrxDvVJYSB40g8t/n2ZVw9pSARf5Gxe.ph2n.TvyXDPiruSi8Y9pEuPNi0regGL8AB8dQBmge/kNTZqxh1";
+      # 用户专属包列表
+      packages = with pkgs; [ ];
       };
     };
   };
 
   # 系统级包列表
   environment.systemPackages = with pkgs; [
+    git
+    htop
     fastfetch
   ];
 
   # 服务配置
   services = {
-    # 启用 X11 键盘布局为美式
-    xserver.xkb.layout = "us";  
+    # 启用 X11 窗口系统
+    xserver = {
+      enable = true;
+      # 启用 X11 键盘布局为美式
+      xkb.layout = "us";
+    };
     # 启用触摸板支持(在大多数桌面管理器中默认启用)
     libinput.enable = true;
     # 禁用 PulseAudio(使用 PipeWire 替代)
