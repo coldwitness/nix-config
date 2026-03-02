@@ -3,6 +3,8 @@
 {
   # Hyprland 程序配置
   programs = {
+    # Hyprland 的锁屏程序
+    # hyprlock.enable = true;
     # Wayland 合成器/桌面环境
     hyprland = {
       # 启用 Hyprland Wayland 合成器

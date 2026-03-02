@@ -10,11 +10,14 @@
     # 状态版本
     stateVersion = "26.05";
     # 链接文件
-    file.".config/hypr/hyprland.conf" = {
+    file = {
+      # 目标文件
+      ".config/hypr/hyprland.conf" = {
       # 源文件
-      source = ./../hyprland.conf;
+        source = ./../hyprland/hyprland.conf;
       # 强制覆盖目标文件
       force = true;
     };
+  };
   };
 }
