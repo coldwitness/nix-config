@@ -1,5 +1,10 @@
-{ config, lib, pkgs, ... }:
-
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   # Hyprland 程序配置
   programs = {
@@ -18,14 +23,24 @@
     firefox = {
       enable = true;
     };
+    vscode = {
+      # enable = true;
+      extensions = with pkgs.vscode-extensions; [
+        # dracula-theme.theme-dracula
+        # vscodevim.vim
+        # yzhang.markdown-all-in-one
+      ];
+    };
   };
 
   # 系统级包列表
   environment.systemPackages = with pkgs; [
-    # 现代化终端模拟器
+    # 终端模拟器
     kitty
     # 程序启动器
-    wofi
+    fuzzel
+    # 状态栏
+    waybar
   ];
 
   # Greetd 登录管理器配置

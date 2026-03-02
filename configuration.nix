@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
       # 导入硬件配置模块, 用于加载硬件扫描结果

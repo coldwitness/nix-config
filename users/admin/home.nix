@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   # 用户配置
   home = {
@@ -13,15 +17,15 @@
     file = {
       # 目标文件
       ".config/hypr/hyprland.conf" = {
-      # 源文件
-        source = ./../hyprland/hyprland.conf;
-      # 强制覆盖目标文件
-      force = true;
-    };
-      ".config/fish/config.fish" = {
-        source = ./../shell/config.fish;
+        # 源文件
+        source = ./config/hyprland/hyprland.conf;
+        # 强制覆盖目标文件
         force = true;
       };
-  };
+      ".config/fish/config.fish" = {
+        source = ./config/fish/config.fish;
+        force = true;
+      };
+    };
   };
 }
