@@ -22,6 +22,10 @@
         # 强制覆盖目标文件
         force = true;
       };
+      ".config/starship.toml" = {
+        source = ./config/fish/starship.toml;
+        force = true;
+      };
       ".config/fish/config.fish" = {
         source = ./config/fish/config.fish;
         force = true;
