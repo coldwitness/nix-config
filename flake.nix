@@ -13,6 +13,7 @@
        ./configuration.nix
         # 导入其他模块
         ./chinese.nix
+        ./hyprland.nix
       ];
     }; 
   };
