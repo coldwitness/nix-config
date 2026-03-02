@@ -30,6 +30,10 @@
         source = ./config/fish/config.fish;
         force = true;
       };
+      ".config/fcitx5/config" = {
+         source = ./config/fcitx5/config;
+         force = true;
+      };
     };
   };
 }

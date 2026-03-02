@@ -5,8 +5,8 @@
   ...
 }:
 {
-  # 系统中文环境配置
   i18n = {
+    # 系统中文环境配置
     defaultLocale = "zh_CN.UTF-8";
     extraLocaleSettings = {
       LC_ADDRESS = "zh_CN.UTF-8";
@@ -35,7 +35,6 @@
       };
     };
   };
-
   # 字体配置
   fonts = {
     # 开启默认字体集(禁用)
