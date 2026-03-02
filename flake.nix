@@ -19,6 +19,7 @@
         ./configuration.nix
           # 导入其他模块
           ./chinese.nix
+          ./shell/shell.nix
           ./hyprland/hyprland.nix
           # 导入 home-manager 模块
           home-manager.nixosModules.home-manager

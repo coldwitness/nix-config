@@ -18,6 +18,10 @@
       # 强制覆盖目标文件
       force = true;
     };
+      ".config/fish/config.fish" = {
+        source = ./../shell/config.fish;
+        force = true;
+      };
   };
   };
 }
