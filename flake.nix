@@ -29,6 +29,7 @@
           ./modules/nh.nix
           ./modules/i18n/chinese.nix
           ./modules/shell/fish.nix
+          ./modules/internet/firefox.nix
           ./modules/desktop/hyprland.nix
           # 导入 home-manager 模块
           home-manager.nixosModules.home-manager
