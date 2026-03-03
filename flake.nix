@@ -26,13 +26,13 @@
           # 导入主配置
           ./configuration.nix
           # 导入其他模块
-          ./modules/nh.nix
-          ./modules/monitor.nix
-          ./modules/i18n/chinese.nix
-          ./modules/editor/vscode.nix
-          ./modules/shell/fish.nix
-          ./modules/internet/firefox.nix
-          ./modules/desktop/hyprland.nix
+          ./modules/nh.nix                # 
+          ./modules/monitor.nix           # 
+          ./modules/shell/fish.nix        # 终端
+          ./modules/i18n/chinese.nix      # 本地化模块
+          ./modules/editor/index.nix      # 编辑器模块
+          ./modules/internet/index.nix    # 网络工具模块
+          ./modules/desktop/hyprland.nix  # 桌面模块
           # 导入 home-manager 模块
           home-manager.nixosModules.home-manager
           {

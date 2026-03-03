@@ -5,7 +5,6 @@
   ...
 }:
 {
-  networking.proxy.default = "http://192.168.1.52:7890/";
   programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
