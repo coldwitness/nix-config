@@ -27,6 +27,7 @@
           ./configuration.nix
           # 导入其他模块
           ./modules/nh.nix
+          ./modules/monitor.nix
           ./modules/i18n/chinese.nix
           ./modules/shell/fish.nix
           ./modules/internet/firefox.nix

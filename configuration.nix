@@ -32,11 +32,6 @@
     };
     # 完全关闭防火墙
     # firewall.enable = false;
-    # 网络代理
-    # proxy = {
-    #   default = "http://user:password@proxy:port/";
-    #   noProxy = "127.0.0.1,localhost,internal.domain";
-    # };
   };
 
   # 时区配置
@@ -86,8 +81,6 @@
       # 添加用户到额外组
       extraGroups = [ "wheel" "networkmanager" ];
       hashedPassword = "$6$Yq2f2308VGQlSDxb$v6tOVrxDvVJYSB40g8t/n2ZVw9pSARf5Gxe.ph2n.TvyXDPiruSi8Y9pEuPNi0regGL8AB8dQBmge/kNTZqxh1";
-      # 用户专属包列表
-      packages = with pkgs; [ ];
       };
     };
   };
@@ -95,8 +88,6 @@
   # 系统级包列表
   environment.systemPackages = with pkgs; [
     git
-    htop
-    fastfetch
   ];
 
   # 服务配置
