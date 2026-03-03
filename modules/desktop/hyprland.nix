@@ -19,17 +19,9 @@
       # 启用 UWSM 支持, 允许运行 Wayland 应用
       withUWSM = true;
     };
-    # Firefox 浏览器
-    firefox = {
+    # 文件管理器
+    yazi = {
       enable = true;
-    };
-    vscode = {
-      # enable = true;
-      extensions = with pkgs.vscode-extensions; [
-        # dracula-theme.theme-dracula
-        # vscodevim.vim
-        # yzhang.markdown-all-in-one
-      ];
     };
   };
 
