@@ -26,6 +26,7 @@
           # 导入主配置
           ./configuration.nix
           # 导入其他模块
+          ./modules/nh.nix
           ./modules/i18n/chinese.nix
           ./modules/shell/fish.nix
           ./modules/desktop/hyprland.nix
