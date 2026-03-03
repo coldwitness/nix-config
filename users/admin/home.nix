@@ -34,6 +34,14 @@
          source = ./config/fcitx5/config;
          force = true;
       };
+      ".vscode/argv.json" = {
+        source = ./config/vscode/argv.json;
+        force = true;
+      };
+      ".config/Code/User/settings.json" = {
+        source = ./config/vscode/settings.json;
+         force = true;
+      };
     };
   };
 }

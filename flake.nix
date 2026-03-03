@@ -29,6 +29,7 @@
           ./modules/nh.nix
           ./modules/monitor.nix
           ./modules/i18n/chinese.nix
+          ./modules/editor/vscode.nix
           ./modules/shell/fish.nix
           ./modules/internet/firefox.nix
           ./modules/desktop/hyprland.nix
