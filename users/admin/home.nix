@@ -23,7 +23,7 @@
         force = true;
       };
       ".config/starship.toml" = {
-        source = ./config/fish/starship.toml;
+        source = ./config/starship/starship.toml;
         force = true;
       };
       ".config/fish/config.fish" = {
