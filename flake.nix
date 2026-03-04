@@ -7,12 +7,17 @@
       # 使用与系统相同的 nixpkgs 输入, 避免依赖冲突
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
+    nixvim,
   }@inputs:
   {
     nixosConfigurations = {
@@ -26,6 +31,7 @@
           # 导入主配置
           ./configuration.nix
           # 导入其他模块
+          nixvim.nixosModules.nixvim
           ./modules/nh.nix                # 
           ./modules/monitor.nix           # 
           ./modules/shell/fish.nix        # 终端
