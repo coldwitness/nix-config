@@ -33,6 +33,8 @@
     fuzzel
     # 状态栏
     waybar
+    # 截图
+    hyprshot
   ];
 
   # Greetd 登录管理器配置
