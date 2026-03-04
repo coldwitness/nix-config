@@ -41,12 +41,14 @@
     enableDefaultPackages = false;
     # 安装字体
     packages = with pkgs; [
-      # Nerd 字体 
+      # Nerd 字体
       nerd-fonts.fira-code
       # 思源黑体(无衬线)
       noto-fonts-cjk-sans
       # 思源宋体(衬线)
       noto-fonts-cjk-serif
+      # 彩色表情符号字体
+      noto-fonts-color-emoji
     ];
     # 配置字体
     fontconfig = {
@@ -60,6 +62,9 @@
         ];
         serif = [
           "Noto Serif CJK SC"
+        ];
+        emoji = [
+          "Noto Color Emoji"
         ];
       };
     };
