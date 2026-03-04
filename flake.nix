@@ -3,7 +3,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager?ref=master";
       # 使用与系统相同的 nixpkgs 输入, 避免依赖冲突
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -18,6 +18,7 @@
     nixpkgs,
     home-manager,
     nixvim,
+    ...
   }@inputs:
   {
     nixosConfigurations = {
@@ -38,7 +39,7 @@
           ./modules/i18n/chinese.nix      # 本地化模块
           ./modules/editor/index.nix      # 编辑器模块
           ./modules/internet/index.nix    # 网络工具模块
-          ./modules/desktop/hyprland.nix  # 桌面模块
+          ./modules/desktop/index.nix     # 桌面模块
           # 导入 home-manager 模块
           home-manager.nixosModules.home-manager
           {
