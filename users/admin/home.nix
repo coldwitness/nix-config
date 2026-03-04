@@ -4,6 +4,9 @@
   pkgs,
   ...
 }:
+let
+  configPath = "${config.home.homeDirectory}/workspace/nix-config/users/admin/config";
+in
 {
   # 用户配置
   home = {
@@ -18,28 +21,28 @@
       # 目标文件
       ".config/hypr/hyprland.conf" = {
         # 源文件
-        source = ./config/hyprland/hyprland.conf;
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/hyprland/hyprland.conf";
         # 强制覆盖目标文件
         force = true;
       };
       ".config/starship.toml" = {
-        source = ./config/starship/starship.toml;
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/starship/starship.toml";
         force = true;
       };
       ".config/fish/config.fish" = {
-        source = ./config/fish/config.fish;
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/fish/config.fish";
         force = true;
       };
       ".config/fcitx5/config" = {
-         source = ./config/fcitx5/config;
+         source = config.lib.file.mkOutOfStoreSymlink "${configPath}/fcitx5/config";
          force = true;
       };
       ".vscode/argv.json" = {
-        source = ./config/vscode/argv.json;
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/vscode/argv.json";
         force = true;
       };
       ".config/Code/User/settings.json" = {
-        source = ./config/vscode/settings.json;
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/vscode/settings.json";
          force = true;
       };
     };
