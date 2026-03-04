@@ -19,9 +19,9 @@ in
     # 链接文件
     file = {
       # 目标文件
-      ".config/hypr/hyprland.conf" = {
+      ".config/hypr" = {
         # 源文件
-        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/hyprland/hyprland.conf";
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/hyprland";
         # 强制覆盖目标文件
         force = true;
       };

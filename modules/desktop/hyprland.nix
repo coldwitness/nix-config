@@ -35,6 +35,8 @@
     waybar
     # 截图
     hyprshot
+    # 壁纸
+    hyprpaper
   ];
 
   # Greetd 登录管理器配置
