@@ -45,6 +45,10 @@ in
         source = config.lib.file.mkOutOfStoreSymlink "${configPath}/vscode/settings.json";
          force = true;
       };
+      ".config/fastfetch/config.jsonc" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/fastfetch/config.jsonc";
+        force = true;
+      };
     };
   };
 }
