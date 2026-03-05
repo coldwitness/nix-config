@@ -25,8 +25,12 @@ in
         # 强制覆盖目标文件
         force = true;
       };
-      ".config/kitty/kitty.conf" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/kitty/kitty.conf";
+      ".config/DankMaterialShell" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/dms";
+        force = true;
+      };
+      ".config/kitty" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/kitty";
         force = true;
       };
       ".config/starship.toml" = {
