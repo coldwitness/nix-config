@@ -6,8 +6,8 @@
 }:
 {
   imports = [
+      ./qq.nix
       ./firefox.nix
       ./rustdesk.nix
-      ./qq-wayland.nix
     ];
 }
