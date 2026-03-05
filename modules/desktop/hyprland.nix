@@ -29,14 +29,8 @@
   environment.systemPackages = with pkgs; [
     # 终端模拟器
     kitty
-    # 程序启动器
-    fuzzel
-    # 状态栏
-    waybar
     # 截图
     hyprshot
-    # 壁纸
-    hyprpaper
   ];
 
   # Greetd 登录管理器配置

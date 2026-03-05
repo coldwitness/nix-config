@@ -7,6 +7,6 @@
 {
   imports = [
       ./hyprland.nix
-      ./dms-shell.nix
+      ./dms.nix
     ];
 }

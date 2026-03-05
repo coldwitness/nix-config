@@ -7,6 +7,10 @@
       # 使用与系统相同的 nixpkgs 输入, 避免依赖冲突
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell?ref=stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,8 +20,6 @@
   outputs = {
     self,
     nixpkgs,
-    home-manager,
-    nixvim,
     ...
   }@inputs:
   {
@@ -31,17 +33,8 @@
         modules = [
           # 导入主配置
           ./configuration.nix
-          # 导入其他模块
-          nixvim.nixosModules.nixvim
-          ./modules/nh.nix                # 
-          ./modules/monitor.nix           # 
-          ./modules/shell/fish.nix        # 终端
-          ./modules/i18n/chinese.nix      # 本地化模块
-          ./modules/editor/index.nix      # 编辑器模块
-          ./modules/internet/index.nix    # 网络工具模块
-          ./modules/desktop/index.nix     # 桌面模块
-          # 导入 home-manager 模块
-          home-manager.nixosModules.home-manager
+          # 导入 inputs 模块
+          inputs.home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -52,6 +45,16 @@
             # 在 home-manager 中使用 flake 的所有 inputs 参数
             home-manager.extraSpecialArgs = inputs;
           }
+          inputs.dms.nixosModules.dank-material-shell
+          inputs.nixvim.nixosModules.nixvim
+          # 导入其他模块
+          ./modules/nh.nix                # 
+          ./modules/monitor.nix           # 
+          ./modules/shell/fish.nix        # 终端
+          ./modules/i18n/chinese.nix      # 本地化模块
+          ./modules/editor/index.nix      # 编辑器模块
+          ./modules/internet/index.nix    # 网络工具模块
+          ./modules/desktop/index.nix     # 桌面模块
         ];
       }; 
     };
