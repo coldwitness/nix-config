@@ -51,6 +51,7 @@
           ./modules/nh.nix                # 
           ./modules/monitor.nix           # 
           ./modules/shell/fish.nix        # 终端
+          ./modules/media/index.nix       # 多媒体模块
           ./modules/i18n/chinese.nix      # 本地化模块
           ./modules/editor/index.nix      # 编辑器模块
           ./modules/internet/index.nix    # 网络工具模块
