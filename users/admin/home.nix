@@ -29,6 +29,10 @@ in
         source = config.lib.file.mkOutOfStoreSymlink "${configPath}/dms";
         force = true;
       };
+      ".config/qt6ct" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/qt6ct";
+        force = true;
+      };
       ".config/kitty" = {
         source = config.lib.file.mkOutOfStoreSymlink "${configPath}/kitty";
         force = true;
@@ -37,8 +41,8 @@ in
         source = config.lib.file.mkOutOfStoreSymlink "${configPath}/starship/starship.toml";
         force = true;
       };
-      ".config/fish/config.fish" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/fish/config.fish";
+      ".config/fish" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/fish";
         force = true;
       };
       ".config/fcitx5/config" = {
