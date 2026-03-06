@@ -45,8 +45,8 @@ in
         source = config.lib.file.mkOutOfStoreSymlink "${configPath}/fish";
         force = true;
       };
-      ".config/fcitx5/config" = {
-         source = config.lib.file.mkOutOfStoreSymlink "${configPath}/fcitx5/config";
+      ".config/fcitx5" = {
+         source = config.lib.file.mkOutOfStoreSymlink "${configPath}/fcitx5";
          force = true;
       };
       ".vscode/argv.json" = {
@@ -57,8 +57,12 @@ in
         source = config.lib.file.mkOutOfStoreSymlink "${configPath}/vscode/settings.json";
          force = true;
       };
-      ".config/fastfetch/config.jsonc" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/fastfetch/config.jsonc";
+      ".config/fastfetch" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/fastfetch";
+        force = true;
+      };
+      ".config/obs-studio" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/obs-studio";
         force = true;
       };
     };
