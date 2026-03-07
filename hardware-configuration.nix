@@ -13,49 +13,62 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "uas" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [
+    # USB 3.0(xHCI)主机控制器驱动, 支持 USB 3.0 接口
+    "xhci_pci"
+    # SATA AHCI 控制器驱动, 支持 SATA 硬盘/SSD
+    "ahci"
+    # USB Attached SCSI 驱动, 提高 USB 存储设备性能
+    "uas"
+    # USB 存储设备驱动
+    "usb_storage"
+    # USB HID 驱动, 支持 USB 输入设备
+    "usbhid"
+    # SCSI 磁盘驱动, 为 SATA/SAS/USB 存储提供通用支持
+    "sd_mod"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/ba93bb6c-ab37-4c15-835c-1481c9c4a02c";
+    { device = "/dev/disk/by-uuid/8c18bbfc-4114-497a-b34b-760429d94a25";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/ba93bb6c-ab37-4c15-835c-1481c9c4a02c";
+    { device = "/dev/disk/by-uuid/8c18bbfc-4114-497a-b34b-760429d94a25";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/ba93bb6c-ab37-4c15-835c-1481c9c4a02c";
+    { device = "/dev/disk/by-uuid/8c18bbfc-4114-497a-b34b-760429d94a25";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
     };
 
   fileSystems."/var/log" =
-    { device = "/dev/disk/by-uuid/ba93bb6c-ab37-4c15-835c-1481c9c4a02c";
+    { device = "/dev/disk/by-uuid/8c18bbfc-4114-497a-b34b-760429d94a25";
       fsType = "btrfs";
       options = [ "subvol=@log" ];
     };
 
   fileSystems."/.snapshots" =
-    { device = "/dev/disk/by-uuid/ba93bb6c-ab37-4c15-835c-1481c9c4a02c";
+    { device = "/dev/disk/by-uuid/8c18bbfc-4114-497a-b34b-760429d94a25";
       fsType = "btrfs";
       options = [ "subvol=@.snapshots" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/FC2C-8C66";
+    { device = "/dev/disk/by-uuid/027B-7471";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
   fileSystems."/swap" =
-    { device = "/dev/disk/by-uuid/ba93bb6c-ab37-4c15-835c-1481c9c4a02c";
+    { device = "/dev/disk/by-uuid/8c18bbfc-4114-497a-b34b-760429d94a25";
       fsType = "btrfs";
       options = [ "subvol=@swap" ];
     };

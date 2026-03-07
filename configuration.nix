@@ -7,6 +7,7 @@
 {
   imports = [
       # 导入硬件配置模块, 用于加载硬件扫描结果
+      ./modules/nh.nix
       ./hardware-configuration.nix
     ];
 
@@ -17,7 +18,6 @@
     # 允许修改 EFI 变量, 支持 UEFI 引导
     efi.canTouchEfiVariables = true;
   };
-
 
   # 网络配置
   networking = {
