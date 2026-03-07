@@ -20,3 +20,8 @@ function nhm
             echo "操作已取消"
     end
 end
+
+# 命令替换
+alias cat "bat"
+alias ls "eza --icons --git"
+alias lst "eza --icons --git -T"
