@@ -7,6 +7,6 @@
 {
   imports = [
       ./nixvim.nix
-      ./vscode/vscode-latest.nix
+      ./vscode-latest.nix
     ];
 }
