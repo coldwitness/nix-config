@@ -15,6 +15,10 @@
       url = "github:nix-community/nixvim?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    secrets = {
+      url = "git+https://gitee.com/knightfemale/nix-config-secrets.git";
+      flake = false;
+    };
   };
 
   outputs = {

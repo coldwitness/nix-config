@@ -66,11 +66,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1772972004,
-        "narHash": "sha256-IigLoHMgVn0kM4ipkmbEFXUVfvfHPjMY9TAqo+kiuiY=",
+        "lastModified": 1772980247,
+        "narHash": "sha256-VVdN5UUW7b6vU+0l+Qu4M+nfQgkr+bUUtnzX54YkhqI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f30daebffd961d762368b297a67df5cbc92a1d04",
+        "rev": "3c86acf9d0cb9bdfda567ab7d38e1c9ea872b73b",
         "type": "github"
       },
       "original": {
@@ -130,7 +130,24 @@
         "dms": "dms",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nixvim": "nixvim"
+        "nixvim": "nixvim",
+        "secrets": "secrets"
+      }
+    },
+    "secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1772978213,
+        "narHash": "sha256-Ujv+Pftel8Cvx5ft9PpG4GLg0elSdphOkOsaKqRDZck=",
+        "ref": "refs/heads/master",
+        "rev": "19c8e66dc064bb5457ef633fc2304c74c809e758",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://gitee.com/knightfemale/nix-config-secrets.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gitee.com/knightfemale/nix-config-secrets.git"
       }
     },
     "systems": {
