@@ -32,6 +32,7 @@
       type = "fcitx5";
       fcitx5 = {
         addons = with pkgs; [
+          fcitx5-mellow-themes
           qt6Packages.fcitx5-chinese-addons
         ];
         waylandFrontend = true;
