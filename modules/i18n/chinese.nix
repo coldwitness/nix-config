@@ -5,6 +5,9 @@
   ...
 }:
 {
+  # 时区配置
+  time.timeZone = "Asia/Shanghai";
+  # 语言配置
   i18n = {
     # 系统中文环境配置
     defaultLocale = "zh_CN.UTF-8";

@@ -10,28 +10,34 @@
     dank-material-shell = {
       enable = true;
       systemd = {
-        enable = false;             # Systemd service for auto-start
-        restartIfChanged = true;   # Auto-restart dms.service when dms-shell changes
+        # 创建 systemd 服务单元
+        enable = false;
+        # 是否自动重启该服务以应用更改
+        restartIfChanged = true;
       };
-      # Core features
-      enableSystemMonitoring = true;     # System monitoring widgets (dgop)
-      enableVPN = true;                  # VPN management widget
-      enableDynamicTheming = true;       # Wallpaper-based theming (matugen)
-      enableAudioWavelength = true;      # Audio visualizer (cava)
-      # enableCalendarEvents = true;       # Calendar integration (khal)
-      enableClipboardPaste = true;       # Pasting from the clipboard history (wtype)
+      # 启用系统监控小部件(dgop)
+      enableSystemMonitoring = true;
+      # 启用 VPN 管理小部件
+      # enableVPN = true;
+      # 启用基于壁纸的动态主题生成(matugen)
+      enableDynamicTheming = true;
+      # 启用音频可视化小部件(cava)
+      enableAudioWavelength = true;
+      # 启用日历事件集成(khal)
+      # enableCalendarEvents = true;
+      # 启用剪贴板历史粘贴功能(wtype)
+      enableClipboardPaste = true;
     };
   };
 
   # 系统级包列表
   environment.systemPackages = with pkgs; [
     # 图标主题
-    papirus-icon-theme  # 最流行, 覆盖最全
-    # adwaita-icon-theme  # 备选, GNOME默认
-    # breeze-icons        # 备选 ,KDE默认
-    # 图标设置
-    # nwg-look            # GTK 设置工具
-    qt6Packages.qt6ct   # Qt 设置工具
+    papirus-icon-theme
+    # GTK 设置工具
+    # nwg-look
+    # Qt 设置工具
+    qt6Packages.qt6ct
   ];
 
   environment.variables = {

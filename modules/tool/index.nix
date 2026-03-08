@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./nh.nix
     ./bat.nix
     ./eza.nix
     ./btop.nix

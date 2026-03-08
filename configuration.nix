@@ -7,7 +7,6 @@
 {
   imports = [
       # 导入硬件配置模块, 用于加载硬件扫描结果
-      ./modules/tool/nh.nix
       ./hardware-configuration.nix
     ];
 
@@ -27,15 +26,17 @@
     networkmanager.enable = true;
     # 在防火墙中打开端口
     firewall = {
-      allowedTCPPorts = [ 22 ];
+      # 完全关闭防火墙
+      enable = false;
+      # allowedTCPPorts = [ ... ];
       # allowedUDPPorts = [ ... ];
     };
-    # 完全关闭防火墙
-    # firewall.enable = false;
+    # 网络代理
+    # proxy = {
+    #   default = "http://user:password@proxy:port/";
+    #   noProxy = "127.0.0.1,localhost,internal.domain";
+    # };
   };
-
-  # 时区配置
-  time.timeZone = "Asia/Shanghai";
 
   # Nix 包管理器配置
   nix.settings = {

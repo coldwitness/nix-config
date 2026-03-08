@@ -12,6 +12,8 @@
       ./wechat.nix
       # 火狐浏览器
       ./firefox.nix
+      # 代理
+      ./sing-box.nix
       # RustDesk 远程桌面
       ./rustdesk.nix
     ];
