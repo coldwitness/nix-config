@@ -7,7 +7,7 @@
 {
   imports = [
       # 导入硬件配置模块, 用于加载硬件扫描结果
-      ./modules/nh.nix
+      ./modules/tool/nh.nix
       ./hardware-configuration.nix
     ];
 

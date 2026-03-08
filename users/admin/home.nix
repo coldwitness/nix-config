@@ -8,6 +8,10 @@ let
   configPath = "${config.home.homeDirectory}/workspace/nix-config/users/admin/config";
 in
 {
+  # 导入其他模块
+  imports = [
+    ./modules/index.nix
+    ];
   # 用户配置
   home = {
     # 用户名
