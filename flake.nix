@@ -1,18 +1,18 @@
 {
   description = "NixOS Flake Configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=master";
     home-manager = {
       url = "github:nix-community/home-manager?ref=master";
       # 使用与系统相同的 nixpkgs 输入, 避免依赖冲突
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dms = {
-      url = "github:AvengeMedia/DankMaterialShell?ref=stable";
+      url = "github:AvengeMedia/DankMaterialShell?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url = "github:nix-community/nixvim?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
