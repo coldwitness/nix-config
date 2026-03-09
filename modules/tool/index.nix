@@ -12,6 +12,7 @@
     ./btop.nix
     # ./htop.nix
     # ./nvtop.nix
+    ./udiskie.nix
     ./fastfetch.nix
     ];
 }
