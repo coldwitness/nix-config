@@ -16,7 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets = {
-      url = "git+ssh://git@gitee.com/knightfemale/nix-config-secrets.git";
+      url = "git+ssh://git@github.com/knightfemale/nix-config-secrets.git";
       flake = false;
     };
   };
