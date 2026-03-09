@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  secrets,
   ...
 }:
 let
@@ -67,6 +68,10 @@ in
       };
       ".config/obs-studio" = {
         source = config.lib.file.mkOutOfStoreSymlink "${configPath}/obs-studio";
+        force = true;
+      };
+      ".ssh" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${secrets}/ssh";
         force = true;
       };
     };
