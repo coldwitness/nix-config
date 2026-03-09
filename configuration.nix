@@ -32,10 +32,10 @@
       # allowedUDPPorts = [ ... ];
     };
     # 网络代理
-    # proxy = {
-    #   default = "http://user:password@proxy:port/";
-    #   noProxy = "127.0.0.1,localhost,internal.domain";
-    # };
+    proxy = {
+      default = "http://localhost:2334/";
+      noProxy = "127.0.0.1,localhost,internal.domain";
+    };
   };
 
   # Nix 包管理器配置

@@ -8,11 +8,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1772940201,
-        "narHash": "sha256-C6aYjsAVpmrdAtmCN150+6xeOgV47T87CWq1MfQpong=",
+        "lastModified": 1773023312,
+        "narHash": "sha256-w1j0fq1k7EZHJrYBoqzzR+P0GYMB5lOprMJGmypaiAI=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "baa956c3a1e1ba63a26d3b7380bb66376c066575",
+        "rev": "acf63c57e8bfe6caf8375904bfb778c0006af336",
         "type": "github"
       },
       "original": {
@@ -50,11 +50,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772845525,
-        "narHash": "sha256-Dp5Ir2u4jJDGCgeMRviHvEQDe+U37hMxp6RSNOoMMPc=",
+        "lastModified": 1772985285,
+        "narHash": "sha256-wEEmvfqJcl9J0wyMgMrj1TixOgInBW/6tLPhWGoZE3s=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "27b93804fbef1544cb07718d3f0a451f4c4cd6c0",
+        "rev": "5be5d8245cbc7bc0c09fbb5f38f23f223c543f85",
         "type": "github"
       },
       "original": {
@@ -66,11 +66,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1772980247,
-        "narHash": "sha256-VVdN5UUW7b6vU+0l+Qu4M+nfQgkr+bUUtnzX54YkhqI=",
+        "lastModified": 1773036558,
+        "narHash": "sha256-qHJKCYy/uL/3xEs/JeVVT+sgVyYWuloMkgtc7sHEFAM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "3c86acf9d0cb9bdfda567ab7d38e1c9ea872b73b",
+        "rev": "69ab65de159c7a8786cf683f2405c88860b1c799",
         "type": "github"
       },
       "original": {
@@ -137,17 +137,17 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1772978213,
-        "narHash": "sha256-Ujv+Pftel8Cvx5ft9PpG4GLg0elSdphOkOsaKqRDZck=",
+        "lastModified": 1773036678,
+        "narHash": "sha256-41Y5ycvYh5phgUHaPhhuZd8AU3pBA2ENFxA/YBIBiag=",
         "ref": "refs/heads/master",
-        "rev": "19c8e66dc064bb5457ef633fc2304c74c809e758",
-        "revCount": 1,
+        "rev": "85ec41bc12546778e23028a9d72d8726c85f9fb8",
+        "revCount": 2,
         "type": "git",
-        "url": "https://gitee.com/knightfemale/nix-config-secrets.git"
+        "url": "ssh://git@gitee.com/knightfemale/nix-config-secrets.git"
       },
       "original": {
         "type": "git",
-        "url": "https://gitee.com/knightfemale/nix-config-secrets.git"
+        "url": "ssh://git@gitee.com/knightfemale/nix-config-secrets.git"
       }
     },
     "systems": {
