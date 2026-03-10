@@ -16,5 +16,7 @@
       ./sing-box.nix
       # RustDesk 远程桌面
       ./rustdesk.nix
+      # 虚拟局域网
+      ./zerotierone.nix
     ];
 }
