@@ -1,3 +1,3 @@
 [submodule "secrets"]
 	path = secrets
-	url = git@gitee.com:knightfemale/nix-config-secrets.git
+	url = git@github.com:knightfemale/nix-config-secrets.git
