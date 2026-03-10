@@ -7,6 +7,7 @@
 {
   # 导入其他模块
   imports = [
+    ./container             # 容器模块
     ./tool/index.nix        # 工具模块
     ./shell/index.nix       # 命令行模块
     ./media/index.nix       # 多媒体模块
