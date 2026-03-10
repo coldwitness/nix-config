@@ -52,7 +52,7 @@
           inputs.dms.nixosModules.dank-material-shell
           inputs.nixvim.nixosModules.nixvim
           # 导入其他模块
-          ./modules/index.nix
+          ./modules
         ];
       }; 
     };

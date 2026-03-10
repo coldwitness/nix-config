@@ -11,7 +11,7 @@ in
 {
   # 导入其他模块
   imports = [
-    ./modules/index.nix
+    ./modules
     ];
   # 用户配置
   home = {
