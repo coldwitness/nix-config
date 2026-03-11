@@ -43,7 +43,7 @@ in
         # 不创建自带的默认书签
         NoDefaultBookmarks = true;
         # 受控书签
-         ManagedBookmarks = [
+        ManagedBookmarks = [
            {
              name = "AI 工具";
              children = [
@@ -77,6 +77,16 @@ in
             "DuckDuckGo"
             "Wikipedia (en)"
           ];
+        };
+        # 安装扩展
+        ExtensionSettings = {
+          # 阻止除指定的插件之外的所有扩展(包括语言)
+          # "*".installation_mode = "blocked";
+          # 沉浸式翻译
+          "{5efceaa7-f3a2-4e59-a54b-85319448e305}" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/immersive-translate/latest.xpi";
+            installation_mode = "force_installed";
+          };
         };
       };
     };                   
