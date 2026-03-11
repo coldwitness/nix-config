@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  pkgs-unstable,
   ...
 }:
 let
@@ -22,6 +22,7 @@ in
     firefox = {
       # 启用 Firefox 浏览器
       enable = true;
+      package = pkgs-unstable.firefox;
       # 浏览器偏好设置
       preferences = {
         # 强制使用操作系统语言
