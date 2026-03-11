@@ -9,9 +9,8 @@
     ./nh.nix
     ./bat.nix
     ./eza.nix
+    ./yazi.nix
     ./btop.nix
-    # ./htop.nix
-    # ./nvtop.nix
     ./udiskie.nix
     ./fastfetch.nix
     ];

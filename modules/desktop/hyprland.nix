@@ -19,10 +19,6 @@
       # 启用 UWSM 支持, 允许运行 Wayland 应用
       withUWSM = true;
     };
-    # 文件管理器
-    yazi = {
-      enable = true;
-    };
   };
 
   # 系统级包列表
