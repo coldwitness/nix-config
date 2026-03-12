@@ -1,13 +1,13 @@
 {
-  config,
-  lib,
-  pkgs,
   ...
 }:
+let
+  containerPath = "/home/admin/workspace/nix-config/secrets/containers";
+in
 {
   imports = [
+    (import ./service-core.nix { inherit containerPath; })
   ];
-
   # Podman 配置
   virtualisation ={
     podman = {
@@ -19,13 +19,5 @@
     };
     # 指定 oci-containers 使用 podman 后端
     oci-containers.backend = "podman";
-  };
-  # 配置 Cockpit Web 管理界面
-  services.cockpit = {
-    enable = true;
-    port = 9090;
-    plugins = with pkgs; [
-      cockpit-podman
-    ];
   };
 }
