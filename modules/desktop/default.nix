@@ -1,13 +1,11 @@
 {
-  config,
-  lib,
-  pkgs,
   ...
 }:
 {
   imports = [
-      ./hyprland.nix
       ./dms.nix
+      ./greetd.nix
+      ./hyprland.nix
     ];
 
   environment.variables = {
