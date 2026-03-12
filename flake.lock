@@ -66,11 +66,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1773286120,
-        "narHash": "sha256-ma0uNudp81l/4otx1lnGr17CjyMyey4ALxJNQQFcv+w=",
+        "lastModified": 1773314914,
+        "narHash": "sha256-93exEOcdOLOVyZBPL/RdBDfdx9mGp6EPHMrizkbIkmQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "75f082f9c20742e4be8bb92c37e5f0f343aab1a5",
+        "rev": "f0132cd98a068704930ae7c714c85880822dba28",
         "type": "github"
       },
       "original": {
@@ -82,11 +82,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1773110118,
-        "narHash": "sha256-mPAG8phMbCReKSiKAijjjd3v7uVcJOQ75gSjGJjt/Rk=",
+        "lastModified": 1773201692,
+        "narHash": "sha256-NXrKzNMniu4Oam2kAFvqJ3GB2kAvlAFIriTAheaY8hw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e607cb5360ff1234862ac9f8839522becb853bb9",
+        "rev": "b6067cc0127d4db9c26c79e4de0513e58d0c40c9",
         "type": "github"
       },
       "original": {
@@ -154,11 +154,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1773145584,
-        "narHash": "sha256-jxlFlGWdLkT/3na0R/VRt4FLgPirLEFRIye6b+8LejU=",
+        "lastModified": 1773317499,
+        "narHash": "sha256-mBlWCueHUuXROK21zPfK7KKZXPnhlie41tupX1TuKGw=",
         "ref": "refs/heads/master",
-        "rev": "716d36f9dc43409091d24dc09d712c36c0a11e80",
-        "revCount": 6,
+        "rev": "e0f3df2e467ffbfc4d46eb06b66d53828609de61",
+        "revCount": 7,
         "type": "git",
         "url": "ssh://git@github.com/knightfemale/nix-config-secrets.git"
       },
