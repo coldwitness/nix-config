@@ -6,7 +6,7 @@ let
 in
 {
   imports = [
-    (import ./service-core.nix { inherit containerPath; })
+    ./portainer-agent.nix
   ];
   # Podman 配置
   virtualisation ={

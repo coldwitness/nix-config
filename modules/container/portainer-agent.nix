@@ -1,5 +1,4 @@
 {
-  containerPath,
   ...
 }:
 {
@@ -18,25 +17,6 @@
       autoRemoveOnStop = false;
       # podman run 的额外选项
       extraOptions = [
-        "--restart=unless-stopped"
-      ];
-    };
-    frpc = {
-      image = "fatedier/frpc:v0.67.0";
-      volumes = [
-        "${containerPath}/service-core/frpc/frpc.toml:/frpc.toml"
-        "${containerPath}/service-core/frpc/frpc.log:/frpc.log"
-      ];
-      environment = {
-        TZ = "Asia/Shanghai";
-      };
-      cmd = [
-        "-c"
-        "/frpc.toml"
-      ];
-      autoRemoveOnStop = false;
-      extraOptions = [
-        "--network=host"
         "--restart=unless-stopped"
       ];
     };

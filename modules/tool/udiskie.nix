@@ -1,10 +1,9 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
 {
+  # 自动挂载 U 盘
   environment.systemPackages = with pkgs; [
     udiskie
   ];
