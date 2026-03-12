@@ -1,7 +1,4 @@
 {
-  config,
-  lib,
-  pkgs,
   ...
 }:
 {
@@ -13,6 +10,7 @@
     ./media     # 多媒体模块
     ./editor    # 编辑器模块
     ./desktop   # 桌面模块
+    ./hardware  # 硬件模块
     ./internet  # 网络工具模块
     ./container # 容器模块
     ];
