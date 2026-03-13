@@ -1,7 +1,7 @@
 {
   // ==================== 界面与显示设置 ====================
   // 编辑器字体栈
-  "editor.fontFamily": "FiraCode Nerd Font, 霞鹜文楷等宽",
+  "editor.fontFamily": "FiraCode Nerd Font, LXGW WenKai Mono Medium",
   // 启用字体连字
   "editor.fontLigatures": true,
   // 主题

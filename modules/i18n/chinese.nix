@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
@@ -23,8 +21,8 @@
       LC_TIME = "zh_CN.UTF-8";
     };
     supportedLocales = [
-     "zh_CN.UTF-8/UTF-8"
-     "en_US.UTF-8/UTF-8"
+      "zh_CN.UTF-8/UTF-8"
+      "en_US.UTF-8/UTF-8"
     ];
     # 输入法配置(Fcitx5)
     inputMethod = {
@@ -41,15 +39,19 @@
   };
   # 字体配置
   fonts = {
-    # 开启默认字体集(禁用)
+    # 默认字体集(禁用)
     enableDefaultPackages = false;
     # 安装字体
     packages = with pkgs; [
       # Nerd 字体
       nerd-fonts.fira-code
-      # 思源黑体(无衬线)
+      # 霞鹜文楷
+      lxgw-wenkai
+      # 谷歌开源免费字体
+      noto-fonts
+      # 无衬线字体
       noto-fonts-cjk-sans
-      # 思源宋体(衬线)
+      # 衬线字体
       noto-fonts-cjk-serif
       # 彩色表情符号字体
       noto-fonts-color-emoji
@@ -61,11 +63,11 @@
         monospace = [
           "FiraCode Nerd Font"
         ];
-        sansSerif = [
-          "Noto Sans CJK SC"
-        ];
         serif = [
           "Noto Serif CJK SC"
+        ];
+        sansSerif = [
+          "Noto Sans CJK SC"
         ];
         emoji = [
           "Noto Color Emoji"
