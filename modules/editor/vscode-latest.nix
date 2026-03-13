@@ -1,21 +1,14 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
 let
   # 包装最新版 vscode
-  version = "1.110.1";
-  platform = "linux-x64";
-  url = "https://update.code.visualstudio.com/${version}/${platform}/stable";
-  hash = "sha256-nXxPuopZX8gOWrco++VYl0AAsCxDUykkoSgWOiHFUYw=";
   vscode-latest = pkgs.vscode.overrideAttrs (oldAttrs: {
-    inherit version;
     src = pkgs.fetchurl {
-      inherit url;
-      inherit hash;
-      name = "VSCode_${version}_${platform}.tar.gz";
+      name = "code.tar.gz";
+      hash = "sha256-3s0UzfkufKXXm57JgKaMan/SRAlGTLmdIRXXpzxQvAo=";
+      url = "https://update.code.visualstudio.com/latest/linux-x64/stable";
     };
   });
 in

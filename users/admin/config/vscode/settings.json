@@ -1,11 +1,9 @@
 {
-  // ==================== 字体与显示设置 ====================
+  // ==================== 界面与显示设置 ====================
   // 编辑器字体栈
-  "editor.fontFamily": "Fira Code, 霞鹜文楷等宽",
+  "editor.fontFamily": "FiraCode Nerd Font, 霞鹜文楷等宽",
   // 启用字体连字
   "editor.fontLigatures": true,
-
-  // ==================== 主题与图标 ====================
   // 主题
   "workbench.colorTheme": "Default Dark+",
   // 工作区图标主题
@@ -54,13 +52,11 @@
     },
   ],
 
-  // ==================== 自动保存与编码 ====================
+  // ==================== 编辑器行为 ====================
   // 自动保存策略
   "files.autoSave": "afterDelay",
   // 智能识别文件编码
   "files.autoGuessEncoding": true,
-
-  // ==================== 编辑器行为 ====================
   // 粘贴时自动格式化
   "editor.formatOnPaste": true,
   // 保存时自动格式化
@@ -88,22 +84,18 @@
   "workbench.secondarySideBar.defaultVisibility": "hidden",
   // 关闭未命名工作区保存确认
   "window.confirmSaveUntitledWorkspace": false,
-
-  // ==================== 平滑滚动体验 ====================
+  // 更新后显示版本说明
+  "update.showReleaseNotes": false,
   // 编辑器平滑滚动
   "editor.smoothScrolling": true,
   // 列表视图平滑滚动
   "workbench.list.smoothScrolling": true,
   // 终端平滑滚动
   "terminal.integrated.smoothScrolling": true,
-
-  // ==================== 调试相关 ====================
   // 遇到任务错误时仍继续调试
   "debug.onTaskErrors": "debugAnyway",
   // 在概览标尺中显示断点标记
   "debug.showBreakpointsInOverviewRuler": true,
-
-  // ==================== 文件资源管理器 ====================
   // 禁用拖放操作确认
   "explorer.confirmDragAndDrop": false,
   // 禁用文件删除确认
@@ -169,14 +161,10 @@
   "[svelte]": {
     "editor.defaultFormatter": "svelte.svelte-vscode",
   },
-
-  // ==================== GitLens 相关 ====================
-  "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
-
-  // ==================== 终端配置 ====================
-  // Windows 默认终端配置
-  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "prettier.documentSelectors": ["**/*.ripple"],
+  "[ripple]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
 
   // ==================== 其他设置 ====================
   // 自定义文件关联
@@ -187,32 +175,5 @@
   "indentRainbow.ignoreErrorLanguages": ["*"],
   // 性能监控配置
   "monitor-pro.diskSpace": ["/", "C:", "D:", "E:", "F:", "G:", "H:", "I:", "J:", "K:", "L:", "M:", "N:", "O:", "P:", "Q:", "R:", "S:", "T:", "U:", "V:", "W:", "X:", "Y:", "Z:"],
-  // 远程主机名到该远程平台的映射
-  "remote.SSH.remotePlatform": {
-    "5090": "linux",
-    "6201": "linux",
-    "T10": "linux",
-    "4090D": "linux",
-    "DreamSource": "linux",
-    "stu1": "linux",
-    "stu2": "linux",
-    "6201-root": "linux",
-    "Arch": "linux",
-  },
-  "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false,
-  },
-  "terminal.integrated.profiles.windows": {
-    "PowerShell": {
-      "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
-    },
-  },
-  "prettier.documentSelectors": ["**/*.ripple"],
-  "[ripple]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-  },
   "scm.repositories.selectionMode": "single",
 }
