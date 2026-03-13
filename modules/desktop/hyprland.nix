@@ -17,11 +17,7 @@
       withUWSM = true;
     };
   };
-
-  # 系统级包列表
   environment.systemPackages = with pkgs; [
-    # 终端模拟器
-    kitty
     # 截图
     hyprshot
   ];
