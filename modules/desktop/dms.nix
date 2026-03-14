@@ -26,21 +26,4 @@
       enableClipboardPaste = true;
     };
   };
-
-  # 系统级包列表
-  environment.systemPackages = with pkgs; [
-    # 图标主题
-    papirus-icon-theme
-    # GTK 设置工具
-    # nwg-look
-    # Qt 设置工具
-    qt6Packages.qt6ct
-  ];
-
-  environment.variables = {
-    # GTK 风格
-    # QT_QPA_PLATFORMTHEME = "gtk3";
-    # Qt 原生配置
-    QT_QPA_PLATFORMTHEME = "qt6ct";
-  };
 }

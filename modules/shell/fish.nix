@@ -1,5 +1,4 @@
 {
-  pkgs,
   ...
 }:
 {
@@ -8,9 +7,4 @@
       enable = true;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    fzf
-    starship
-  ];
 }

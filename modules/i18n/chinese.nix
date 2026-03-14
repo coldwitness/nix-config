@@ -24,18 +24,10 @@
       "zh_CN.UTF-8/UTF-8"
       "en_US.UTF-8/UTF-8"
     ];
-    # 输入法配置(Fcitx5)
-    inputMethod = {
-      enable = true;
-      type = "fcitx5";
-      fcitx5 = {
-        addons = with pkgs; [
-          fcitx5-mellow-themes
-          qt6Packages.fcitx5-chinese-addons
-        ];
-        waylandFrontend = true;
-      };
-    };
+    # 输入法插件配置
+    inputMethod.fcitx5.addons = with pkgs; [
+      qt6Packages.fcitx5-chinese-addons
+    ];
   };
   # 字体配置
   fonts = {
