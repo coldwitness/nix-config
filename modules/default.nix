@@ -15,5 +15,5 @@
     ./hardware  # 硬件模块
     ./internet  # 上网工具模块
     ./container # 容器模块
-    ];
+  ];
 }

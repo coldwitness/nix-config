@@ -3,7 +3,7 @@
 }:
 {
   imports = [
-      ./nixvim.nix
-      ./vscode-latest.nix
-    ];
+    ./nixvim.nix
+    ./vscode-latest.nix
+  ];
 }

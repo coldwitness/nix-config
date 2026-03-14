@@ -7,5 +7,5 @@
 {
   imports = [
     ./fish.nix
-    ];
+  ];
 }

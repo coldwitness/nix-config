@@ -3,7 +3,7 @@
 }:
 {
   imports = [
-      ./zram.nix
-      ./bluetooth.nix
-    ];
+    ./zram.nix
+    ./bluetooth.nix
+  ];
 }

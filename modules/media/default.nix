@@ -3,7 +3,7 @@
 }:
 {
   imports = [
-      ./mpv.nix
-      ./obs-studio.nix
-    ];
+    ./mpv.nix
+    ./obs-studio.nix
+  ];
 }

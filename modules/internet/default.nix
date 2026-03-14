@@ -3,9 +3,9 @@
 }:
 {
   imports = [
-      ./qq.nix
-      ./wechat.nix
-      ./firefox.nix
-      ./rustdesk.nix
-    ];
+    ./qq.nix
+    ./wechat.nix
+    ./firefox.nix
+    ./rustdesk.nix
+  ];
 }

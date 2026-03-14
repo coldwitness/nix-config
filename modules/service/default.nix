@@ -3,8 +3,9 @@
 }:
 {
   imports = [
-      ./frp.nix
-      ./sing-box.nix
-      ./zerotierone.nix
-    ];
+    ./frp.nix
+    ./udiskie.nix
+    ./sing-box.nix
+    ./zerotierone.nix
+  ];
 }

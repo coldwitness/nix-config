@@ -4,5 +4,5 @@
 {
   imports = [
     ./chinese.nix
-    ];
+  ];
 }
