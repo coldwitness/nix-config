@@ -23,5 +23,6 @@ end
 
 # 命令替换
 alias cat "bat"
+alias top "btop"
 alias ls "eza --icons --git"
-alias lst "eza --icons --git -T"
+alias tree "eza --icons --git -T"
