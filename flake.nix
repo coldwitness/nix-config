@@ -16,6 +16,10 @@
       url = "github:nix-community/nixvim?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mcp-nixos = {
+      url = "github:utensils/mcp-nixos?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     secrets = {
       url = "git+ssh://git@github.com/knightfemale/nix-config-secrets.git";
       flake = false;

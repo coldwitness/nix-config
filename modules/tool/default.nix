@@ -12,5 +12,6 @@
     ./opencode.nix
     ./starship.nix
     ./fastfetch.nix
+    ./mcp-nixos.nix
   ];
 }
