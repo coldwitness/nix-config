@@ -51,24 +51,19 @@
           inherit inputs pkgs-unstable;
         };
         modules = [
-          # 导入主配置
-          ./configuration.nix
-          # 导入 inputs 模块
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            # 导入用户配置
-            home-manager.users = {
-              admin = import ./users/admin/home.nix;
+          { 
+            nixpkgs = {
+              # 允许安装非自由软件包
+              config.allowUnfree = true;
+              # 指定 NixOS 配置将运行的平台
+              hostPlatform = nixpkgs.lib.mkDefault system;
             };
-            # 在 home-manager 中使用 flake 的所有 inputs 参数
-            home-manager.extraSpecialArgs = inputs // { inherit pkgs-unstable; };
           }
+          ./users
+          ./modules
+          inputs.home-manager.nixosModules.home-manager
           inputs.dms.nixosModules.dank-material-shell
           inputs.nixvim.nixosModules.nixvim
-          # 导入其他模块
-          ./modules
         ];
       }; 
     };

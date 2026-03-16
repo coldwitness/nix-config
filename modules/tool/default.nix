@@ -4,6 +4,8 @@
 {
   imports = [
     ./nh.nix
+    ./nix.nix
+    ./git.nix
     ./fzf.nix
     ./bat.nix
     ./eza.nix

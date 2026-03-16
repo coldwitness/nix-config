@@ -5,6 +5,6 @@
 }:
 {
   environment.systemPackages = with pkgs; [
-    inputs.mcp-nixos.packages.${pkgs.system}.default
+    inputs.mcp-nixos.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
