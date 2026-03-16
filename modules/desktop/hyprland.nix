@@ -17,8 +17,4 @@
       withUWSM = true;
     };
   };
-  environment.systemPackages = with pkgs; [
-    # 截图
-    hyprshot
-  ];
 }
