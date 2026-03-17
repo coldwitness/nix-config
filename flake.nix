@@ -46,7 +46,7 @@
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         inherit system;
-        # 将 inputs 传递给模块
+        # 传递给子模块的参数
         specialArgs = {
           inherit inputs pkgs-unstable;
         };
