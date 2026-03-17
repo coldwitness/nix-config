@@ -18,10 +18,20 @@ in
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
+    "/.snapshots" = {
+      device = systemFileDevice;
+      fsType = "btrfs";
+      options = [ "subvol=@snapshots" ];
+    };
     "/home" = {
       device = systemFileDevice;
       fsType = "btrfs";
       options = [ "subvol=@home" ];
+    };
+    "/home/.snapshots" = {
+      device = systemFileDevice;
+      fsType = "btrfs";
+      options = [ "subvol=@home-snapshots" ];
     };
     "/nix" = {
       device = systemFileDevice;
@@ -33,17 +43,12 @@ in
       fsType = "btrfs";
       options = [ "subvol=@log" ];
     };
-    "/.snapshots" = {
-      device = systemFileDevice;
-      fsType = "btrfs";
-      options = [ "subvol=@.snapshots" ];
-    };
-    "/swap" = {
+    "/.swap" = {
       device = systemFileDevice;
       fsType = "btrfs";
       options = [ "subvol=@swap" ];
     };
   };
   # 交换设备和交换文件
-  swapDevices = [ { device = "/swap/swapfile"; } ];
+  swapDevices = [ { device = "/.swap/swapfile"; } ];
 }
