@@ -11,7 +11,6 @@
     ./eza.nix
     ./yazi.nix
     ./btop.nix
-    ./lutris.nix
     ./opencode.nix
     ./starship.nix
     ./fastfetch.nix

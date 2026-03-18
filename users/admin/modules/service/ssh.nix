@@ -1,14 +1,14 @@
 {
   lib,
   config,
-  secrets,
+  inputs,
   configPath,
   ...
 }:
 {
   home.file = {
       ".ssh" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${secrets}/ssh";
+        source = config.lib.file.mkOutOfStoreSymlink "${inputs.secrets}/ssh";
         force = true;
       };
   };

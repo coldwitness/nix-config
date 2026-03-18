@@ -1,5 +1,6 @@
 {
   inputs,
+  system,
   pkgs-unstable,
   ...
 }:
@@ -35,7 +36,9 @@
     users = {
       admin = import ./admin;
     };
-    # 在 home-manager 中使用 flake 的所有 inputs 参数
-    extraSpecialArgs = inputs // { inherit pkgs-unstable; };
+    # 传递给子模块的参数
+    extraSpecialArgs = {
+      inherit inputs system pkgs-unstable;
+    };
   };
 }

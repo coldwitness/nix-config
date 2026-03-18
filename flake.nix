@@ -20,6 +20,10 @@
       url = "github:utensils/mcp-nixos?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dw-proton = {
+      url = "github:imaviso/dwproton-flake?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     secrets = {
       url = "git+ssh://git@github.com/knightfemale/nix-config-secrets.git";
       flake = false;
@@ -48,7 +52,7 @@
         inherit system;
         # 传递给子模块的参数
         specialArgs = {
-          inherit inputs pkgs-unstable;
+          inherit inputs system pkgs-unstable;
         };
         modules = [
           { 
