@@ -8,18 +8,18 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1773807035,
-        "narHash": "sha256-VhQdsUdgNQTIBUBKbVZPzf5KH19t43NWAkJLW906k+U=",
-        "owner": "AvengeMedia",
-        "repo": "DankMaterialShell",
-        "rev": "8e047f45f59208419beaf17c3e0e25ee48ebda5d",
-        "type": "github"
+        "lastModified": 1773870229,
+        "narHash": "sha256-ckrZbXH3dsfQstaJ0R60Uab1Kiwx4DZzFf01BEDPA/s=",
+        "ref": "master",
+        "rev": "368536f6981a6b13d1400f3d3ce1be168137124d",
+        "revCount": 3472,
+        "type": "git",
+        "url": "ssh://git@github.com/AvengeMedia/DankMaterialShell.git"
       },
       "original": {
-        "owner": "AvengeMedia",
         "ref": "master",
-        "repo": "DankMaterialShell",
-        "type": "github"
+        "type": "git",
+        "url": "ssh://git@github.com/AvengeMedia/DankMaterialShell.git"
       }
     },
     "dw-proton": {
@@ -31,16 +31,16 @@
       "locked": {
         "lastModified": 1773492089,
         "narHash": "sha256-ZKzjqbc4vAivOptaxEsfWt9yoD7rmlYVyTgr168+sdc=",
-        "owner": "imaviso",
-        "repo": "dwproton-flake",
+        "ref": "main",
         "rev": "ec94234a5c7d185855975c5854115c7cacef7323",
-        "type": "github"
+        "revCount": 39,
+        "type": "git",
+        "url": "ssh://git@github.com/imaviso/dwproton-flake.git"
       },
       "original": {
-        "owner": "imaviso",
         "ref": "main",
-        "repo": "dwproton-flake",
-        "type": "github"
+        "type": "git",
+        "url": "ssh://git@github.com/imaviso/dwproton-flake.git"
       }
     },
     "flake-parts": {
@@ -89,18 +89,18 @@
         ]
       },
       "locked": {
-        "lastModified": 1773809567,
-        "narHash": "sha256-RcACDMINOr+Rp3v04X6cOtjgdkD9EYeZnjy9l6EtAXs=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "a455ac1bb35ae3f96804786f75b77ef230d7898f",
-        "type": "github"
+        "lastModified": 1773898372,
+        "narHash": "sha256-PqeDgmyI/Df3/Mv0B81FP/ZC4KuO88YRQF5ZfeFyA4k=",
+        "ref": "master",
+        "rev": "ecf019baf47df009937b5f8c4604cee10f410a76",
+        "revCount": 6369,
+        "type": "git",
+        "url": "ssh://git@github.com/nix-community/home-manager.git"
       },
       "original": {
-        "owner": "nix-community",
         "ref": "master",
-        "repo": "home-manager",
-        "type": "github"
+        "type": "git",
+        "url": "ssh://git@github.com/nix-community/home-manager.git"
       }
     },
     "mcp-nixos": {
@@ -113,25 +113,25 @@
       "locked": {
         "lastModified": 1772769318,
         "narHash": "sha256-RAyOW5JMXRhiREqxFPOzw80fVsYVBnOPFgBSjnJ6gbY=",
-        "owner": "utensils",
-        "repo": "mcp-nixos",
+        "ref": "main",
         "rev": "60c1efbba0de1268b42f1144c904e6c8a9627dde",
-        "type": "github"
+        "revCount": 415,
+        "type": "git",
+        "url": "ssh://git@github.com/utensils/mcp-nixos.git"
       },
       "original": {
-        "owner": "utensils",
         "ref": "main",
-        "repo": "mcp-nixos",
-        "type": "github"
+        "type": "git",
+        "url": "ssh://git@github.com/utensils/mcp-nixos.git"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1773808480,
-        "narHash": "sha256-ixJlUEBD7YViz/RlkI3drqGZY9QThxfSR+p7Kwa9aJ0=",
+        "lastModified": 1773905048,
+        "narHash": "sha256-gMx0GmIxA7yZxnYuKPHh01D0cqLAy5pGefMQ5CrBSj4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f0549fcd9330025d103fce421c6e17a4d70ed4d4",
+        "rev": "f89820267c0aa428a4e3a9e48c350040b9a775cd",
         "type": "github"
       },
       "original": {
@@ -183,16 +183,16 @@
       "locked": {
         "lastModified": 1772402258,
         "narHash": "sha256-3DmCFOdmbkFML1/G9gj8Wb+rCCZFPOQtNoMCpqOF8SA=",
-        "owner": "nix-community",
-        "repo": "nixvim",
+        "ref": "main",
         "rev": "21ae25e13b01d3b4cdc750b5f9e7bad68b150c10",
-        "type": "github"
+        "revCount": 4395,
+        "type": "git",
+        "url": "ssh://git@github.com/nix-community/nixvim.git"
       },
       "original": {
-        "owner": "nix-community",
         "ref": "main",
-        "repo": "nixvim",
-        "type": "github"
+        "type": "git",
+        "url": "ssh://git@github.com/nix-community/nixvim.git"
       }
     },
     "quickshell": {
@@ -234,13 +234,14 @@
       "locked": {
         "lastModified": 1773317499,
         "narHash": "sha256-mBlWCueHUuXROK21zPfK7KKZXPnhlie41tupX1TuKGw=",
-        "ref": "refs/heads/master",
+        "ref": "master",
         "rev": "e0f3df2e467ffbfc4d46eb06b66d53828609de61",
         "revCount": 7,
         "type": "git",
         "url": "ssh://git@github.com/knightfemale/nix-config-secrets.git"
       },
       "original": {
+        "ref": "master",
         "type": "git",
         "url": "ssh://git@github.com/knightfemale/nix-config-secrets.git"
       }

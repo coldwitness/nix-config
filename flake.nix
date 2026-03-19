@@ -4,28 +4,28 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=master";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs?ref=nixpkgs-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager?ref=master";
+      url = "git+ssh://git@github.com/nix-community/home-manager.git?ref=master";
       # 使用与系统相同的 nixpkgs 输入, 避免依赖冲突
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dms = {
-      url = "github:AvengeMedia/DankMaterialShell?ref=master";
+      url = "git+ssh://git@github.com/AvengeMedia/DankMaterialShell.git?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim?ref=main";
+      url = "git+ssh://git@github.com/nix-community/nixvim.git?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mcp-nixos = {
-      url = "github:utensils/mcp-nixos?ref=main";
+      url = "git+ssh://git@github.com/utensils/mcp-nixos.git?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dw-proton = {
-      url = "github:imaviso/dwproton-flake?ref=main";
+      url = "git+ssh://git@github.com/imaviso/dwproton-flake.git?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets = {
-      url = "git+ssh://git@github.com/knightfemale/nix-config-secrets.git";
+      url = "git+ssh://git@github.com/knightfemale/nix-config-secrets.git?ref=master";
       flake = false;
     };
   };
