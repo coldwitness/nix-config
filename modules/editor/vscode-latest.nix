@@ -7,7 +7,7 @@ let
   vscode-latest = pkgs.vscode.overrideAttrs (oldAttrs: {
     src = pkgs.fetchurl {
       name = "code.tar.gz";
-      hash = "sha256-3s0UzfkufKXXm57JgKaMan/SRAlGTLmdIRXXpzxQvAo=";
+      hash = "sha256-VyjqPTyLn8eGh/XS3nn0PMqiAsrL91vDZD6Z9L2oh24=";
       url = "https://update.code.visualstudio.com/latest/linux-x64/stable";
     };
   });
