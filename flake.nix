@@ -55,13 +55,15 @@
           inherit inputs system pkgs-unstable;
         };
         modules = [
-          { 
+          {
             nixpkgs = {
               # 允许安装非自由软件包
               config.allowUnfree = true;
               # 指定 NixOS 配置将运行的平台
               hostPlatform = nixpkgs.lib.mkDefault system;
             };
+            # NixOS 首次安装的版本
+            system.stateVersion = "25.11";
           }
           ./users
           ./modules
