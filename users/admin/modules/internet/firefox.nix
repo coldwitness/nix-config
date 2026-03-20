@@ -77,8 +77,8 @@
           # 安装扩展
           extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
             # 详情: https://nur.nix-community.org/repos/rycee/
-            # 沉浸式翻译
-            immersive-translate
+            # 简约翻译
+            kiss-translator
           ];
         };
       };

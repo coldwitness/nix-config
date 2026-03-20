@@ -69,10 +69,6 @@
             };
             # NixOS 首次安装的版本
             system.stateVersion = "25.11";
-            # 永久允许不安全的软件包
-            nixpkgs.config.permittedInsecurePackages = [
-              "immersive-translate-1.26.5"
-            ];
           }
           ./users
           ./modules
