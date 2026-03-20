@@ -1,6 +1,7 @@
 {
   # 系统架构
   system = "x86_64-linux";
+  locale = "zh-CN";
   # 编辑器模块
   editor = {
     nixvim = {

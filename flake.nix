@@ -8,6 +8,10 @@
       # 使用与系统相同的 nixpkgs 输入, 避免依赖冲突
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur = {
+      url = "git+ssh://git@github.com/nix-community/NUR.git?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     dms = {
       url = "git+ssh://git@github.com/AvengeMedia/DankMaterialShell.git?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -65,12 +69,17 @@
             };
             # NixOS 首次安装的版本
             system.stateVersion = "25.11";
+            # 永久允许不安全的软件包
+            nixpkgs.config.permittedInsecurePackages = [
+              "immersive-translate-1.26.5"
+            ];
           }
           ./users
           ./modules
-          inputs.home-manager.nixosModules.home-manager
-          inputs.dms.nixosModules.dank-material-shell
+          inputs.nur.modules.nixos.default
           inputs.nixvim.nixosModules.nixvim
+          inputs.dms.nixosModules.dank-material-shell
+          inputs.home-manager.nixosModules.home-manager
         ];
       }; 
     };
