@@ -4,6 +4,7 @@
   "customThemeFile": "",
   "registryThemeVariants": {},
   "matugenScheme": "scheme-fidelity",
+  "matugenContrast": 0,
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
   "popupTransparency": 1,
