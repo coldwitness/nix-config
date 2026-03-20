@@ -1,6 +1,6 @@
 {
   inputs,
-  system,
+  hostConfig,
   pkgs-unstable,
   ...
 }:
@@ -22,7 +22,6 @@
         # 添加用户到额外组
         extraGroups = [
           "wheel"
-          "podman"
           "networkmanager"
         ];
         hashedPassword = "$6$Yq2f2308VGQlSDxb$v6tOVrxDvVJYSB40g8t/n2ZVw9pSARf5Gxe.ph2n.TvyXDPiruSi8Y9pEuPNi0regGL8AB8dQBmge/kNTZqxh1";
@@ -38,7 +37,7 @@
     };
     # 传递给子模块的参数
     extraSpecialArgs = {
-      inherit inputs system pkgs-unstable;
+      inherit inputs hostConfig pkgs-unstable;
     };
   };
 }

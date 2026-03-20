@@ -36,7 +36,8 @@
     ...
   }@inputs:
   let
-    system = "x86_64-linux";
+    hostConfig = import ./hosts/x86_64-linux;
+    system = hostConfig.system;
     # 主分支的 nixpkgs 实例(用于 pkgs 等)
     pkgs = nixpkgs.legacyPackages.${system};
     # 预构建 unstable 包集
@@ -52,7 +53,7 @@
         inherit system;
         # 传递给子模块的参数
         specialArgs = {
-          inherit inputs system pkgs-unstable;
+          inherit inputs hostConfig pkgs-unstable;
         };
         modules = [
           {
