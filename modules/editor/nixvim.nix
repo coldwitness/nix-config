@@ -1,27 +1,34 @@
   {
+  lib,
   pkgs,
+  hostConfig,
   ...
 }:
+let
+  cfg = hostConfig.editor.nixvim;
+in
 {
-  programs.nixvim = {
-    enable = true;
-    # Tree-sitter 语法高亮
-    plugins.treesitter = {
+  config = lib.mkIf cfg.enable {
+    programs.nixvim = {
       enable = true;
-      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-        nix
-      ];
-    };
-    # Nix 语言服务器 nil
-    plugins.lsp = {
-      enable = true;
-      servers.nil_ls = {
+      # Tree-sitter 语法高亮
+      plugins.treesitter = {
         enable = true;
-        # 告诉 nil 用 alejandra 格式化代码
-        settings.formatting.command = [ "alejandra" ];
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          nix
+        ];
       };
+      # Nix 语言服务器 nil
+      plugins.lsp = {
+        enable = true;
+        servers.nil_ls = {
+          enable = true;
+          # 告诉 nil 用 alejandra 格式化代码
+          settings.formatting.command = [ "alejandra" ];
+        };
+      };
+      # alejandra 格式化工具可用
+      extraPackages = with pkgs; [ alejandra ];
     };
-    # alejandra 格式化工具可用
-    extraPackages = with pkgs; [ alejandra ];
   };
 }

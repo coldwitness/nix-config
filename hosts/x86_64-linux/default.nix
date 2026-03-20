@@ -1,11 +1,19 @@
 {
   # 系统架构
   system = "x86_64-linux";
+  # 编辑器模块
+  editor = {
+    nixvim = {
+      enable = false;
+    };
+    vscode-latest = {
+      enable = true;
+    };
+  };
+  # 容器模块
   container = {
-    # 开启容器
     enable = false;
-    portainer = {
-      # 开启 Portainer
+    portainer-agent = {
       enable = false;
     };
   };
