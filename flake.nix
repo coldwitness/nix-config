@@ -24,10 +24,6 @@
       url = "git+ssh://git@github.com/utensils/mcp-nixos.git?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dw-proton = {
-      url = "git+ssh://git@github.com/imaviso/dwproton-flake.git?ref=main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     secrets = {
       url = "git+ssh://git@github.com/knightfemale/nix-config-secrets.git?ref=master";
       flake = false;

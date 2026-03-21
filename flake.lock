@@ -8,11 +8,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1773981514,
-        "narHash": "sha256-C0xVVMSpPnSzVaO5BMIr/UkIJNhh3yX8Nt39ld/nLsk=",
+        "lastModified": 1774048143,
+        "narHash": "sha256-j+obtqNMEPqGUGqOR04kadwuKL2VxlJIxz+tQNJQurg=",
         "ref": "master",
-        "rev": "959190dcbc9af227599008b8cfdd06bdb7275aa6",
-        "revCount": 3477,
+        "rev": "07dbba6c53b4dca29452bcf944b6669d88550646",
+        "revCount": 3487,
         "type": "git",
         "url": "ssh://git@github.com/AvengeMedia/DankMaterialShell.git"
       },
@@ -20,27 +20,6 @@
         "ref": "master",
         "type": "git",
         "url": "ssh://git@github.com/AvengeMedia/DankMaterialShell.git"
-      }
-    },
-    "dw-proton": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1773921118,
-        "narHash": "sha256-ZBb59LTDi00YbqtEv4WGELVQp1OVUuIKsH1OFj3ccJs=",
-        "ref": "main",
-        "rev": "f32d216870fcbc4a3a24764f39bbbaa3991f7f53",
-        "revCount": 41,
-        "type": "git",
-        "url": "ssh://git@github.com/imaviso/dwproton-flake.git"
-      },
-      "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "ssh://git@github.com/imaviso/dwproton-flake.git"
       }
     },
     "flake-parts": {
@@ -110,11 +89,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773962693,
-        "narHash": "sha256-nf9pgktDE4E2TCavUT1vh3Nd/tfKixL1BK6P32Zp3hI=",
+        "lastModified": 1774007980,
+        "narHash": "sha256-FOnZjElEI8pqqCvB6K/1JRHTE8o4rer8driivTpq2uo=",
         "ref": "master",
-        "rev": "9d3c1d636e7b8ab10f357cd9bee653cd400437de",
-        "revCount": 6379,
+        "rev": "9670de2921812bc4e0452f6e3efd8c859696c183",
+        "revCount": 6380,
         "type": "git",
         "url": "ssh://git@github.com/nix-community/home-manager.git"
       },
@@ -148,11 +127,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1773986369,
-        "narHash": "sha256-fqWXq1MN7I91ZTFU0IgNdH/xKmeIk4fxbOGTTVGgbJw=",
+        "lastModified": 1774067021,
+        "narHash": "sha256-/2U3uvm5PtLqawlDdRDFKyZL6FD87DkXSOXtObv6Lac=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f57e1a41ba8da5cbe2197d1de39f1213fa43b1ea",
+        "rev": "dfa5433a74a12b9af5559fac74d15efc70d1063e",
         "type": "github"
       },
       "original": {
@@ -224,11 +203,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774010506,
-        "narHash": "sha256-218m5qymRc2UJ47+gryrZDQD468kSAWxsWHJz1PHYU8=",
+        "lastModified": 1774067251,
+        "narHash": "sha256-kxPPIRaJsxGcPRUOO2sUbvloaVdRiSDD0cN2Fxoj7pg=",
         "ref": "main",
-        "rev": "d3d0dc1d24c947c9e91efdbc717de3570dc7221a",
-        "revCount": 40769,
+        "rev": "83ab96ae446c783b0dcf20b7eff35cf293faa0d4",
+        "revCount": 40794,
         "type": "git",
         "url": "ssh://git@github.com/nix-community/NUR.git"
       },
@@ -263,7 +242,6 @@
     "root": {
       "inputs": {
         "dms": "dms",
-        "dw-proton": "dw-proton",
         "home-manager": "home-manager",
         "mcp-nixos": "mcp-nixos",
         "nixpkgs": "nixpkgs",
