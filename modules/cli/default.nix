@@ -5,7 +5,6 @@
   imports = [
     ./nh.nix
     ./nix.nix
-    ./fzf.nix
     ./bat.nix
     ./eza.nix
     ./yazi.nix

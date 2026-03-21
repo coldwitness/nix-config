@@ -21,7 +21,7 @@
         # 受控书签
         ManagedBookmarks = [
           {
-            name = "AI 工具";
+            name = "AI";
             children = [
               {
                 name = "DeepSeek";
@@ -30,6 +30,28 @@
               {
                 name = "Kimi";
                 url = "https://www.kimi.com/";
+              }
+            ];
+          }
+          {
+            name = "工具";
+            children = [
+              {
+                name = "Nix";
+                children = [
+                  {
+                    name = "NixOS Search";
+                    url = "https://search.nixos.org/";
+                  }
+                  {
+                    name = "Home Manager Options Search";
+                    url = "https://home-manager-options.extranix.com/";
+                  }
+                  {
+                    name = "NUR";
+                    url = "https://nur.nix-community.org/";
+                  }
+                ];
               }
             ];
           }
@@ -54,18 +76,7 @@
             # 默认搜索引擎
             default = "bing";
             force = true;
-            # 添加自定义搜索引擎
             engines = {
-              "Nix Packages" = {
-                urls = [ { template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}"; } ];
-                icon = "$https://search.nixos.org/favicon.png";
-                definedAliases = [ "@np" ];
-              };
-              "Nix Options" = {
-                urls = [ { template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}"; } ];
-                icon = "https://search.nixos.org/favicon.png";
-                definedAliases = [ "@no" ];
-              };
               # 隐藏不需要的引擎
               "ddg".metaData.hidden = true;
               "baidu".metaData.hidden = true;
