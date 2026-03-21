@@ -5,7 +5,6 @@
 {
   imports = [
     ./dms.nix
-    ./greetd.nix
     ./hyprland.nix
   ];
   environment ={

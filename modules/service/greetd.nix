@@ -5,7 +5,6 @@
   ...
 }:
 {
-  # Greetd 登录管理器配置
   services.greetd = {
     enable = true;
     settings = {

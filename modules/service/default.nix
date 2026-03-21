@@ -5,6 +5,7 @@
   imports = [
     ./ssh.nix
     ./frp.nix
+    ./greetd.nix
     ./logind.nix
     ./snapper.nix
     ./udiskie.nix
