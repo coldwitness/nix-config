@@ -10,8 +10,9 @@
     enable = true;
     settings = {
       default_session = {
-        # 使用 tuigreet 作为登录界面(基于终端的图形登录程序)
-        command = "${lib.getExe pkgs.tuigreet}"
+        command = ""
+          # 使用 tuigreet 作为登录界面(基于终端的图形登录程序)
+          + "${lib.getExe pkgs.tuigreet}"
           # 指定会话路径, 包含 xsessions 和 wayland-sessions 目录
           + " --sessions ${config.services.displayManager.sessionData.desktops}/share/xsessions:${config.services.displayManager.sessionData.desktops}/share/wayland-sessions"
           # 显示当前时间
@@ -23,7 +24,8 @@
           # 记住用户名
           + " --remember"
           # 记住会话
-          + " --remember-session";
+          + " --remember-session"
+        ;
       };
     };
   };
