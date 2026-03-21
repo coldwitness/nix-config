@@ -70,8 +70,8 @@ in
           # Python 环境管理
           name = "vscode-python-envs";
           publisher = "ms-python";
-          version = "1.21.10651016";
-          sha256 = "sha256-yaQrZKdncWWjEuBp3SLNZ3kBIq7y2FiEr9xCQmgugso=";
+          version = "1.23.10791018";
+          sha256 = "sha256-yHCwqedOhhgMWM53g29Sr7WX4D7ugqtqFgxXuIdWAnU=";
         }
         {
           # Manim 动画侧边实时预览
