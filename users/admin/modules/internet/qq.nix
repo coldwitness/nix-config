@@ -1,9 +1,17 @@
 {
+  lib,
   pkgs,
+  hostConfig,
   ...
 }:
+let
+  cfg = hostConfig.internet.qq;
+  finallyEnable = cfg.enable && (hostConfig.desktop.type != "");
+in
 {
-  home.packages = with pkgs; [
-    qq
-  ];
+  config = lib.mkIf finallyEnable {
+    home.packages = with pkgs; [
+      qq
+    ];
+  };
 }

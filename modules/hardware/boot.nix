@@ -1,7 +1,12 @@
 {
+  lib,
   pkgs,
+  hostConfig,
   ...
 }:
+let
+  cpuType = hostConfig.hardware.cpu.type;
+in
 {
   boot = {
     # 引导加载器配置
@@ -34,8 +39,11 @@
     };
     # 在启动过程的第二阶段要加载的内核模块集
     kernelModules = [
-      # AMD 处理器的 KVM 虚拟化支持, 用于硬件加速虚拟化
+      
+    ] ++ lib.optionals (cpuType == "amd") [
       "kvm-amd"
+    ] ++ lib.optionals (cpuType == "intel") [
+      "kvm-intel"
     ];
     # 提供内核模块的附加软件包列表
     extraModulePackages = [ ];

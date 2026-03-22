@@ -5,12 +5,13 @@
 }:
 let
   cfg = hostConfig.container;
+  finallyEnable = cfg.enable;
 in
 {
   imports = [
     ./portainer-agent.nix
   ];
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf finallyEnable {
     virtualisation = {
       # Podman 配置
       podman = {

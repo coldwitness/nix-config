@@ -37,7 +37,7 @@
   }@inputs:
   let
     hostConfig = import ./hosts/x86_64-linux;
-    system = hostConfig.system;
+    system = hostConfig.hardware.system;
     # 主分支的 nixpkgs 实例(用于 pkgs 等)
     pkgs = nixpkgs.legacyPackages.${system};
     # 预构建 unstable 包集

@@ -5,9 +5,10 @@
 }:
 let
   cfg = hostConfig.tool.onlyoffice;
+  finallyEnable = cfg.enable;
 in
 {
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf finallyEnable {
     programs.onlyoffice = {
       enable = true;
       settings = {

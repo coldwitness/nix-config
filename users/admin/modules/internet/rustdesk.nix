@@ -1,12 +1,20 @@
 {
+  lib,
   pkgs,
+  hostConfig,
   ...
 }:
+let
+  cfg = hostConfig.internet.rustdesk;
+  finallyEnable = cfg.enable && (hostConfig.desktop.type != "");
+in
 {
-  home.packages = with pkgs; [
-    # 新版客户端
-    rustdesk-flutter
-    # 如果您需要旧版客户端(不推荐)
-    # rustdesk
-  ];
+  config = lib.mkIf finallyEnable {
+    home.packages = with pkgs; [
+      # 新版客户端
+      rustdesk-flutter
+      # 如果您需要旧版客户端(不推荐)
+      # rustdesk
+    ];
+  };
 }

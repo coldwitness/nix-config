@@ -7,12 +7,13 @@
 }:
 let
   cfg = hostConfig.editor.nixvim;
+  finallyEnable = cfg.enable;
 in
 {
   imports = [
     inputs.nixvim.homeModules.nixvim
   ];
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf finallyEnable {
     programs.nixvim = {
       enable = true;
       # Tree-sitter 语法高亮

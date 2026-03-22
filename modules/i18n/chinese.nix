@@ -4,8 +4,12 @@
   hostConfig,
   ...
 }:
+let
+  cfg = hostConfig.i18n;
+  finallyEnable = cfg.locale == "zh-CN";
+in
 {
-  config = lib.mkIf (hostConfig.locale == "zh-CN") {
+  config = lib.mkIf finallyEnable {
     # 时区配置
     time.timeZone = "Asia/Shanghai";
     # 语言配置

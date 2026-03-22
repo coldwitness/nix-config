@@ -5,9 +5,10 @@
 }:
 let
   cfg = hostConfig.container.portainer-agent;
+  finallyEnable = cfg.enable && hostConfig.container.enable;
 in
 {
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf finallyEnable {
     virtualisation.oci-containers.containers = {
       portainer-agent = {
         image = "portainer/agent:latest";

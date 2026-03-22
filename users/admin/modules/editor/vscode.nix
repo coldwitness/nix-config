@@ -8,9 +8,10 @@
 }:
 let
   cfg = hostConfig.editor.vscode;
+  finallyEnable = cfg.enable && (hostConfig.desktop.type != "");
 in
 {
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf finallyEnable {
     programs.vscode = {
       enable = true;
       profiles.default.extensions = with pkgs.vscode-extensions; [

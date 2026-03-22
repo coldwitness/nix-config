@@ -1,14 +1,22 @@
 {
   lib,
+  pkgs,
   config,
   configPath,
+  hostConfig,
   ...
 }:
+let
+  cfg = hostConfig.desktop.dms;
+  finallyEnable = cfg.enable && (hostConfig.desktop.type != "");
+in
 {
-home.file = {
-    ".config/DankMaterialShell" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${configPath}/dms";
-      force = true;
+  config = lib.mkIf finallyEnable {
+    home.file = {
+      ".config/DankMaterialShell" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/dms";
+        force = true;
+      };
     };
   };
 }
