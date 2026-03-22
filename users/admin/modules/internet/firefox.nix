@@ -34,6 +34,15 @@
             ];
           }
           {
+            name = "视频";
+            children = [
+              {
+                name = "bilibili";
+                url = "https://www.bilibili.com/";
+              }
+            ];
+          }
+          {
             name = "工具";
             children = [
               {
