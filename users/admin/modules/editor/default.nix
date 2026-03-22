@@ -3,6 +3,6 @@
 }:
 {
   imports = [
-    ./vscode-latest.nix
+    ./vscode.nix
   ];
 }

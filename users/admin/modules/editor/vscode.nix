@@ -7,21 +7,12 @@
   ...
 }:
 let
-  cfg = hostConfig.editor.vscode-latest;
-  # 包装最新版 vscode
-  vscode-latest = pkgs.vscode.overrideAttrs (oldAttrs: {
-    src = pkgs.fetchurl {
-      name = "code.tar.gz";
-      hash = "sha256-VyjqPTyLn8eGh/XS3nn0PMqiAsrL91vDZD6Z9L2oh24=";
-      url = "https://update.code.visualstudio.com/latest/linux-x64/stable";
-    };
-  });
+  cfg = hostConfig.editor.vscode;
 in
 {
   config = lib.mkIf cfg.enable {
     programs.vscode = {
       enable = true;
-      package = vscode-latest;
       profiles.default.extensions = with pkgs.vscode-extensions; [
         # ========== 外观 ==========
         # 中文界面语言包

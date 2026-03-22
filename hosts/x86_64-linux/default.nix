@@ -14,7 +14,7 @@
     nixvim = {
       enable = false;
     };
-    vscode-latest = {
+    vscode = {
       enable = true;
     };
   };
