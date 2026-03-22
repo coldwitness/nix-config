@@ -3,6 +3,12 @@
   system = "x86_64-linux";
   # 本地化
   locale = "zh-CN";
+  # 工具模块
+  tool = {
+    onlyoffice = {
+      enable = false;
+    };
+  };
   # 编辑器模块
   editor = {
     nixvim = {
