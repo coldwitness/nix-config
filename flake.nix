@@ -69,7 +69,6 @@
           ./users
           ./modules
           inputs.nur.modules.nixos.default
-          inputs.nixvim.nixosModules.nixvim
           inputs.dms.nixosModules.dank-material-shell
           inputs.home-manager.nixosModules.home-manager
         ];

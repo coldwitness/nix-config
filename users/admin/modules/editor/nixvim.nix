@@ -1,6 +1,7 @@
   {
   lib,
   pkgs,
+  inputs,
   hostConfig,
   ...
 }:
@@ -8,6 +9,9 @@ let
   cfg = hostConfig.editor.nixvim;
 in
 {
+  imports = [
+    inputs.nixvim.homeModules.nixvim
+  ];
   config = lib.mkIf cfg.enable {
     programs.nixvim = {
       enable = true;
