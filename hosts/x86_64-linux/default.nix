@@ -68,7 +68,7 @@ in
     network = {
       enable = true;
       # 设置主机名
-      hostName = "nixos";
+      hostName = "knightfemale-FL8850UA";
       # 防火墙
       firewall = {
         enable = false;

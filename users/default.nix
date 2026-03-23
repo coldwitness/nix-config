@@ -5,6 +5,9 @@
   ...
 }:
 {
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+  ];
   users = {
     # 开启完全声明式管理
     mutableUsers = false;

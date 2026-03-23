@@ -25,11 +25,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets = {
-      url = "git+ssh://git@github.com/knightfemale/nix-config-secrets.git?ref=master";
+      url = "git+ssh://git@github.com/nix-config/secrets.git?ref=master";
       flake = false;
     };
   };
-
   outputs = {
     self,
     nixpkgs,
@@ -49,7 +48,7 @@
   in
   {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      knightfemale-FL8850UA = nixpkgs.lib.nixosSystem {
         inherit system;
         # 传递给子模块的参数
         specialArgs = {
@@ -69,8 +68,6 @@
           ./users
           ./modules
           inputs.nur.modules.nixos.default
-          inputs.dms.nixosModules.dank-material-shell
-          inputs.home-manager.nixosModules.home-manager
         ];
       }; 
     };

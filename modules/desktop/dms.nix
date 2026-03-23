@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  inputs,
   hostConfig,
   ...
 }:
@@ -9,6 +10,9 @@ let
   finallyEnable = cfg.enable && (hostConfig.desktop.type != "");
 in
 {
+  imports = [
+    inputs.dms.nixosModules.dank-material-shell
+  ];
   config = lib.mkIf finallyEnable {
     programs = {
       dank-material-shell = {
