@@ -48,7 +48,7 @@
   in
   {
     nixosConfigurations = {
-      knightfemale-FL8850UA = nixpkgs.lib.nixosSystem {
+      FL8850UA = nixpkgs.lib.nixosSystem {
         inherit system;
         # 传递给子模块的参数
         specialArgs = {
