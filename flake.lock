@@ -8,18 +8,18 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1774281877,
-        "narHash": "sha256-9Xt74YHvE1TAZemSJwqBr1HmknSP8un5Lby4H+J2uMU=",
-        "ref": "master",
-        "rev": "59b6d2237b31599dfb7a96b0532aac017934e5c2",
-        "revCount": 3502,
-        "type": "git",
-        "url": "ssh://git@github.com/AvengeMedia/DankMaterialShell.git"
+        "lastModified": 1774358498,
+        "narHash": "sha256-b9oobMQJrLwywH3fOQh4Zc/kmLsmr/Me9DDC8UDnOUU=",
+        "owner": "AvengeMedia",
+        "repo": "DankMaterialShell",
+        "rev": "9b44bc3259f4bb634689b4adac456e578ce013ca",
+        "type": "github"
       },
       "original": {
+        "owner": "AvengeMedia",
         "ref": "master",
-        "type": "git",
-        "url": "ssh://git@github.com/AvengeMedia/DankMaterialShell.git"
+        "repo": "DankMaterialShell",
+        "type": "github"
       }
     },
     "flake-parts": {
@@ -89,18 +89,18 @@
         ]
       },
       "locked": {
-        "lastModified": 1774293042,
-        "narHash": "sha256-OEBV+Y5I4Ldu98k0KvGXRfJYh+jjE8ocCSL/dxTGs1s=",
-        "ref": "master",
-        "rev": "bc357c75e3142a31b849ba49c5299fb52c61cf59",
-        "revCount": 6399,
-        "type": "git",
-        "url": "ssh://git@github.com/nix-community/home-manager.git"
+        "lastModified": 1774379316,
+        "narHash": "sha256-0nGNxWDUH2Hzlj/R3Zf4FEK6fsFNB/dvewuboSRZqiI=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "1eb0549a1ab3fe3f5acf86668249be15fa0e64f7",
+        "type": "github"
       },
       "original": {
+        "owner": "nix-community",
         "ref": "master",
-        "type": "git",
-        "url": "ssh://git@github.com/nix-community/home-manager.git"
+        "repo": "home-manager",
+        "type": "github"
       }
     },
     "mcp-nixos": {
@@ -113,29 +113,29 @@
       "locked": {
         "lastModified": 1772769318,
         "narHash": "sha256-RAyOW5JMXRhiREqxFPOzw80fVsYVBnOPFgBSjnJ6gbY=",
-        "ref": "main",
+        "owner": "utensils",
+        "repo": "mcp-nixos",
         "rev": "60c1efbba0de1268b42f1144c904e6c8a9627dde",
-        "revCount": 415,
-        "type": "git",
-        "url": "ssh://git@github.com/utensils/mcp-nixos.git"
+        "type": "github"
       },
       "original": {
+        "owner": "utensils",
         "ref": "main",
-        "type": "git",
-        "url": "ssh://git@github.com/utensils/mcp-nixos.git"
+        "repo": "mcp-nixos",
+        "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1774339514,
-        "narHash": "sha256-BObnUMygXMtYNVOIKWldP7GXc7YcUOU0cOF7nx2dksk=",
-        "owner": "nixos",
+        "lastModified": 1774439677,
+        "narHash": "sha256-aRmcbxshxK1/WK9aZwHMO9AjK1R6sbKi2ymOYI1UUdM=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e2f3041eef8bc27fb964509d44cc8123ac249b52",
+        "rev": "24a67348c700fee262d1590bb8c86004f55c051f",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
         "ref": "master",
         "repo": "nixpkgs",
         "type": "github"
@@ -183,16 +183,16 @@
       "locked": {
         "lastModified": 1774309640,
         "narHash": "sha256-8oWL7YLwElBY9ebYri1LlSlhf/gd1Qoqj0nbBwG2yso=",
-        "ref": "main",
+        "owner": "nix-community",
+        "repo": "nixvim",
         "rev": "28c58bf023bf537354f78d6e496a349d7a0ed554",
-        "revCount": 4396,
-        "type": "git",
-        "url": "ssh://git@github.com/nix-community/nixvim.git"
+        "type": "github"
       },
       "original": {
+        "owner": "nix-community",
         "ref": "main",
-        "type": "git",
-        "url": "ssh://git@github.com/nix-community/nixvim.git"
+        "repo": "nixvim",
+        "type": "github"
       }
     },
     "nur": {
@@ -203,18 +203,18 @@
         ]
       },
       "locked": {
-        "lastModified": 1774339659,
-        "narHash": "sha256-nKA4b6xDooHj/DCQTzN22ezPtzXKbFtfjMKmfeS7vvI=",
-        "ref": "main",
-        "rev": "8c5ba1cb12c60a8e9d17a79e6bfa3bf31f9cb9d3",
-        "revCount": 40933,
-        "type": "git",
-        "url": "ssh://git@github.com/nix-community/NUR.git"
+        "lastModified": 1774434643,
+        "narHash": "sha256-edeFYI5rX7QzcMq0YJrN0bRmFfO3wtbEPCWSo5OoYxI=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "30605f18ab48709b23d05bf159472cc5c6d56371",
+        "type": "github"
       },
       "original": {
+        "owner": "nix-community",
         "ref": "main",
-        "type": "git",
-        "url": "ssh://git@github.com/nix-community/NUR.git"
+        "repo": "NUR",
+        "type": "github"
       }
     },
     "quickshell": {
@@ -252,21 +252,15 @@
       }
     },
     "secrets": {
-      "flake": false,
       "locked": {
-        "lastModified": 1773317499,
-        "narHash": "sha256-mBlWCueHUuXROK21zPfK7KKZXPnhlie41tupX1TuKGw=",
-        "ref": "master",
-        "rev": "e0f3df2e467ffbfc4d46eb06b66d53828609de61",
-        "revCount": 7,
-        "type": "git",
-        "url": "ssh://git@github.com/nix-config/secrets.git"
+        "path": "secrets",
+        "type": "path"
       },
       "original": {
-        "ref": "master",
-        "type": "git",
-        "url": "ssh://git@github.com/nix-config/secrets.git"
-      }
+        "path": "secrets",
+        "type": "path"
+      },
+      "parent": []
     },
     "systems": {
       "locked": {
