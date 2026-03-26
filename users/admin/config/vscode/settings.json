@@ -5,7 +5,7 @@
   // 启用字体连字
   "editor.fontLigatures": true,
   // 主题
-  "workbench.colorTheme": "Default Dark+",
+  "workbench.colorTheme": "Dark+",
   // 工作区图标主题
   "workbench.iconTheme": "material-icon-theme",
   // 自定义文件夹图标
