@@ -4,10 +4,7 @@
   ...
 }:
 let
-  # 从 vars/ 导入类型定义
-  vars = import ../../vars;
-  inherit (vars) localeTypes desktopTypes systemTypes;
-  system = systemTypes.x86_64-linux;
+  system = "x86_64-linux";
 
   # 主分支的 nixpkgs 实例
   pkgs = inputs.nixpkgs.legacyPackages.${system};

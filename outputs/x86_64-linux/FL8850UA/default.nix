@@ -7,7 +7,7 @@
 let
   # 从 vars/ 导入类型定义
   vars = import ../../../vars;
-  inherit (vars) localeTypes desktopTypes systemTypes;
+  inherit (vars) localeTypes systemTypes desktopTypes;
   system = systemTypes.x86_64-linux;
 
   # 平台级选项配置
@@ -58,7 +58,6 @@ let
       system = system;
       zram.enable = true;
       bluetooth.enable = true;
-      cpu.type = "amd";
       network = {
         enable = true;
         # 设置主机名
@@ -108,17 +107,14 @@ in
       };
       modules = [
         {
-          nixpkgs = {
-            # 允许安装非自由软件包
-            config.allowUnfree = true;
-            # 指定 NixOS 配置将运行的平台
-            hostPlatform = lib.mkDefault system;
-          };
+          # 允许安装非自由软件包
+          nixpkgs.config.allowUnfree = true;
           # NixOS 首次安装的版本
           system.stateVersion = "25.11";
         }
         ../../../users
         ../../../modules
+        ./hardware-configuration.nix
         inputs.nur.modules.nixos.default
       ];
     };
