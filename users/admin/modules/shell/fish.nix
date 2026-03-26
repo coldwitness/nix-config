@@ -90,6 +90,8 @@ in
       fzf.enableFishIntegration = true;
       # 启用 starship 集成
       starship.enableFishIntegration = true;
+      # 启用 yazi 集成
+      yazi.enableFishIntegration = true;
     };
   };
 }
