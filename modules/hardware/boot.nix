@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  config,
   hostConfig,
   ...
 }:
@@ -17,7 +18,26 @@ in
         efi.canTouchEfiVariables = true;
       };
     # 覆盖 NixOS 使用的 Linux 内核
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackagesFor (
+      pkgs.linux_zen.override {
+        argsOverride = rec {
+          version = "6.19.9";
+          modDirVersion = "${version}-lqx1";
+          src = pkgs.fetchurl {
+            url = "https://github.com/zen-kernel/zen-kernel/archive/refs/tags/v${version}-lqx1.tar.gz";
+            sha256 = "sha256-v0F+Czl7lcLxSI7lZl1A0MymjLiCnVeaBixfyiWGU0U=";
+          };
+          # 添加内核配置覆盖
+          kernelConfig = {
+            # 强制启用完全抢占
+            PREEMPT = "y";
+            # 确保其他抢占模型被禁用
+            PREEMPT_NONE = "n";
+            PREEMPT_VOLUNTARY = "n";
+          };
+        };
+      }
+    );
     initrd ={
       # 初始 ramdisk 中在启动过程中使用的内核模块集
       availableKernelModules = [
@@ -46,6 +66,6 @@ in
       "kvm-intel"
     ];
     # 提供内核模块的附加软件包列表
-    extraModulePackages = [ ];
+    extraModulePackages = with config.boot.kernelPackages; [ ];
   };
 }
