@@ -80,6 +80,8 @@
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   // 不显示 Unicode 歧义字符警告
   "editor.unicodeHighlight.ambiguousCharacters": false,
+  // 忽略空格差异
+  "diffEditor.ignoreTrimWhitespace": false,
   // 默认辅边栏可见性
   "workbench.secondarySideBar.defaultVisibility": "hidden",
   // 关闭未命名工作区保存确认

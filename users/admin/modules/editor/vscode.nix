@@ -15,12 +15,12 @@ in
     programs.vscode = {
       enable = true;
       profiles.default.extensions = with pkgs.vscode-extensions; [
-        # ========== 外观 ==========
+      # ========== 外观 ==========
         # 中文界面语言包
         ms-ceintl.vscode-language-pack-zh-hans
         # Material 风格图标主题
         pkief.material-icon-theme
-        # ========== Markdown ==========
+      # ========== Markdown ==========
         # Markdown 预览
         shd101wyy.markdown-preview-enhanced
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
@@ -32,7 +32,7 @@ in
           sha256 = "sha256-3O4ii6RUuw35pv95zJwJhgnI/8ryAnSKfnHC01l3FDw=";
         }
       ]++ [
-        # ========== JavaScript / TypeScript ==========
+      # ========== JavaScript / TypeScript ==========
         # ESLint 集成
         dbaeumer.vscode-eslint
         # Tailwind CSS 语法支持
@@ -44,11 +44,11 @@ in
           # Ripple 框架辅支持
           name = "ripple-ts-vscode-plugin";
           publisher = "Ripple-TS";
-          version = "0.0.91";
-          sha256 = "sha256-ODG7jp9KHyrBIgp937WHDOz5oDYQiuebcU/ztyZuHOk=";
+          version = "0.3.3";
+          sha256 = "sha256-Jtr4Y81T8Gb9tANq3gG6+e5HP2UBUH3cDVUYcc5eRLA=";
         }
       ]++ [
-        # ========== Python 开发 ==========
+      # ========== Python 开发 ==========
         # Python 语言支持
         ms-python.python
         # Python 调试器
@@ -73,7 +73,7 @@ in
           sha256 = "sha256-TZs0KCBfVbueu6AGdP1OL8DTQkWiPWh1zcFBdHU+Gwc=";
         }
       ]++ [
-        # ========== 其他语言支持 ==========
+      # ========== 其他语言支持 ==========
         # Nix 语言支持
         jnoortheen.nix-ide
         # TOML 语言支持
@@ -84,7 +84,7 @@ in
         wholroyd.jinja
         # Rust 语言支持
         rust-lang.rust-analyzer
-        # ========== 容器与远程开发 ==========
+      # ========== 容器与远程开发 ==========
         # 开发容器支持
         ms-azuretools.vscode-containers
         # Docker 镜像, 容器管理
@@ -95,8 +95,8 @@ in
         ms-vscode-remote.remote-ssh-edit
         # 远程资源管理器视图
         ms-vscode.remote-explorer
-        # ========== 实用工具 ==========
-      # Prettier 多语言格式化
+      # ========== 实用工具 ==========
+        # Prettier 多语言格式化
         esbenp.prettier-vscode
         # Git 提交图可视化
         mhutchie.git-graph
