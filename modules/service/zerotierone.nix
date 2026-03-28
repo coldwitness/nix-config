@@ -8,6 +8,6 @@ in
 {
   services.zerotierone ={
     enable = true;
-    joinNetworks = settings.networks;
+    joinNetworks = settings.joinNetworks;
   };
 }
