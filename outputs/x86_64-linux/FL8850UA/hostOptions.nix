@@ -1,11 +1,37 @@
+{
+  inputs,
+  ...
+}:
 let
   # 从 vars/ 导入类型定义
-  inherit (import ../../../vars) localeTypes desktopTypes;
+  inherit (import ../../../vars) localeTypes desktopTypes bootLoaderTypes;
 
   hostOptions = {
     # 命令行模块
     cli = {
-
+      nh.enable = true;
+      bat.enable = true;
+      eza.enable = true;
+      nix.substituters = [
+      # "https://mirror.sjtu.edu.cn/nix-channels/store"
+      # 添加中科大镜像源
+      # "https://mirrors.ustc.edu.cn/nix-channels/store"
+      # 清华大学镜像源
+      # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      # 默认官方源
+      "https://cache.nixos.org"
+      ];
+      fzf.enable = true;
+      git.enable = true;
+      ssh.enable = true;
+      btop.enable = true;
+      tmux.enable = true;
+      yazi.enable = true;
+      pince.enable = true;
+      opencode.enable = true;
+      starship.enable = true;
+      fastfetch.enable = true;
+      mcp-nixos.enable = true;
     };
     # 本地化模块
     i18n = {
@@ -33,7 +59,19 @@ let
     };
     # 后台服务模块
     service = {
-
+      ssh.enable = true;
+      greetd.enable = true;
+      logind.enable = true;
+      snapper.enable = true;
+      udiskie.enable = true;
+      pipewire.enable = true;
+      libinput.enable = true;
+      sing-box.enable = true;
+      zerotierone.enable = true;
+      frp = {
+        enable = false;
+        settings = import "${inputs.secrets}/frp";
+      };
     };
     # 桌面模块
     desktop = {
@@ -48,6 +86,10 @@ let
     hardware = {
       zram.enable = true;
       bluetooth.enable = true;
+      boot-loader = {
+        type = bootLoaderTypes.systemd-boot;
+        efiSysMountPoint = "/boot";
+      };
       network = {
         enable = true;
         # 设置主机名

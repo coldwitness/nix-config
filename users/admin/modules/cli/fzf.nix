@@ -1,8 +1,16 @@
 {
+  lib,
+  hostOptions,
   ...
 }:
+let
+  cfg = hostOptions.cli.fzf;
+  finallyEnable = cfg.enable;
+in
 {
-  programs.fzf = {
-    enable = true;
+  config = lib.mkIf finallyEnable {
+    programs.fzf = {
+      enable = true;
+    };
   };
 }

@@ -1,9 +1,17 @@
 {
+  lib,
+  hostOptions,
   ...
 }:
+let
+  cfg = hostOptions.service.libinput;
+  finallyEnable = cfg.enable;
+in
 {
-  services = {
-    # 启用输入设备支持(在大多数桌面管理器中默认启用)
-    libinput.enable = true;
+  config = lib.mkIf finallyEnable {
+    services = {
+      # 启用输入设备支持(在大多数桌面管理器中默认启用)
+      libinput.enable = true;
+    };
   };
 }

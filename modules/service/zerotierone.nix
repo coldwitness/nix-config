@@ -1,13 +1,19 @@
 {
+  lib,
   inputs,
+  hostOptions,
   ...
 }:
 let
+  cfg = hostOptions.service.zerotierone;
+  finallyEnable = cfg.enable;
   settings = import "${inputs.secrets}/zerotierone";
 in
 {
-  services.zerotierone ={
-    enable = true;
-    joinNetworks = settings.joinNetworks;
+  config = lib.mkIf finallyEnable {
+    services.zerotierone ={
+      enable = true;
+      joinNetworks = settings.joinNetworks;
+    };
   };
 }

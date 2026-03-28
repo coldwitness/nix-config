@@ -7,7 +7,7 @@
 }:
 let
   inherit system;
-  hostOptions = import ./hostOptions.nix;
+  hostOptions = import ./hostOptions.nix { inherit inputs; };
 in
 {
   nixosConfigurations = {

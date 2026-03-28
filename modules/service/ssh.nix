@@ -1,8 +1,16 @@
 {
+  lib,
+  hostOptions,
   ...
 }:
+let
+  cfg = hostOptions.service.ssh;
+  finallyEnable = cfg.enable;
+in
 {
-  services = {
-    openssh.enable = true;
+  config = lib.mkIf finallyEnable {
+    services = {
+      openssh.enable = true;
+    };
   };
 }

@@ -1,9 +1,17 @@
 {
   pkgs,
+  lib,
+  hostOptions,
   ...
 }:
+let
+  cfg = hostOptions.cli.pince;
+  finallyEnable = cfg.enable;
+in
 {
-  environment.systemPackages = with pkgs; [
-    pince
-  ];
+  config = lib.mkIf finallyEnable {
+    environment.systemPackages = with pkgs; [
+      pince
+    ];
+  };
 }

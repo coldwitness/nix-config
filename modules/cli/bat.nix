@@ -1,9 +1,17 @@
 {
+  lib,
   pkgs,
+  hostOptions,
   ...
 }:
+let
+  cfg = hostOptions.cli.bat;
+  finallyEnable = cfg.enable;
+in
 {
-  environment.systemPackages = with pkgs; [
-    bat
-  ];
+  config = lib.mkIf finallyEnable {
+    environment.systemPackages = with pkgs; [
+      bat
+    ];
+  };
 }

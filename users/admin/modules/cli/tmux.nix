@@ -1,8 +1,16 @@
 {
+  lib,
+  hostOptions,
   ...
 }:
+let
+  cfg = hostOptions.cli.tmux;
+  finallyEnable = cfg.enable;
+in
 {
-  programs.tmux = {
-    enable = true;
+  config = lib.mkIf finallyEnable {
+    programs.tmux = {
+      enable = true;
+    };
   };
 }

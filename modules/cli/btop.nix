@@ -1,10 +1,18 @@
 {
+  lib,
   pkgs,
+  hostOptions,
   ...
 }:
+let
+  cfg = hostOptions.cli.btop;
+  finallyEnable = cfg.enable;
+in
 {
-  environment.systemPackages = with pkgs; [
-    # btop
-    btop-rocm
-  ];
+  config = lib.mkIf finallyEnable {
+    environment.systemPackages = with pkgs; [
+      # btop
+      btop-rocm
+    ];
+  };
 }

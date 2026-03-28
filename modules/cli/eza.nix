@@ -1,9 +1,17 @@
 {
   pkgs,
+  lib,
+  hostOptions,
   ...
 }:
+let
+  cfg = hostOptions.cli.eza;
+  finallyEnable = cfg.enable;
+in
 {
-  environment.systemPackages = with pkgs; [
-    eza
-  ];
+  config = lib.mkIf finallyEnable {
+    environment.systemPackages = with pkgs; [
+      eza
+    ];
+  };
 }

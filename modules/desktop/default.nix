@@ -1,7 +1,14 @@
 {
+  lib,
   pkgs,
+  inputs,
+  hostOptions,
   ...
 }:
+let
+  cfg = hostOptions.desktop.dms;
+  finallyEnable = cfg.enable && (hostOptions.desktop.type != "");
+in
 {
   imports = [
     ./dms.nix

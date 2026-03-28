@@ -10,6 +10,6 @@
     ./network.nix
     ./graphics.nix
     ./bluetooth.nix
-    ./systemd-boot.nix
+    ./boot-loader.nix
   ];
 }
