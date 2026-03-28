@@ -3,12 +3,12 @@
   pkgs,
   config,
   configPath,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.desktop.dms;
-  finallyEnable = cfg.enable && (hostConfig.desktop.type != "");
+  cfg = hostOptions.desktop.dms;
+  finallyEnable = cfg.enable && (hostOptions.desktop.type != "");
 in
 {
   config = lib.mkIf finallyEnable {

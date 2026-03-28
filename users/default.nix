@@ -1,7 +1,7 @@
 {
   inputs,
   pkgSets,
-  hostConfig,
+  hostOptions,
   ...
 }:
 {
@@ -40,7 +40,7 @@
     };
     # 传递给子模块的参数
     extraSpecialArgs = {
-      inherit inputs pkgSets hostConfig;
+      inherit inputs pkgSets hostOptions;
     };
   };
 }

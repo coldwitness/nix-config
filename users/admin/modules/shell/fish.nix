@@ -1,10 +1,10 @@
 {
   lib,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.shell.fish;
+  cfg = hostOptions.shell.fish;
   finallyEnable = cfg.enable;
 in
 {

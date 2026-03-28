@@ -1,11 +1,11 @@
 {
   lib,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.container.portainer-agent;
-  finallyEnable = cfg.enable && hostConfig.container.enable;
+  cfg = hostOptions.container.portainer-agent;
+  finallyEnable = cfg.enable && hostOptions.container.enable;
 in
 {
   config = lib.mkIf finallyEnable {

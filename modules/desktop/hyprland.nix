@@ -1,11 +1,11 @@
 {
   lib,
   pkgs,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.desktop;
+  cfg = hostOptions.desktop;
   finallyEnable = cfg.type == "hyprland";
 in
 {

@@ -1,11 +1,11 @@
 {
   lib,
   pkgs,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.tool.fcitx5;
+  cfg = hostOptions.tool.fcitx5;
   finallyEnable = cfg.enable;
 in
 {

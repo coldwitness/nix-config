@@ -1,10 +1,10 @@
 {
   lib,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.terminal.kitty;
+  cfg = hostOptions.terminal.kitty;
   finallyEnable = cfg.enable;
 in
 {

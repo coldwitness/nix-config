@@ -1,12 +1,12 @@
 {
   lib,
   pkgs,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.internet.telegram-desktop;
-  finallyEnable = cfg.enable && (hostConfig.desktop.type != "");
+  cfg = hostOptions.internet.telegram-desktop;
+  finallyEnable = cfg.enable && (hostOptions.desktop.type != "");
 in
 {
   config = lib.mkIf finallyEnable {

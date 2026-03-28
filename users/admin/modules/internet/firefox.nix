@@ -2,13 +2,13 @@
   lib,
   pkgs,
   pkgSets,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.internet.firefox;
-  locale = hostConfig.i18n.locale;
-  finallyEnable = cfg.enable && (hostConfig.desktop.type != "");
+  cfg = hostOptions.internet.firefox;
+  locale = hostOptions.i18n.locale;
+  finallyEnable = cfg.enable && (hostOptions.desktop.type != "");
 in
 {
   config = lib.mkIf finallyEnable {

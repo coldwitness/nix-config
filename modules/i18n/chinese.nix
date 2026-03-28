@@ -1,11 +1,11 @@
 {
   lib,
   pkgs,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.i18n;
+  cfg = hostOptions.i18n;
   finallyEnable = cfg.locale == "zh-CN";
 in
 {

@@ -1,10 +1,10 @@
 {
   lib,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.tool.onlyoffice;
+  cfg = hostOptions.tool.onlyoffice;
   finallyEnable = cfg.enable;
 in
 {

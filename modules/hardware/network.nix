@@ -1,10 +1,10 @@
 {
   lib,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.hardware.network;
+  cfg = hostOptions.hardware.network;
   finallyEnable = cfg.enable;
 in
 {

@@ -2,11 +2,11 @@
   lib,
   pkgs,
   inputs,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.editor.nixvim;
+  cfg = hostOptions.editor.nixvim;
   finallyEnable = cfg.enable;
 in
 {

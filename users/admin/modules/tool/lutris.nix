@@ -1,11 +1,11 @@
 {
   lib,
   pkgs,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.tool.lutris;
+  cfg = hostOptions.tool.lutris;
   finallyEnable = cfg.enable;
 in
 {

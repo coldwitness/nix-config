@@ -1,10 +1,10 @@
 {
   lib,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.hardware.zram;
+  cfg = hostOptions.hardware.zram;
   finallyEnable = cfg.enable;
 in
 {

@@ -3,12 +3,12 @@
   pkgs,
   config,
   configPath,
-  hostConfig,
+  hostOptions,
   ...
 }:
 let
-  cfg = hostConfig.editor.vscode;
-  finallyEnable = cfg.enable && (hostConfig.desktop.type != "");
+  cfg = hostOptions.editor.vscode;
+  finallyEnable = cfg.enable && (hostOptions.desktop.type != "");
 in
 {
   config = lib.mkIf finallyEnable {
