@@ -3,7 +3,7 @@
     self.submodules = true;
     secrets.url = ./secrets;
     nixpkgs.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # 与当前 flake 的 inputs.nixpkgs 保持一致

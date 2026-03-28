@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   config,
   modulesPath,
   ...
@@ -8,25 +7,16 @@
 let
   systemBootDevice = "/dev/disk/by-uuid/027B-7471";
   systemFileDevice = "/dev/disk/by-uuid/8c18bbfc-4114-497a-b34b-760429d94a25";
-in 
+in
 {
-  # 导入 NixOS 官方提供的硬件自动检测模块, 会根据当前硬件生成相应的内核模块列表, 并处理一些特定硬件的配置
-  imports = [ ( modulesPath + "/installer/scan/not-detected.nix" ) ];
+  imports = [
+    # 硬件自动检测模块, 会根据当前硬件生成相应的内核模块列表, 并处理一些特定硬件的配置
+    ( modulesPath + "/installer/scan/not-detected.nix" )
+    # Linux 内核
+    ./kernel.nix
+  ];
   # 启动相关配置
   boot = {
-    # 覆盖 NixOS 使用的 Linux 内核
-    kernelPackages = pkgs.linuxPackagesFor (
-      pkgs.linux_zen.override {
-        argsOverride = rec {
-          version = "6.19.9";
-          modDirVersion = "${version}-lqx1";
-          src = pkgs.fetchurl {
-            url = "https://github.com/zen-kernel/zen-kernel/archive/refs/tags/v${modDirVersion}.tar.gz";
-            sha256 = "sha256-v0F+Czl7lcLxSI7lZl1A0MymjLiCnVeaBixfyiWGU0U=";
-          };
-        };
-      }
-    );
     # initrd 阶段加载的模块(根文件系统挂载前)
     initrd ={
       # 由 udev 自动探测加载的模块列表(会打包进 initrd)
