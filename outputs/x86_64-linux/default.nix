@@ -1,30 +1,35 @@
 {
   lib,
   inputs,
+  system,
+  pkgSets,
   ...
 }:
 let
-  system = "x86_64-linux";
-
-  # 主分支的 nixpkgs 实例
-  pkgs = inputs.nixpkgs.legacyPackages.${system};
-  # 预构建 unstable 包集
-  pkgs-unstable = import inputs.nixpkgs-unstable {
-    inherit system;
+  # 读取当前目录下的所有文件和目录
+  entries = builtins.readDir ./.;
+  # 筛选出所有主机目录
+  hostDirs = builtins.filter (n:
+    let
+      # 获取当前条目 n 的类型 (directory/regular/symlink)
+      type = entries.${n};
+    in
+    # 同时满足: 是 directory 并且不是 tests 并且存在 default.nix
+    type == "directory" && n != "tests" && builtins.pathExists (./. + "/${n}/default.nix")
+  ) (builtins.attrNames entries);
+  # 定义导入函数, 用于加载单个主机配置
+  importHost = name: import (./. + "/${name}") {
+    inherit lib inputs system pkgSets;
   };
-
-  # 加载 FL8850UA 主机配置
-  hostArgs = {
-    inherit inputs lib pkgs-unstable;
-  };
-  FL8850UA = import ./FL8850UA hostArgs;
+  # 对所有主机目录应用 importHost 函数
+  hosts = builtins.map importHost hostDirs;
+  # 合并所有主机的 nixosConfigurations
+  allNixosConfigurations = lib.attrsets.mergeAttrsList (
+    # 先用 builtins.map 提取每个主机的 nixosConfigurations
+    builtins.map (h: h.nixosConfigurations) hosts
+  );
 in
 {
-  # 导出 hostConfig 供模块使用
-  hostConfig = FL8850UA.hostConfig // {
-    inherit system;
-  };
-
-  # 导出 nixosConfigurations
-  nixosConfigurations = FL8850UA.nixosConfigurations;
+  # 导出一个合并后的 nixosConfigurations, 包含所有主机配置
+  nixosConfigurations = allNixosConfigurations;
 }

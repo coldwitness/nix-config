@@ -1,14 +1,14 @@
 {
   lib,
   inputs,
-  pkgs-unstable,
+  system,
+  pkgSets,
   ...
 }:
 let
   # 从 vars/ 导入类型定义
-  vars = import ../../../vars;
-  inherit (vars) localeTypes systemTypes desktopTypes;
-  system = systemTypes.x86_64-linux;
+  inherit (import ../../../vars) localeTypes desktopTypes;
+  inherit system;
 
   # 平台级选项配置
   hostConfig = {
@@ -102,13 +102,11 @@ in
     FL8850UA = lib.nixosSystem {
       inherit system;
       specialArgs = {
-        inherit inputs pkgs-unstable;
-        inherit hostConfig;
+        inherit inputs pkgSets hostConfig;
       };
       modules = [
         {
-          # 允许安装非自由软件包
-          nixpkgs.config.allowUnfree = true;
+          nixpkgs.pkgs = pkgSets.pkgs;
           # NixOS 首次安装的版本
           system.stateVersion = "25.11";
         }

@@ -1,8 +1,8 @@
 {
   lib,
   pkgs,
+  pkgSets,
   hostConfig,
-  pkgs-unstable,
   ...
 }:
 let
@@ -16,7 +16,7 @@ in
       firefox = {
         # 启用 Firefox 浏览器
         enable = true;
-        package = pkgs-unstable.firefox;
+        package = pkgSets.pkgs-unstable.firefox;
         # 浏览器策略配置
         policies = {
           # 启动时不检查是否为默认浏览器

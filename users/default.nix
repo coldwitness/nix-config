@@ -1,7 +1,7 @@
 {
   inputs,
+  pkgSets,
   hostConfig,
-  pkgs-unstable,
   ...
 }:
 {
@@ -40,7 +40,7 @@
     };
     # 传递给子模块的参数
     extraSpecialArgs = {
-      inherit inputs hostConfig pkgs-unstable;
+      inherit inputs pkgSets hostConfig;
     };
   };
 }
