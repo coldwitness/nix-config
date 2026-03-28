@@ -5,7 +5,6 @@
 let
   # 从 vars/ 导入类型定义
   inherit (import ../../../vars) localeTypes desktopTypes bootLoaderTypes;
-
   hostOptions = {
     # 命令行模块
     cli = {
@@ -18,13 +17,13 @@ let
       btop.enable = true;
       tmux.enable = true;
       yazi.enable = true;
-      pince.enable = true;
-      opencode.enable = true;
+      pince.enable = false;
+      opencode.enable = false;
       starship.enable = true;
       fastfetch.enable = true;
-      mcp-nixos.enable = true;
+      mcp-nixos.enable = false;
       nix.substituters = [
-      # "https://mirror.sjtu.edu.cn/nix-channels/store"
+      "https://mirror.sjtu.edu.cn/nix-channels/store"
       # 添加中科大镜像源
       # "https://mirrors.ustc.edu.cn/nix-channels/store"
       # 清华大学镜像源
@@ -35,12 +34,12 @@ let
     };
     # 本地化模块
     i18n = {
-      locale = localeTypes.zh-cn;
+      locale = localeTypes.en-us;
     };
     # 工具模块
     tool = {
-      fcitx5.enable = true;
-      lutris.enable = true;
+      fcitx5.enable = false;
+      lutris.enable = false;
       onlyoffice.enable = false;
     };
     # 命令解释器模块
@@ -49,25 +48,25 @@ let
     };
     # 多媒体模块
     media = {
-      mpv.enable = true;
-      obs-studio.enable = true;
+      mpv.enable = false;
+      obs-studio.enable = false;
     };
     # 编辑器模块
     editor = {
-      vscode.enable = true;
+      vscode.enable = false;
       nixvim.enable = false;
     };
     # 后台服务模块
     service = {
       ssh.enable = true;
-      greetd.enable = true;
-      logind.enable = true;
-      snapper.enable = true;
-      udiskie.enable = true;
-      pipewire.enable = true;
-      libinput.enable = true;
-      sing-box.enable = true;
-      zerotierone.enable = true;
+      greetd.enable = false;
+      logind.enable = false;
+      snapper.enable = false;
+      udiskie.enable = false;
+      pipewire.enable = false;
+      libinput.enable = false;
+      sing-box.enable = false;
+      zerotierone.enable = false;
       frp = {
         enable = false;
         settings = import "${inputs.secrets}/frp";
@@ -75,25 +74,25 @@ let
     };
     # 桌面模块
     desktop = {
-      type = desktopTypes.hyprland;
-      dms.enable = true;
+      type = desktopTypes.disable;
+      dms.enable = false;
     };
     # 终端模块
     terminal = {
-      kitty.enable = true;
+      kitty.enable = false;
     };
     # 硬件模块
     hardware = {
       zram.enable = true;
-      bluetooth.enable = true;
+      bluetooth.enable = false;
       boot-loader = {
-        type = bootLoaderTypes.systemd-boot;
-        efiSysMountPoint = "/boot";
+        type = bootLoaderTypes.grub;
+        efiSysMountPoint = "/boot/efi";
       };
       network = {
         enable = true;
         # 设置主机名
-        hostName = "FL8850UA";
+        hostName = "ALC";
         # 防火墙
         firewall = {
           enable = false;
@@ -102,29 +101,29 @@ let
           # allowedUDPPorts = [ ... ];
         };
         # 网络代理
-        proxy = {
-          default = "http://localhost:2334/";
-          noProxy = "127.0.0.1,localhost,internal.domain";
-        };
+        # proxy = {
+        #   default = "http://localhost:2334/";
+        #   noProxy = "127.0.0.1,localhost,internal.domain";
+        # };
       };
       graphics = {
-        enable = true;
-        enable32Bit = true;
+        enable = false;
+        enable32Bit = false;
       };
     };
     # 上网工具模块
     internet = {
-      qq.enable = true;
-      wechat.enable = true;
-      firefox.enable = true;
-      rustdesk.enable = true;
-      telegram-desktop.enable = true;
+      qq.enable = false;
+      wechat.enable = false;
+      firefox.enable = false;
+      rustdesk.enable = false;
+      telegram-desktop.enable = false;
     };
     # 容器模块
     container = {
-      enable = false;
+      enable = true;
       portainer-agent.enable = false;
-      rustdesk-server.enable = false;
+      rustdesk-server.enable = true;
     };
   };
 in

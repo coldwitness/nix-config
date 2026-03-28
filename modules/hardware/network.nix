@@ -13,7 +13,7 @@ in
       hostName = cfg.hostName;
       networkmanager.enable = true;
       firewall = cfg.firewall;
-      proxy = cfg.proxy;
+      proxy = cfg.proxy or { };
     };
   };
 }

@@ -18,6 +18,19 @@
         # ========== 抢占策略 ==========
           # 启用完全抢占
           PREEMPT = lib.mkForce lib.kernel.yes;
+          # # 显式禁用其他抢占模型
+          # PREEMPT_RT = lib.mkForce lib.kernel.no;         # 完全实时抢占: 会牺牲吞吐量, 桌面环境不需要
+          # PREEMPT_NONE = lib.mkForce lib.kernel.no;       # 无抢占: 服务器风格, 延迟高
+          # PREEMPT_LAZY = lib.mkForce lib.kernel.no;       # 懒惰抢占: 不适合桌面激进优化
+          # PREEMPT_VOLUNTARY = lib.mkForce lib.kernel.no;  # 自愿抢占: 延迟高于完全抢占
+          # # 核心调度, 为防御侧信道攻击将超线程配对调度, 会增加调度延迟
+          # SCHED_CORE = lib.mkForce lib.kernel.no;
+          # # 动态抢占
+          # PREEMPT_DYNAMIC = lib.mkForce lib.kernel.no;
+          # # BPF 调度类扩展
+          # SCHED_CLASS_EXT = lib.mkForce lib.kernel.no;
+          # #
+          # DEFAULT_FQ_CODEL = lib.mkForce lib.kernel.yes;
         # ========== 内核裁剪 ==========
           # 火线
           FIREWIRE = lib.mkForce lib.kernel.no;
