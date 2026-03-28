@@ -90,7 +90,8 @@ let
         efiSysMountPoint = "/boot/efi";
       };
       network = {
-        enable = true;
+        # 域名
+        domain = "";
         # 设置主机名
         hostName = "ALC";
         # 防火墙

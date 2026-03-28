@@ -5,7 +5,6 @@
 let
   # 从 vars/ 导入类型定义
   inherit (import ../../../vars) localeTypes desktopTypes bootLoaderTypes;
-
   hostOptions = {
     # 命令行模块
     cli = {
@@ -91,9 +90,10 @@ let
         efiSysMountPoint = "/boot";
       };
       network = {
-        enable = true;
         # 设置主机名
         hostName = "FL8850UA";
+        # 是否使用 NetworkManager 为所有未手动配置的网络接口获取 IP 地址和其他配置
+        networkmanager.enable = true;
         # 防火墙
         firewall = {
           enable = false;
