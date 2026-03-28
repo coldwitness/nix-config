@@ -14,7 +14,6 @@ let
       fzf.enable = true;
       git.enable = true;
       ssh.enable = true;
-      btop.enable = true;
       tmux.enable = true;
       yazi.enable = true;
       pince.enable = true;
@@ -22,6 +21,10 @@ let
       starship.enable = true;
       fastfetch.enable = true;
       mcp-nixos.enable = true;
+      btop = {
+        enable = true;
+        type = "amd";
+      };
       nix.substituters = [
       # "https://mirror.sjtu.edu.cn/nix-channels/store"
       # 添加中科大镜像源

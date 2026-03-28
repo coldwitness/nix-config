@@ -11,7 +11,11 @@ in
 {
   config = lib.mkIf finallyEnable {
     environment.systemPackages = with pkgs; [
-      # btop
+      
+    ]
+    ++ lib.optionals (cfg.type == "") [
+      btop
+    ] ++ lib.optionals (cfg.type == "amd") [
       btop-rocm
     ];
   };
