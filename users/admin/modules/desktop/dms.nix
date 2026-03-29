@@ -8,7 +8,7 @@
 }:
 let
   cfg = hostOptions.desktop.dms or { };
-  finallyEnable = cfg.enable && ((hostOptions.desktop.type or "") != "");
+  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
 in
 {
   config = lib.mkIf finallyEnable {

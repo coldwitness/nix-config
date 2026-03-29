@@ -6,7 +6,7 @@
   ...
 }:
 let
-  cfg = hostOptions.desktop;
+  cfg = hostOptions.desktop or { };
   finallyEnable = (cfg.type or "") != "";
 in
 {
