@@ -14,6 +14,7 @@ let
       fzf.enable = true;
       git.enable = true;
       ssh.enable = true;
+      just.enable = true;
       tmux.enable = true;
       yazi.enable = true;
       btop.enable = true;
