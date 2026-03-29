@@ -6,8 +6,8 @@
   ...
 }:
 let
-  cfg = hostOptions.service.greetd;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.service.greetd or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

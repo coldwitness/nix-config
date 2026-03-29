@@ -6,8 +6,8 @@
   ...
 }:
 let
-  cfg = hostOptions.desktop;
-  finallyEnable = hostOptions.desktop.type != "";
+  cfg = hostOptions.desktop or { };
+  finallyEnable = (cfg.type or "") != "";
 in
 {
   config = lib.mkIf finallyEnable {

@@ -7,7 +7,7 @@
 }:
 let
   cfg = hostOptions.desktop;
-  finallyEnable = hostOptions.desktop.type != "";
+  finallyEnable = (cfg.type or "") != "";
 in
 {
   config = lib.mkIf finallyEnable {
@@ -15,10 +15,6 @@ in
       systemPackages = with pkgs; [
         # 图标主题
         papirus-icon-theme
-        # GTK 设置工具
-        nwg-look
-        # Qt 设置工具
-        qt6Packages.qt6ct
       ];
       variables = {
         # 指定 Qt 应用程序的外观主题

@@ -5,8 +5,8 @@
   ...
 }:
 let
-  cfg = hostOptions.service.sing-box;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.service.sing-box or { };
+  finallyEnable = cfg.enable or false;
   # 使用 builtins.readFile 读取 JSON 文件内容为字符串
   jsonFile = builtins.readFile "${inputs.secrets}/sing-box/config.json";
   # 使用 builtins.fromJSON 将字符串解析为 Nix 值

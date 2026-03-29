@@ -4,12 +4,13 @@
   ...
 }:
 let
-  cfg = hostOptions.cli.nix;
+  cfg = hostOptions.cli.nix or { };
+  substituters = cfg.substituters or [ ];
 in
 {
   nix.settings = {
     # 源配置
-    substituters = cfg.substituters;
+    inherit substituters;
     # 启用实验性功能
     experimental-features = [
       # nix 命令增强

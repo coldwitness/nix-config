@@ -5,8 +5,8 @@
   ...
 }:
 let
-  cfg = hostOptions.service.udiskie;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.service.udiskie or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

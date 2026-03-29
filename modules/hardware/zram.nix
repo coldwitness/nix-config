@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.hardware.zram;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.hardware.zram or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

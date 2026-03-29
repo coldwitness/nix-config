@@ -5,15 +5,15 @@
   ...
 }:
 let
-  cfg = hostOptions.service.zerotierone;
-  finallyEnable = cfg.enable;
-  settings = import "${inputs.secrets}/zerotierone";
+  cfg = hostOptions.service.zerotierone or { };
+  finallyEnable = cfg.enable or false;
+  inherit (import "${inputs.secrets}/zerotierone") joinNetworks;
 in
 {
   config = lib.mkIf finallyEnable {
     services.zerotierone ={
       enable = true;
-      joinNetworks = settings.joinNetworks;
+      inherit joinNetworks;
     };
   };
 }

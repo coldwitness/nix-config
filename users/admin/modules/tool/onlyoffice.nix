@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.tool.onlyoffice;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.tool.onlyoffice or { };
+  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
 in
 {
   config = lib.mkIf finallyEnable {

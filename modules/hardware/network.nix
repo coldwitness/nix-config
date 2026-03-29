@@ -4,7 +4,7 @@
   ...
 }:
 let
-  cfg = hostOptions.hardware.network;
+  cfg = hostOptions.hardware.network or { };
 in
 {
   networking = cfg;

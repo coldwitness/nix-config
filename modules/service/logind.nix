@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.service.logind;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.service.logind or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

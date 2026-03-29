@@ -5,8 +5,8 @@
   ...
 }:
 let
-  cfg = hostOptions.tool.lutris;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.tool.lutris or { };
+  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
 in
 {
   config = lib.mkIf finallyEnable {

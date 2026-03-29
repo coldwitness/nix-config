@@ -5,8 +5,8 @@
   ...
 }:
 let
-  cfg = hostOptions.tool.fcitx5;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.tool.fcitx5 or { };
+  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
 in
 {
   config = lib.mkIf finallyEnable {

@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.service.ssh;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.service.openssh or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

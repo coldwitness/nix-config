@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.hardware.bluetooth;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.hardware.bluetooth or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

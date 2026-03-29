@@ -5,8 +5,8 @@
   ...
 }:
 let
-  cfg = hostOptions.desktop;
-  finallyEnable = cfg.type == "hyprland";
+  cfg = hostOptions.desktop  or { };
+  finallyEnable = (cfg.type or "") == "hyprland";
 in
 {
   config = lib.mkIf finallyEnable {

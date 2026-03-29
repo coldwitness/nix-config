@@ -7,8 +7,8 @@
   ...
 }:
 let
-  cfg = hostOptions.editor.vscode;
-  finallyEnable = cfg.enable && (hostOptions.desktop.type != "");
+  cfg = hostOptions.editor.vscode or { };
+  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
 in
 {
   config = lib.mkIf finallyEnable {

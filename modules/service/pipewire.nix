@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.service.pipewire;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.service.pipewire or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

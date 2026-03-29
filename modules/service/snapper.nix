@@ -5,8 +5,8 @@
   ...
 }:
 let
-  cfg = hostOptions.service.snapper;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.service.snapper or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

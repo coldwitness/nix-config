@@ -5,8 +5,8 @@
   ...
 }:
 let
-  cfg = hostOptions.i18n;
-  finallyEnable = cfg.locale == "zh-CN";
+  cfg = hostOptions.i18n or { };
+  finallyEnable = (cfg.locale or "en-US") == "zh-CN";
 in
 {
   config = lib.mkIf finallyEnable {

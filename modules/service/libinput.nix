@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.service.libinput;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.service.libinput or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

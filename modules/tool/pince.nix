@@ -5,8 +5,8 @@
   ...
 }:
 let
-  cfg = hostOptions.cli.pince;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.tool.pince or { };
+  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
 in
 {
   config = lib.mkIf finallyEnable {

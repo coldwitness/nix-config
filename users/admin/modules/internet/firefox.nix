@@ -6,9 +6,9 @@
   ...
 }:
 let
-  cfg = hostOptions.internet.firefox;
-  locale = hostOptions.i18n.locale;
-  finallyEnable = cfg.enable && (hostOptions.desktop.type != "");
+  cfg = hostOptions.internet.firefox or { };
+  locale = hostOptions.i18n.locale or "en-US";
+  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
 in
 {
   config = lib.mkIf finallyEnable {

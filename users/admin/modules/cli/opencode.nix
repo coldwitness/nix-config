@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.cli.opencode;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.cli.opencode or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.media.mpv;
-  finallyEnable = cfg.enable && (hostOptions.desktop.type != "");
+  cfg = hostOptions.media.mpv or { };
+  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
 in
 {
   config = lib.mkIf finallyEnable {

@@ -18,7 +18,6 @@ let
       tmux.enable = true;
       yazi.enable = true;
       btop.enable = true;
-      pince.enable = true;
       opencode.enable = true;
       starship.enable = true;
       fastfetch.enable = true;
@@ -39,9 +38,9 @@ let
     };
     # 工具模块
     tool = {
+      pince.enable = true;
       fcitx5.enable = true;
       lutris.enable = true;
-      onlyoffice.enable = false;
     };
     # 命令解释器模块
     shell = {
@@ -55,13 +54,12 @@ let
     # 编辑器模块
     editor = {
       vscode.enable = true;
-      nixvim.enable = false;
     };
     # 后台服务模块
     service = {
-      ssh.enable = true;
       greetd.enable = true;
       logind.enable = true;
+      openssh.enable = true;
       snapper.enable = true;
       udiskie.enable = true;
       pipewire.enable = true;

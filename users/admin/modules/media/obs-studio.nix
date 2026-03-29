@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.media.obs-studio;
-  finallyEnable = cfg.enable && (hostOptions.desktop.type != "");
+  cfg = hostOptions.media.obs-studio or { };
+  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
 in
 {
   config = lib.mkIf finallyEnable {

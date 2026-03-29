@@ -6,8 +6,8 @@
   ...
 }:
 let
-  cfg = hostOptions.editor.nixvim;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.editor.nixvim or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   imports = [

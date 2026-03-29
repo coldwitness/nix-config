@@ -6,8 +6,8 @@
   ...
 }:
 let
-  cfg = hostOptions.desktop.dms;
-  finallyEnable = cfg.enable && (hostOptions.desktop.type != "");
+  cfg = hostOptions.desktop.dms or { };
+  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
 in
 {
   imports = [

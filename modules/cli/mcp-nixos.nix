@@ -6,8 +6,8 @@
   ...
 }:
 let
-  cfg = hostOptions.cli.mcp-nixos;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.cli.mcp-nixos or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {
