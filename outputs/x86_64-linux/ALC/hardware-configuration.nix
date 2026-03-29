@@ -44,7 +44,6 @@ in
     "/" = {
       device = "/dev/vda3";
       fsType = "ext4";
-      options = [ "subvol=@" ];
     };
   };
 }
