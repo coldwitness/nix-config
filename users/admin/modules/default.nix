@@ -1,16 +1,10 @@
 {
+  lib,
   ...
 }:
+let
+  inherit (import ../../../functions { inherit lib; }) importSubdirModules;
+in
 {
-  # 导入其他模块
-  imports = [
-    ./cli       # 命令行模块
-    ./tool      # 工具模块
-    ./shell     # 命令解释器模块
-    ./media     # 多媒体模块
-    ./editor    # 编辑器模块
-    ./desktop   # 桌面模块
-    ./terminal  # 终端模块
-    ./internet  # 上网工具模块
-  ];
+  imports = importSubdirModules ./.;
 }

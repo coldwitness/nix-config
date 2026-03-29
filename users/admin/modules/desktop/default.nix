@@ -10,10 +10,6 @@ let
   finallyEnable = hostOptions.desktop.type != "";
 in
 {
-  imports = [
-    ./dms.nix
-    ./hyprland.nix
-    ];
   config = lib.mkIf finallyEnable {
     home.file = {
       ".gtkrc-2.0" = {

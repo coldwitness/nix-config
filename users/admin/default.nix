@@ -3,10 +3,7 @@
   ...
 }:
 {
-  # 导入其他模块
-  imports = [
-    ./modules
-    ];
+  imports = [ ./modules ];
   # 注入到所有子模块的参数
   _module.args = {
     configPath = "${config.home.homeDirectory}/workspace/nix-config/users/admin/config";
