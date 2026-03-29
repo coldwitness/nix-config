@@ -121,11 +121,6 @@ let
       rustdesk.enable = true;
       telegram-desktop.enable = true;
     };
-    # 容器模块
-    container = {
-      enable = false;
-      portainer-agent.enable = false;
-    };
   };
 in
 hostOptions

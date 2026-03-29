@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.container;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.container or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   imports = [

@@ -13,5 +13,6 @@
     ./libinput.nix
     ./sing-box.nix
     ./zerotierone.nix
+    ./rustdesk-server.nix
   ];
 }

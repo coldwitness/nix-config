@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.container.portainer-agent;
-  finallyEnable = cfg.enable && hostOptions.container.enable;
+  cfg = hostOptions.container.portainer-agent or  { };
+  finallyEnable = cfg.enable or false && hostOptions.container.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {
