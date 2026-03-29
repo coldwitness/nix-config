@@ -89,7 +89,7 @@ let
       zram.enable = true;
       bluetooth.enable = false;
       boot-loader = {
-        type = bootLoaderTypes.grub;
+        type = bootLoaderTypes.systemd-boot;
         efiSysMountPoint = "/boot/efi";
       };
       network = {
