@@ -5,19 +5,16 @@
   ...
 }:
 let
-  cfg = hostOptions.service.frp;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.service.frp or { };
+  finallyEnable = cfg.enable or false;
+  instance = cfg.instance or { };
 in
 {
 
   config = lib.mkIf finallyEnable {
     services.frp = {
       instances = {
-        client = {
-          enable = true;
-          role = "client";
-          settings = cfg.settings;
-        };
+        inherit instance;
       };
     };
   };

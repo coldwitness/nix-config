@@ -68,8 +68,8 @@ let
       sing-box.enable = false;
       zerotierone.enable = false;
       frp = {
-        enable = false;
-        settings = import "${inputs.secrets}/frp";
+        enable = true;
+        instance = import "${inputs.secrets}/frp/ALC.nix";
       };
     };
     # 桌面模块
