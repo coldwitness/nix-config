@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   hostOptions,
   ...
 }:
