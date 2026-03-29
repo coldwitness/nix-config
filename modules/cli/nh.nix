@@ -21,8 +21,6 @@ in
         # 清理参数
         extraArgs = "--keep 5 --keep-since 3d";
       };
-      # 设置 NH_OS_FLAKE 变量
-      flake = "/home/admin/workspace/nix-config";
     };
   };
 }
