@@ -67,6 +67,10 @@ let
       libinput.enable = false;
       sing-box.enable = false;
       zerotierone.enable = false;
+      rustdesk-server = {
+        enable = true;
+        inherit (import "${inputs.secrets}/rustdesk-server") relayHosts;
+      };
       frp = {
         enable = true;
         instance = import "${inputs.secrets}/frp/ALC.nix";
@@ -118,9 +122,8 @@ let
     };
     # 容器模块
     container = {
-      enable = true;
+      enable = false;
       portainer-agent.enable = false;
-      rustdesk-server.enable = true;
     };
   };
 in

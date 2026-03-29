@@ -10,7 +10,6 @@ in
 {
   imports = [
     ./portainer-agent.nix
-    ./rustdesk-server.nix
   ];
   config = lib.mkIf finallyEnable {
     virtualisation = {

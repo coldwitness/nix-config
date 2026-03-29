@@ -125,7 +125,6 @@ let
     container = {
       enable = false;
       portainer-agent.enable = false;
-      rustdesk-server.enable = false;
     };
   };
 in
