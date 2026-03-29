@@ -17,6 +17,7 @@ in
           + "[ ](#FF69B4)"
           + "$os"
           + "$username"
+          + "$hostname"
           + "[](bg:#FF87C3 fg:#FF69B4)"
           + "$directory"
           + "[](bg:#FFA5D2 fg:#FF87C3)"
@@ -51,7 +52,13 @@ in
           show_always = true;
           style_user = "bg:#FF69B4 fg:#FFFFFF";
           style_root = "bg:#FF69B4 fg:#FFFFFF";
-          format = "[$user ]($style)";
+          format = "[$user@]($style)";
+          disabled = false;
+        };
+        hostname = {
+          ssh_only = false;
+          style = "bg:#FF69B4 fg:#FFFFFF";
+          format = "[$hostname ]($style)";
           disabled = false;
         };
         directory = {
