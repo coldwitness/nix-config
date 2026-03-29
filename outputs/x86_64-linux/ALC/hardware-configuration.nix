@@ -34,6 +34,8 @@ in
     # 额外的第三方内核模块包
     # 如需在 initrd 阶段加载其中的模块, 请加入 initrd.kernelModules
     extraModulePackages = with config.boot.kernelPackages; [ ];
+    # 在每次系统启动时清空 /tmp 目录
+    tmp.cleanOnBoot = true;
   };
   # 要挂载的文件系统
   fileSystems = {

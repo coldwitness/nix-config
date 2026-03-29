@@ -24,7 +24,6 @@ in
         }
         ../../../users
         ../../../modules
-        ./extra.nix
         ./hardware-configuration.nix
         inputs.nur.modules.nixos.default
       ];
