@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.hardware.graphics;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.hardware.graphics or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

@@ -16,15 +16,12 @@ let
       ssh.enable = true;
       tmux.enable = true;
       yazi.enable = true;
+      btop.enable = true;
       pince.enable = false;
       opencode.enable = false;
       starship.enable = true;
       fastfetch.enable = true;
       mcp-nixos.enable = false;
-      btop = {
-        enable = true;
-        type = "";
-      };
       nix.substituters = [
       "https://mirror.sjtu.edu.cn/nix-channels/store"
       # 添加中科大镜像源
@@ -109,10 +106,6 @@ let
         #   default = "http://localhost:2334/";
         #   noProxy = "127.0.0.1,localhost,internal.domain";
         # };
-      };
-      graphics = {
-        enable = false;
-        enable32Bit = false;
       };
     };
     # 上网工具模块

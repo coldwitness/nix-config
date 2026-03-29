@@ -4,7 +4,7 @@
 }:
 let
   # 从 vars/ 导入类型定义
-  inherit (import ../../../vars) localeTypes desktopTypes bootLoaderTypes;
+  inherit (import ../../../vars) gpuTypes localeTypes desktopTypes bootLoaderTypes;
   hostOptions = {
     # 命令行模块
     cli = {
@@ -16,15 +16,12 @@ let
       ssh.enable = true;
       tmux.enable = true;
       yazi.enable = true;
+      btop.enable = true;
       pince.enable = true;
       opencode.enable = true;
       starship.enable = true;
       fastfetch.enable = true;
       mcp-nixos.enable = true;
-      btop = {
-        enable = true;
-        type = "amd";
-      };
       nix.substituters = [
       # "https://mirror.sjtu.edu.cn/nix-channels/store"
       # 添加中科大镜像源
@@ -113,6 +110,7 @@ let
       graphics = {
         enable = true;
         enable32Bit = true;
+        type = gpuTypes.amd;
       };
     };
     # 上网工具模块
