@@ -11,7 +11,7 @@ let
 in
 {
   nixosConfigurations = {
-    ALC = lib.nixosSystem {
+    nixos = lib.nixosSystem {
       inherit system;
       specialArgs = {
         inherit inputs pkgSets hostOptions;
