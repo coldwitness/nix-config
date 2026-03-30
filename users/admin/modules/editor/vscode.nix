@@ -28,8 +28,8 @@ in
           # Markdown 语法规范检查
           name = "vscode-markdownlint";
           publisher = "DavidAnson";
-          version = "0.61.1";
-          sha256 = "sha256-3O4ii6RUuw35pv95zJwJhgnI/8ryAnSKfnHC01l3FDw=";
+          version = "0.61.2";
+          sha256 = "sha256-RGWgY6pyq7j509UjLD3SSyOOA7cXGFFk95H1hoeKPjA=";
         }
       ]++ [
       # ========== JavaScript / TypeScript ==========
