@@ -7,7 +7,10 @@
 let
   cfg = hostOptions.service.zerotierone or { };
   finallyEnable = cfg.enable or false;
-  inherit (import "${inputs.secrets}/zerotierone") joinNetworks;
+  settings = if builtins.pathExists "${inputs.secrets}/zerotierone" 
+             then import "${inputs.secrets}/zerotierone" 
+             else { };
+  joinNetworks = settings.joinNetworks or [ ];
 in
 {
   config = lib.mkIf finallyEnable {

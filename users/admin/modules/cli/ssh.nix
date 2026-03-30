@@ -5,9 +5,12 @@
   ...
 }:
 let
-  cfg = hostOptions.cli.ssh;
-  finallyEnable = cfg.enable;
-  settings = import "${inputs.secrets}/ssh";
+  cfg = hostOptions.cli.ssh or { };
+  finallyEnable = cfg.enable or false;
+  settings = if builtins.pathExists "${inputs.secrets}/ssh" 
+             then import "${inputs.secrets}/ssh" 
+             else { };
+  matchBlocks = settings.matchBlocks or { };
 in
 {
   config = lib.mkIf finallyEnable {
@@ -15,7 +18,7 @@ in
       enable = true;
       # 默认配置
       enableDefaultConfig = false;
-      matchBlocks = settings.matchBlocks;
+      inherit matchBlocks;
     };
   };
 }
