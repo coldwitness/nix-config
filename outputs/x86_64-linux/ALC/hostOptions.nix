@@ -37,6 +37,7 @@ let
     service = {
       frp.enable = true;
       openssh.enable = true;
+      zerotierone.enable = true;
       rustdesk-server.enable = true;
     };
     # 硬件模块
