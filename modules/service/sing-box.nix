@@ -7,8 +7,9 @@
 let
   cfg = hostOptions.service.sing-box or { };
   finallyEnable = cfg.enable or false;
-  settings = if builtins.pathExists "${inputs.secrets}/sing-box" 
-             then import "${inputs.secrets}/sing-box" 
+  settingsFile = "${inputs.secrets}/sing-box";
+  settings = if builtins.pathExists settingsFile 
+             then import settingsFile
              else { };
 in
 {

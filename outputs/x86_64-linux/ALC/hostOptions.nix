@@ -36,15 +36,9 @@ let
     };
     # 后台服务模块
     service = {
+      frp.enable = true;
       openssh.enable = true;
-      rustdesk-server = {
-        enable = true;
-        inherit (import "${inputs.secrets}/rustdesk-server") relayHosts;
-      };
-      frp = {
-        enable = true;
-        instance = import "${inputs.secrets}/frp/ALC.nix";
-      };
+      rustdesk-server.enable = true;
     };
     # 硬件模块
     hardware = {
@@ -53,7 +47,7 @@ let
         type = bootLoaderTypes.systemd-boot;
         efiSysMountPoint = "/boot/efi";
       };
-      network = {
+      networking = {
         # 域名
         domain = "";
         # 设置主机名

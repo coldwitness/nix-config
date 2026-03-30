@@ -7,8 +7,9 @@
 let
   cfg = hostOptions.service.zerotierone or { };
   finallyEnable = cfg.enable or false;
-  settings = if builtins.pathExists "${inputs.secrets}/zerotierone" 
-             then import "${inputs.secrets}/zerotierone" 
+  settingsFile = "${inputs.secrets}/zerotierone";
+  settings = if builtins.pathExists settingsFile 
+             then import settingsFile
              else { };
   joinNetworks = settings.joinNetworks or [ ];
 in

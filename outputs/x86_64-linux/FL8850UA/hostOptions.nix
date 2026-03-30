@@ -57,6 +57,7 @@ let
     };
     # 后台服务模块
     service = {
+      frp.enable = true;
       greetd.enable = true;
       logind.enable = true;
       openssh.enable = true;
@@ -66,10 +67,6 @@ let
       libinput.enable = true;
       sing-box.enable = true;
       zerotierone.enable = true;
-      frp = {
-        enable = true;
-        instance = import "${inputs.secrets}/frp/FL8850UA.nix";
-      };
     };
     # 桌面模块
     desktop = {
@@ -88,7 +85,7 @@ let
         type = bootLoaderTypes.systemd-boot;
         efiSysMountPoint = "/boot";
       };
-      network = {
+      networking = {
         # 设置主机名
         hostName = "FL8850UA";
         # 是否使用 NetworkManager 为所有未手动配置的网络接口获取 IP 地址和其他配置

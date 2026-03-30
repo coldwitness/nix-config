@@ -7,8 +7,9 @@
 let
   cfg = hostOptions.cli.ssh or { };
   finallyEnable = cfg.enable or false;
-  settings = if builtins.pathExists "${inputs.secrets}/ssh" 
-             then import "${inputs.secrets}/ssh" 
+  settingsFile = "${inputs.secrets}/ssh";
+  settings = if builtins.pathExists settingsFile 
+             then import settingsFile
              else { };
   matchBlocks = settings.matchBlocks or { };
 in

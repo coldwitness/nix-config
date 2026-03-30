@@ -1,12 +1,17 @@
 {
   lib,
+  inputs,
   hostOptions,
   ...
 }:
 let
   cfg = hostOptions.service.rustdesk-server or { };
   finallyEnable = cfg.enable or false;
-  relayHosts = cfg.relayHosts or [ ];
+  settingsFile = "${inputs.secrets}/rustdesk-server/${hostOptions.hardware.networking.hostName}.nix";
+  settings = if builtins.pathExists settingsFile 
+             then import settingsFile
+             else { };
+  relayHosts = settings.relayHosts or [ ];
 in
 {
   config = lib.mkIf finallyEnable {
