@@ -3,8 +3,7 @@
   ...
 }:
 let
-  # 从 vars/ 导入类型定义
-  inherit (import ../../../vars) localeTypes desktopTypes bootLoaderTypes;
+  vars = import ../../../vars;
   hostOptions = {
     # 命令行模块
     cli = {
@@ -44,7 +43,7 @@ let
     hardware = {
       zram.enable = true;
       boot-loader = {
-        type = bootLoaderTypes.systemd-boot;
+        type = vars.bootLoaderTypes.systemd-boot;
         efiSysMountPoint = "/boot/efi";
       };
       networking = {

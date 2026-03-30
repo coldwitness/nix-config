@@ -3,8 +3,7 @@
   ...
 }:
 let
-  # 从 vars/ 导入类型定义
-  inherit (import ../../../vars) gpuTypes localeTypes desktopTypes bootLoaderTypes;
+  vars = import ../../../vars;
   hostOptions = {
     # 命令行模块
     cli = {
@@ -34,7 +33,7 @@ let
     };
     # 本地化模块
     i18n = {
-      locale = localeTypes.zh-cn;
+      locale = vars.localeTypes.zh-cn;
     };
     # 工具模块
     tool = {
@@ -70,7 +69,7 @@ let
     };
     # 桌面模块
     desktop = {
-      type = desktopTypes.hyprland;
+      type = vars.desktopTypes.hyprland;
       dms.enable = true;
     };
     # 终端模块
@@ -82,7 +81,7 @@ let
       zram.enable = true;
       bluetooth.enable = true;
       boot-loader = {
-        type = bootLoaderTypes.systemd-boot;
+        type = vars.bootLoaderTypes.systemd-boot;
         efiSysMountPoint = "/boot";
       };
       networking = {
@@ -106,7 +105,7 @@ let
       graphics = {
         enable = true;
         enable32Bit = true;
-        type = gpuTypes.amd;
+        type = vars.gpuTypes.amd;
       };
     };
     # 上网工具模块
