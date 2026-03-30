@@ -29,28 +29,44 @@ let
         "https://cache.nixos.org"
       ];
     };
+    # 本地化模块
+    i18n = {
+      locale = vars.localeTypes.zh-cn;
+    };
+    # 工具模块
+    tool = {
+      fcitx5.enable = true;
+    };
     # 命令解释器模块
     shell = {
       fish.enable = true;
     };
     # 后台服务模块
     service = {
-      frp.enable = true;
-      openssh.enable = true;
-      rustdesk-server.enable = true;
+      greetd.enable = true;
+      pipewire.enable = true;
+      libinput.enable = true;
+    };
+    # 桌面模块
+    desktop = {
+      type = vars.desktopTypes.hyprland;
+      dms.enable = true;
+    };
+    # 终端模块
+    terminal = {
+      kitty.enable = true;
     };
     # 硬件模块
     hardware = {
-      zram.enable = true;
       boot-loader = {
         type = vars.bootLoaderTypes.systemd-boot;
-        efiSysMountPoint = "/boot/efi";
+        efiSysMountPoint = "/boot";
       };
       networking = {
-        # 域名
-        domain = "";
         # 设置主机名
-        hostName = "ALC";
+        hostName = "nixos";
+        # 是否使用 NetworkManager 为所有未手动配置的网络接口获取 IP 地址和其他配置
+        networkmanager.enable = true;
         # 防火墙
         firewall = {
           enable = false;
@@ -58,11 +74,6 @@ let
           # allowedTCPPorts = [ ... ];
           # allowedUDPPorts = [ ... ];
         };
-        # 网络代理
-        # proxy = {
-        #   default = "http://localhost:2334/";
-        #   noProxy = "127.0.0.1,localhost,internal.domain";
-        # };
       };
     };
   };

@@ -22,13 +22,13 @@ let
       fastfetch.enable = true;
       mcp-nixos.enable = true;
       nix.substituters = [
-      # "https://mirror.sjtu.edu.cn/nix-channels/store"
-      # 添加中科大镜像源
-      # "https://mirrors.ustc.edu.cn/nix-channels/store"
-      # 清华大学镜像源
-      # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-      # 默认官方源
-      "https://cache.nixos.org"
+        # "https://mirror.sjtu.edu.cn/nix-channels/store"
+        # 添加中科大镜像源
+        # "https://mirrors.ustc.edu.cn/nix-channels/store"
+        # 清华大学镜像源
+        # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+        # 默认官方源
+        "https://cache.nixos.org"
       ];
     };
     # 本地化模块
