@@ -1,11 +1,11 @@
 # 重建系统
-rebuild:
-    nh os switch . --ask
+rebuild *args:
+    nh os switch . --ask {{args}}
 
 # 更新并重建系统
-update:
-    nh os switch . --ask --update
+update *args:
+    nh os switch . --ask --update {{args}}
 
 # 清理系统
-clean:
-    nh clean all
+clean *args:
+    nh clean all --ask {{args}}
