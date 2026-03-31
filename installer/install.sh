@@ -2,10 +2,10 @@
 
 set -e
 
-echo "========== 复制硬件配置文件 =========="
+echo "========== Copy Hardware Config =========="
 sudo cp /etc/nixos/hardware-configuration.nix ../outputs/x86_64-linux/nixos/
 
-echo "========== 构造 secrets-flake =========="
+echo "========== Generate Secrets Flake =========="
 cp ./modules/secrets-flake.nix ../secrets/flake.nix
 cd ../secrets
 if [ ! -d .git ]; then
@@ -13,7 +13,8 @@ if [ ! -d .git ]; then
 fi
 git add --all
 
-echo "========== 执行系统重建 =========="
+echo "========== Rebuild System =========="
 cd ../
-git add --all
-nix-shell -p nh --run "nh os switch . --ask"
+git add --all -- ':!secrets'
+nixos-rebuild switch --flake .#nixos \
+  --option  substituters "https://mirror.sjtu.edu.cn/nix-channels/store https://mirrors.ustc.edu.cn/nix-channels/store https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
