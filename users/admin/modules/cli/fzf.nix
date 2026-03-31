@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.cli.fzf;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.cli.fzf or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.cli.fastfetch;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.cli.fastfetch or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

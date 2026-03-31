@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.cli.git;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.cli.git or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

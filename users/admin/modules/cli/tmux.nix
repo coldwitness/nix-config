@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.cli.tmux;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.cli.tmux or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

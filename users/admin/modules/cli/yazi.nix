@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.cli.yazi;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.cli.yazi or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

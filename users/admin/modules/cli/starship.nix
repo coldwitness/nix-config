@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = hostOptions.cli.starship;
-  finallyEnable = cfg.enable;
+  cfg = hostOptions.cli.starship or { };
+  finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {
