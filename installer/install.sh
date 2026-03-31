@@ -2,37 +2,28 @@
 
 set -e
 
-echo "1. 生成默认配置文件..."
+echo "========== 1. 生成默认配置文件 =========="
 sudo nixos-generate-config
 echo "✓ 配置文件生成完成"
 echo ""
-echo "2. 复制硬件配置文件..."
-TARGET_DIR="./../outputs/x86_64-linux/nixos/"
-mkdir -p "$TARGET_DIR"
-sudo cp /etc/nixos/hardware-configuration.nix "$TARGET_DIR/"
+
+echo "========== 2. 复制硬件配置文件 =========="
+sudo cp /etc/nixos/hardware-configuration.nix ../outputs/x86_64-linux/nixos/
 echo "✓ 硬件配置文件复制完成"
 echo ""
-echo "3. 构造 secrets-flake..."
-cp ./secrets-flake.nix ./../secrets/flake.nix
-cd ./../secrets
+
+echo "========== 3. 构造 secrets-flake =========="
+cp ./secrets-flake.nix ../secrets/flake.nix
+cd ../secrets
 if [ ! -d .git ]; then
     git init
 fi
-git add flake.nix
-cd ./../
+git add --all
 echo "✓ secrets-flake 构造完成"
 echo ""
-echo "4. 临时启用 nh"
-if ! command -v nh &> /dev/null; then
-    echo "  正在临时启用 nh..."
-    export PATH="$HOME/.nix-profile/bin:$PATH"
-    if ! command -v nh &> /dev/null; then
-        echo "  错误: 无法找到 nh 命令"
-        exit 1
-    fi
-fi
-echo "✓ nh 已启用"
-echo ""
-echo "5. 执行系统重建..."
-nh os switch . --ask
+
+echo "========== 4. 执行系统重建 =========="
+cd ../
+git add --all
+nix-shell -p nh --run "nh os switch . --ask"
 echo "✓ 系统重建完成"
