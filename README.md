@@ -8,35 +8,24 @@
 
 ```bash
 .
-├── outputs/           # 主机配置输出
-│   └── x86_64-linux/
-│       ├── nixos/     # nixos 输出模板(默认)
-│       └── <hostname>/
-├── modules/           # 系统模块
-├── users/             # 用户模块
-│   ├── admin/
-│   └── <username>/
-├── vars/              # 公共变量
-├── functions/         # 工具函数
-├── secrets/           # 私密信息(采用子模块)
-├── installer/         # 安装脚本
-└── flake.nix          # 项目入口
+├── outputs/                    # 主机输出配置
+│   └── x86_64-linux/           # 系统架构分类
+│       ├── nixos/              # 默认主机输出
+│       │   ├── default.nix     # 主机输出入口
+│       │   └── hostOptions.nix # 主机选项定义
+│       └── <hostname>/         # 其他主机输出
+├── modules/                    # 系统模块
+├── users/                      # 用户模块
+│   ├── admin/                  # 用户配置
+│   └── <username>/             # 其他用户
+├── vars/                       # 公共变量
+├── functions/                  # 工具函数
+├── secrets/                    # 私密信息(采用子模块)
+├── installer/                  # 安装脚本
+├── flake.nix                   # 外部输入
+├── flake.lock                  # 依赖锁定
+└── justfile                    # 快捷命令
 ```
-
-### NixOS 输出模板
-
-位于 `outputs/x86_64-linux/nixos/`，包含以下文件：
-
-#### default.nix
-
-主机 NixOS 配置入口文件，负责：
-
-- 导入 `hostOptions.nix` 定义的选项
-- 引入用户配置、系统模块、硬件配置等
-
-#### hostOptions.nix
-
-主机选项定义文件，包含所有可配置的模块开关。
 
 ## 安装教程
 
@@ -139,11 +128,11 @@ bash installer.sh
 - 初始化 `secrets` 子模块
 - 使用 `nixos-rebuild switch --flake .#nixos` 应用配置
 
-### 自定义配置
+**如需自定义主机输出或自定义用户，建议创建自己的 Git 分支！**
 
-如需自定义配置，建议创建自己的 Git 分支：
+### 自定义主机输出
 
-#### 1. 复制默认配置
+#### 1. 复制默认主机输出配置
 
 ```bash
 # 复制 nixos 模板到新目录
@@ -209,7 +198,7 @@ users = {
 
 #### 2. 添加用户配置
 
-为新用户配置在 `users/` 目录下创建对应名称的模块目录。
+为新用户配置在 `users/` 目录下创建对应名称的模块目录，并参考 `admin/` 修改。
 
 ```bash
 mkdir users/<username>
