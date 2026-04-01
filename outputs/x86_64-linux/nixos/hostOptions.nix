@@ -120,6 +120,8 @@ let
     service = {
       # 内网穿透工具
       frp.enable = false;
+      # HTTP 和反向代理 web 服务器
+      nginx.enable = false;
       # 轻量级登录管理器
       greetd.enable = true;
       # 系统登录和电源管理
