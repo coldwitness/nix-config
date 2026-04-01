@@ -66,10 +66,10 @@ let
     };
   # ========== Media 模块 - 媒体应用 ==========
     media = {
-      # 录屏和直播软件
-      obs-studio.enable = false;
       # 轻量级视频播放器
       mpv.enable = false;
+      # 录屏和直播软件
+      obs-studio.enable = false;
     };
   # ========== Editor 模块 - 编辑器配置 ==========
     editor = {
@@ -147,6 +147,10 @@ let
         enable = false;
         # 启用 32 位驱动(Wine 等)
         enable32Bit = false;
+        # GPU 类型, 可选项:
+        # none(默认)
+        # amd
+        type = vars.gpuTypes.none;
       };
       # 网络配置
       networking = {
@@ -157,8 +161,14 @@ let
         # 防火墙
         firewall = {
           enable = false;
+          # 在防火墙中打开的端口
           # allowedTCPPorts = [ ... ];
           # allowedUDPPorts = [ ... ];
+        };
+        # 网络代理
+        proxy = {
+          # default = "http://user:password@proxy:port/";
+          # noProxy = "127.0.0.1,localhost,internal.domain";
         };
       };
       boot-loader = {
