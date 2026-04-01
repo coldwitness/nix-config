@@ -250,3 +250,5 @@ just clean
 - [Disko 文档](https://github.com/nix-community/disko)
 - [Home Manager 文档](https://nix-community.github.io/home-manager/)
 - [Nix Flakes 文档](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake)
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/nix-config/nix-config)
