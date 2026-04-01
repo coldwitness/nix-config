@@ -4,6 +4,25 @@
 let
   vars = import ../../../vars;
   hostOptions = {
+  # ========== Users 模块 - 用户配置 ==========
+    users = {
+      root = {
+        # 哈希密码
+        hashedPassword = "$6$a46xJM8CZ80Jplk2$BiG06wUNzicRYKStqIh0vV2ZE87NHQyvh27jD.gJawiu8wGrFw6zNunzpNb7aXhjyU.4x/UZZvFT05rEAjzGT0";
+      };
+      admin = {
+        # 普通用户
+        isNormalUser = true;
+        # 用户描述
+        description = "管理员";
+        # 添加用户到额外组
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+        ];
+        hashedPassword = "$6$a46xJM8CZ80Jplk2$BiG06wUNzicRYKStqIh0vV2ZE87NHQyvh27jD.gJawiu8wGrFw6zNunzpNb7aXhjyU.4x/UZZvFT05rEAjzGT0";
+      };
+    };
   # ========== CLI 工具模块 - 命令行实用工具 ==========
     cli = {
       # Nix CLI 助手, 自动清理旧一代系统配置

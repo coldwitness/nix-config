@@ -8,9 +8,6 @@ let
   finallyEnable = cfg.enable or false;
 in
 {
-  imports = [
-    ./portainer-agent.nix
-  ];
   config = lib.mkIf finallyEnable {
     virtualisation = {
       # Podman 配置
