@@ -59,37 +59,37 @@ in
     "/" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [ "subvol=@" "compress=zstd" "noatime" ];
     };
     "/.snapshots" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@snapshots" ];
+      options = [ "subvol=@snapshots" "compress=zstd" ];
     };
     "/home" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@home" ];
+      options = [ "subvol=@home" "compress=zstd" ];
     };
     "/home/.snapshots" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@home-snapshots" ];
+      options = [ "subvol=@home-snapshots" "compress=zstd" ];
     };
     "/nix" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@nix" ];
+      options = [ "subvol=@nix" "compress=zstd" "noatime" ];
     };
     "/var/log" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@log" ];
+      options = [ "subvol=@log" "compress=zstd" "noatime" ];
     };
     "/.swap" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@swap" ];
+      options = [ "subvol=@swap" "nodatacow" ];
     };
   };
   # 交换设备和交换文件

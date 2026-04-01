@@ -42,6 +42,7 @@ in
     "/boot/efi" = {
       device = systemBootDevice;
       fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
     "/" = {
       device = "/dev/vda3";

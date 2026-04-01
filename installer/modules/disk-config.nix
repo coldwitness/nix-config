@@ -18,6 +18,7 @@
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
+              mountOptions = [ "fmask=0022" "dmask=0022" ];
             };
           };
           root = {
@@ -25,6 +26,8 @@
             size = "100%";
             content = {
               type = "btrfs";
+              # 覆盖现有分区
+              extraArgs = [ "-f" ];
               subvolumes = {
                 "@" = {
                   mountpoint = "/";
