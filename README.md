@@ -115,7 +115,9 @@ Btrfs 子卷结构：
 
 ```bash
 # 克隆配置仓库
-git clone https://github.com/your-repo/nix-config.git
+git clone https://github.com/nix-config/nix-config.git
+# 或者使用 gitee
+git clone https://gitee.com/nix-config/nix-config.git
 
 # 运行配置脚本
 cd nix-config/installer/
