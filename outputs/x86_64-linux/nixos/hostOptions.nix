@@ -175,8 +175,8 @@ let
         # EFI 系统分区挂载点
         efiSysMountPoint = "/boot";
         # 启动加载器, 可选项:
+        # systemd-boot(默认)
         # grub(目前未实现)
-        # systemd-boot
         type = vars.bootLoaderTypes.systemd-boot;
       };
     };

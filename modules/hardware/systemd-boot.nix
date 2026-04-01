@@ -5,7 +5,7 @@
 }:
 let
   cfg = hostOptions.hardware.boot-loader or { };
-  finallyEnable = (cfg.type or "") == "systemd-boot";
+  finallyEnable = (cfg.type or "systemd-boot") == "systemd-boot";
 in
 {
   config = lib.mkIf finallyEnable {
