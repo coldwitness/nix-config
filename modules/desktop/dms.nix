@@ -7,6 +7,7 @@
 let
   cfg = hostOptions.desktop.dms or { };
   finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
+  softwareRenderingEnable = cfg.softwareRenderingEnable or false;
 in
 {
   imports = [
@@ -35,6 +36,10 @@ in
         # 启用剪贴板历史粘贴功能(wtype)
         enableClipboardPaste = true;
       };
+    };
+    # 软件渲染配置
+    environment.sessionVariables = lib.mkIf softwareRenderingEnable {
+      QT_QUICK_BACKEND = "software";
     };
   };
 }

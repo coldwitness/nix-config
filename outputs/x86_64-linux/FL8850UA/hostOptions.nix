@@ -115,7 +115,11 @@ let
       # hyprland
       type = vars.desktopTypes.hyprland;
       # DankMaterialShell
-      dms.enable = true;
+      dms = {
+        enable = true;
+        # 软件渲染模式(用于无 GPU 或虚拟化环境)
+        softwareRenderingEnable = false;
+      };
     };
   # ========== Terminal 模块 - 终端模拟器 ==========
     terminal = {
