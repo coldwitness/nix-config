@@ -113,6 +113,8 @@ let
     };
   # ========== Terminal 模块 - 终端模拟器 ==========
     terminal = {
+      # 轻量级终端模拟器
+      foot.enable = false;
       # 跨平台 GPU 加速终端模拟器
       kitty.enable = true;
     };
