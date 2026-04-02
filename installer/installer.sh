@@ -16,5 +16,4 @@ git add --all
 echo "========== Rebuild System =========="
 cd ../
 git add --all -- ':!secrets'
-nixos-rebuild switch --flake .#nixos \
-  --option  substituters "https://mirror.sjtu.edu.cn/nix-channels/store https://mirrors.ustc.edu.cn/nix-channels/store https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+nix-shell -p nh --run "nh os switch . --ask --max-jobs 1"
