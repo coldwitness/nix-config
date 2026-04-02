@@ -35,9 +35,20 @@
 
 #### 1. 环境准备
 
-- 下载 NixOS LiveCD 镜像
-- 使用 Ventoy、Rufus 或 Etcher 将镜像写入 U 盘
+满足以下配置要求：
+
+| 配置         | 最低   | 推荐               |
+| ------------ | ------ | ------------------ |
+| CPU          | 2 核心 | 8 核心             |
+| 内存         | 2 GB   | 8 GB (1 核心/1 GB) |
+| 硬盘(无桌面) | 10 GB  | 20 GB 以上         |
+| 硬盘(有桌面) | 25 GB  | 50 GB 以上         |
+
+- 下载 NixOS LiveCD 镜像（较新的如 25.11 或 unstable 都可以）
+- 使用 Ventoy（推荐）、Rufus 或 Etcher 将镜像写入 U 盘
 - 从 U 盘启动电脑，进入 LiveCD 环境
+
+**如果使用虚拟机，注意查看下方常见问题的虚拟机相关！**
 
 #### 2. 连接网络
 
@@ -225,17 +236,52 @@ just rebuild
 
 ## 常见问题
 
-### Q: 如何更新系统？
+### 日常使用相关
+
+#### Q: 如何更新系统？
 
 ```bash
-# 在项目根目录运行
 just update
+
+# 如果将本仓库作为上游
+git fetch
+# 合并以及处理冲突后
+just rebuild
 ```
 
-### Q: 如何清理系统？
+#### Q: 如何清理系统？
 
 ```bash
 just clean
+```
+
+### 虚拟机相关
+
+#### Q: 没有网络怎么办？
+
+编辑 `hostOptions.nix`：
+
+```nix
+hardware.networking.networkmanager.enable = false;
+```
+
+#### Q: 终端打不开怎么办？
+
+编辑 `hostOptions.nix`：
+
+```nix
+terminal = {
+  foot.enable = true;
+  kitty.enable = false;
+};
+```
+
+#### Q: DMS 启动失败怎么办？
+
+编辑 `hostOptions.nix`：
+
+```nix
+desktop.dms.softwareRenderingEnable = true;
 ```
 
 ## 相关链接
