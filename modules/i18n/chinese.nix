@@ -40,8 +40,6 @@ in
       packages = with pkgs; [
         # Nerd 字体
         nerd-fonts.fira-code
-        # 霞鹜文楷
-        lxgw-wenkai
         # 谷歌开源免费字体
         noto-fonts
         # 无衬线字体
