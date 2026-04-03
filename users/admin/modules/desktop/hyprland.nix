@@ -9,12 +9,14 @@
 let
   cfg = hostOptions.desktop or { };
   finallyEnable = (cfg.type or "") == "hyprland";
+  btopEnable = hostOptions.cli.btop.enable or false;
   yaziEnable = hostOptions.cli.yazi.enable or false;
   dmsEnable = hostOptions.desktop.dms.enable or false;
   footEnable = hostOptions.terminal.foot.enable or false;
   fcitx5Enable = hostOptions.tool.fcitx5.enable or false;
   kittyEnable = hostOptions.terminal.kitty.enable or false;
   udiskieEnable = hostOptions.service.udiskie.enable or false;
+  missionCenterEnable = hostOptions.tool.mission-center.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {
@@ -33,6 +35,11 @@ in
           if kittyEnable then "kitty"
           else if footEnable then "foot"
           else "";
+        # 系统活动监控器
+        "$top" =
+          if missionCenterEnable then "missioncenter"
+          else if btopEnable then "$terminal -e btop"
+          else "$terminal -e top";
         # 文件管理器
         "$fileManager" =
           if yaziEnable then "$terminal -e yazi"
@@ -41,6 +48,8 @@ in
         "$menu" =
           if dmsEnable then "dms ipc call spotlight toggle"
           else "";
+        # 屏幕截图
+        "$screenshot" = "dms screenshot";
         # 主修饰键
         "$mainMod" = "SUPER";
       # ========== 自启动 ==========
@@ -185,22 +194,24 @@ in
         # ];
       # ========== 输快捷键绑定入 ==========
         bind = [
-          # 区域截图保存到剪贴板(PrintScreen)
-          ", Print, exec, dms screenshot region --no-file"
-          # 区域截图保存到文件(CTRL + PrintScreen)
-          "CTRL, Print, exec, dms screenshot region --dir ~/Pictures/Screenshots"
           # 打开终端
           "$mainMod, Q, exec, $terminal"
+          # 打开系统活动监控器(Super + T)
+          "$mainMod, T, exec, $top"
+          # 打开文件管理器(Super + E)
+          "$mainMod, E, exec, $fileManager"
+          # 打开程序启动菜单(Super + R)
+          "$mainMod, R, exec, $menu"
+          # 区域截图保存到剪贴板(PrintScreen)
+          ", Print, exec,  $screenshot region --no-file"
+          # 区域截图保存到文件(CTRL + PrintScreen)
+          "CTRL, Print, exec, $screenshot region --dir ~/Pictures/Screenshots"
           # 关闭窗口(Super + C)
           "$mainMod, C, killactive,"
           # 退出 Hyprland(Super + M)
           "$mainMod, M, exec, command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"
-          # 打开文件管理器(Super + E)
-          "$mainMod, E, exec, $fileManager"
           # 切换浮动窗口(Super + V)
           "$mainMod, V, togglefloating,"
-          # 打开程序启动菜单(Super + R)
-          "$mainMod, R, exec, $menu"
           # 伪平铺模式(Super + P)
           # "$mainMod, P, pseudo,"
           # 切换分割(Super + J)
