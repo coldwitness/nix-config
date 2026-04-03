@@ -8,10 +8,7 @@ let
   cfg = hostOptions.cli.nix or { };
   substituters = cfg.substituters or [ ];
   GITHUB_TOKEN = inputs.secrets.GITHUB_TOKEN or "";
-  accessTokens =
-    if GITHUB_TOKEN != ""
-    then "access-tokens = github.com=${GITHUB_TOKEN}\n"
-    else "";
+  accessTokens = if GITHUB_TOKEN != "" then "access-tokens = github.com=${GITHUB_TOKEN}" else "";
 in
 {
   nix = {
@@ -26,8 +23,6 @@ in
         "flakes"
       ];
     };
-    extraOptions = ""
-      + accessTokens
-    ;
+    extraOptions = accessTokens;
   };
 }

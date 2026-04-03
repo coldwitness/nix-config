@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  inputs,
   pkgSets,
   hostOptions,
   ...
@@ -9,6 +10,8 @@ let
   cfg = hostOptions.internet.firefox or { };
   locale = hostOptions.i18n.locale or "en-US";
   finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
+  nur = inputs.nur.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  inherit (nur.repos.rycee.firefox-addons) kiss-translator;
 in
 {
   config = lib.mkIf finallyEnable {
@@ -102,7 +105,7 @@ in
               };
             };
             # 安装扩展
-            extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+            extensions.packages = with pkgs; [
               # 详情: https://nur.nix-community.org/repos/rycee/
               # 简约翻译
               kiss-translator

@@ -25,7 +25,6 @@ in
         ../../../users
         ../../../modules
         ./hardware-configuration.nix
-        inputs.nur.modules.nixos.default
       ];
     };
   };
