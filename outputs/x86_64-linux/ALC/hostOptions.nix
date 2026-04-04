@@ -80,6 +80,8 @@ let
       lutris.enable = false;
       # 办公套件
       onlyoffice.enable = false;
+      # Clash 代理客户端
+      clash-verge.enable = false;
       # GUI 系统活动监控器
       mission-center.enable = false;
     };

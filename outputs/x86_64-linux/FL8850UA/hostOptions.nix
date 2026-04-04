@@ -81,6 +81,8 @@ let
       lutris.enable = true;
       # 办公套件
       onlyoffice.enable = false;
+      # Clash 代理客户端
+      clash-verge.enable = true;
       # GUI 系统活动监控器
       mission-center.enable = false;
     };
@@ -151,7 +153,7 @@ let
       # 输入设备驱动服务
       libinput.enable = true;
       # 通用代理工具
-      sing-box.enable = true;
+      sing-box.enable = false;
       # P2P VPN 服务
       zerotierone.enable = true;
       # 远程桌面服务器
@@ -202,8 +204,8 @@ let
         };
         # 网络代理
         proxy = {
-          default = "http://localhost:2334/";
-          noProxy = "127.0.0.1,localhost,internal.domain";
+          # default = "http://user:password@proxy:port/";
+          # noProxy = "127.0.0.1,localhost,internal.domain";
         };
       };
       boot-loader = {
