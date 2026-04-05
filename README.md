@@ -8,23 +8,30 @@
 
 ```bash
 .
-├── outputs/                    # 主机输出配置
-│   └── x86_64-linux/           # 系统架构分类
-│       ├── nixos/              # 默认主机输出
-│       │   ├── default.nix     # 主机输出入口
-│       │   └── hostOptions.nix # 主机选项定义
-│       └── <hostname>/         # 其他主机输出
-├── modules/                    # 系统模块
-├── users/                      # 用户模块
-│   ├── admin/                  # 用户配置
-│   └── <username>/             # 其他用户
-├── vars/                       # 公共变量
-├── functions/                  # 工具函数
-├── secrets/                    # 私密信息(采用子模块)
-├── installer/                  # 安装脚本
-├── flake.nix                   # 外部输入
-├── flake.lock                  # 依赖锁定
-└── justfile                    # 快捷命令
+├── outputs/                                    # Flake 输出
+│   └── <platform>/                             # 系统架构
+│       ├── hosts/                              # 主机
+│       │   └── <host>/                         # 具体主机
+│       │       ├── default.nix                 # 主机输出入口
+│       │       ├── hostOptions.nix             # 主机选项定义
+│       │       └── hardware-configuration.nix  # 主机硬件配置
+│       └── users/                              # 用户
+│           └── <user>/                         # 具体用户
+│               ├── default.nix                 # 用户输出入口
+│               └── hostOptions.nix             # 用户选项定义
+├── modules/                                    # 系统模块
+│   ├──<category>/                              # 模块分类
+│   └──home/
+│      ├──modules/                              # 用户模块
+│      │  └──<category>/
+│      └──config/                               # 原生配置文件
+├── vars/                                       # 公共变量
+├── functions/                                  # 工具函数
+├── secrets/                                    # 私密信息(采用子模块)
+├── installer/                                  # 安装脚本
+├── flake.nix                                   # Flake 输入
+├── flake.lock                                  # Flake 版本锁
+└── justfile                                    # 快捷命令
 ```
 
 ## 安装教程
@@ -140,7 +147,7 @@ bash installer.sh
 
 脚本会自动：
 
-- 复制硬件配置文件到 `outputs/x86_64-linux/nixos/`
+- 复制硬件配置文件到 `outputs/<platform>/nixos/`
 - 初始化 `secrets` 子模块
 - 使用 `nixos-rebuild switch --flake .#nixos` 应用配置
 
@@ -152,12 +159,12 @@ bash installer.sh
 
 ```bash
 # 复制 nixos 模板到新目录
-cp -r outputs/x86_64-linux/nixos outputs/x86_64-linux/<hostname>
+cp -r outputs/<platform>/hosts/nixos outputs/<platform>/hosts/<hostname>
 ```
 
 #### 2. 修改配置
 
-编辑 `outputs/x86_64-linux/<hostname>/default.nix`：
+编辑 `outputs/<platform>/hosts/<hostname>/default.nix`：
 
 ```nix
 nixosConfigurations = {
@@ -168,7 +175,7 @@ nixosConfigurations = {
 };
 ```
 
-编辑 `outputs/x86_64-linux/<hostname>/hostOptions.nix`，根据需要调整模块开关。
+编辑 `outputs/<platform>/hosts/<hostname>/hostOptions.nix`，根据需要调整模块开关。
 
 如需修改默认密码，使用以下命令生成密码哈希：
 
@@ -177,7 +184,7 @@ nixosConfigurations = {
 mkpasswd -m sha-512
 ```
 
-然后将生成的哈希值替换到 `outputs/x86_64-linux/<hostname>/hostOptions.nix` 中的对应位置：
+然后将生成的哈希值替换到 `outputs/<platform>/hosts/<hostname>/hostOptions.nix` 中的对应位置：
 
 ```nix
 hostOptions.users.admin.hashedPassword = "生成的哈希值";
@@ -200,7 +207,7 @@ just rebuild
 
 #### 1. 修改主机输出配置
 
-用户配置通过 `hostOptions.users` 动态定义，在 `outputs/x86_64-linux/<hostname>/hostOptions.nix` 的 `users` 部分添加新用户：
+用户配置通过 `hostOptions.users` 动态定义，在 `outputs/<platform>/hosts/<hostname>/hostOptions.nix` 的 `users` 部分添加新用户：
 
 ```nix
 users = {
@@ -214,12 +221,12 @@ users = {
 
 #### 2. 添加用户配置
 
-为新用户配置在 `users/` 目录下创建对应名称的模块目录，并参考 `admin/` 修改。
+为新用户配置在 `outputs/<platform>/users/` 目录下创建对应名称的模块目录，并参考 `admin/` 修改。
 
 ```bash
-mkdir users/<username>
+mkdir outputs/<platform>/users/<username>
 # 你也可以
-cp -r users/admin users/<username>
+cp -r outputs/<platform>/users/admin outputs/<platform>/users/<username>
 ```
 
 #### 3. 应用配置
