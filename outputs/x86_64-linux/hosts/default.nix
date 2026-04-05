@@ -14,10 +14,12 @@ let
       # 获取当前条目 n 的类型 (directory/regular/symlink)
       type = entries.${n};
     in
-    # 同时满足: 是 directory 并且不是 tests 并且存在 default.nix
-    type == "directory" && n != "tests" && builtins.pathExists (./. + "/${n}/default.nix")
+    # 是 directory
+    type == "directory"
+    # 存在 default.nix
+    && builtins.pathExists (./. + "/${n}/default.nix")
   ) (builtins.attrNames entries);
-  # 定义导入函数, 用于加载单个主机配置
+  # 定义导入主机配置函数
   importHost = name: import (./. + "/${name}") {
     inherit lib inputs system pkgSets;
   };
