@@ -51,6 +51,8 @@ let
       yazi.enable = true;
       # 系统资源监控器
       btop.enable = true;
+      # NVIDIA GPU 监控工具
+      nvitop.enable = false;
       # 跨 Shell 的提示符定制工具
       starship.enable = true;
       # 类似 Neofetch 但更快的系统信息工具
