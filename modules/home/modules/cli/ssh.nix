@@ -9,7 +9,7 @@ let
   finallyEnable = cfg.enable or false;
   settingsFile = "${inputs.secrets}/ssh";
   settings = if builtins.pathExists settingsFile 
-             then import settingsFile
+             then import settingsFile { inherit hostOptions; }
              else { };
   matchBlocks = settings.matchBlocks or { };
 in

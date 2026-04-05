@@ -8,6 +8,7 @@
 let
   cfg = hostOptions.editor.vscode or { };
   finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
+  configPath = "${hostOptions.nixConfigPath}/modules/home/config";
 in
 {
   config = lib.mkIf finallyEnable {
@@ -137,11 +138,11 @@ in
     };
     home.file = {
       ".vscode/argv.json" = {
-        source = config.lib.file.mkOutOfStoreSymlink ../../config/vscode/argv.json;
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/vscode/argv.json";
         force = true;
       };
       ".config/Code/User/settings.json" = {
-        source = config.lib.file.mkOutOfStoreSymlink ../../config/vscode/settings.json;
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/vscode/settings.json";
           force = true;
       };
     };

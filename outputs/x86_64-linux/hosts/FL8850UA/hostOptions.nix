@@ -4,6 +4,8 @@
 let
   vars = import ../../../../vars;
   hostOptions = {
+    # nix-config 仓库本身所在路径
+    nixConfigPath = "/home/admin/workspace/nix-config";
   # ========== Users 模块 - 用户配置 ==========
     users = {
       root = {
