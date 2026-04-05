@@ -2,7 +2,7 @@
   ...
 }:
 let
-  vars = import ../../../vars;
+  vars = import ../../../../vars;
   hostOptions = {
   # ========== Users 模块 - 用户配置 ==========
     users = {

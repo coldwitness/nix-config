@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  configPath,
   hostOptions,
   ...
 }:
@@ -14,7 +13,7 @@ in
   config = lib.mkIf finallyEnable {
     home.file = {
       ".config/DankMaterialShell" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/dms";
+        source = config.lib.file.mkOutOfStoreSymlink ../../config/dms;
         force = true;
       };
     };

@@ -18,7 +18,7 @@ let
     };
   };
   # 加载 x86_64-linux 系统配置
-  x86_64-linux = import ./x86_64-linux {
+  x86_64-linux = import ./x86_64-linux/hosts {
     system = systemTypes.x86_64-linux;
     inherit lib inputs;
     pkgSets = pkgSets systemTypes.x86_64-linux;

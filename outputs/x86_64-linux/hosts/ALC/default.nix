@@ -11,20 +11,17 @@ let
 in
 {
   nixosConfigurations = {
-    nixos = lib.nixosSystem {
+    ALC = lib.nixosSystem {
       inherit system;
+      pkgs = pkgSets.pkgs;
       specialArgs = {
         inherit inputs pkgSets hostOptions;
       };
       modules = [
-        {
-          nixpkgs.pkgs = pkgSets.pkgs;
-          # NixOS 首次安装的版本
-          system.stateVersion = "25.11";
-        }
-        ../../../users
-        ../../../modules
+        ../../users
+        ../../../../modules
         ./hardware-configuration.nix
+        { system.stateVersion = "25.11"; }
       ];
     };
   };

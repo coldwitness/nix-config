@@ -2,13 +2,16 @@
   ...
 }:
 let
-  vars = import ../../../vars;
+  vars = import ../../../../vars;
   hostOptions = {
   # ========== Users 模块 - 用户配置 ==========
     users = {
       root = {
         # 哈希密码
-        hashedPassword = "$6$a46xJM8CZ80Jplk2$BiG06wUNzicRYKStqIh0vV2ZE87NHQyvh27jD.gJawiu8wGrFw6zNunzpNb7aXhjyU.4x/UZZvFT05rEAjzGT0";
+        hashedPassword = "$6$yk.jU.kxIAVwaoaj$zFEdwFofY8P88Ad7/a62sm5j3QxyXcQxKTvTpRMIYDgw6G4RDXZCQgHRyeOyZHLN10lKov55WJESL8t2Ia1US0";
+        openssh.authorizedKeys.keys = [
+          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCvQqWUftAAIIjgqAJJtliE4j8bCzOf7kwAuyyaDoT4EdceNX3ZHHWn6jv/jfBPBsyEn1PCbhu80NYExWxlSMbEQyMdbkZzj5yI19pWZkh6fXAukRYnfckO1uRIQmHKsqWv4P+ndsQ/lUNvlMyCDAO0bj/XXOTwYLrXAQQZjXV5Kj8PXgWCBqAQjC8ucfREb3QgO1jcTIerC8Q49S3pWZ3JQDzJmeqKb1nOlXwy4oh9Q3Ax8mFRCG1lE7nbtXFAHOAdpi1Jj4Y8WhXpVbfw0REDry5gP3RnH2YnLqY9oP6qLD2J851TCpoaP5Dzn9dB2KnmMSu+9VdhL9p6r4cxrosgqQEvYzn9djBQKQyX1rx0yljbT6G+FEOqrkuCZWSE6gGmii5YDqKmOJA4MzrIV6Yf4yMVGmlAQEx9z2GuirB7hOhrhWtd1raXsBlzyAtTxra+25fGGF3074L0IfNNbJMo3y54LkqzvAoLCNbBsAGfUureGTvisIm5nqaZkT9QdZxzPzLZKKGyb7o0TM2ffRiokeZNoz2WZXtlI4a5FrsBb8MrIUa+pYaR0h3vB8fgsEXe2/z2ZusdBv1ZRj+BQjHK28K5QVojEjb2as+8q78z3H0LgcPv+F6Y/BejczE0zLxA4wzwZZKJpi2oUKIfASJLmxpH2rydoYVyLAnLpFsXzQ=="
+        ];
       };
       admin = {
         # 普通用户
@@ -20,7 +23,10 @@ let
           "wheel"
           "networkmanager"
         ];
-        hashedPassword = "$6$a46xJM8CZ80Jplk2$BiG06wUNzicRYKStqIh0vV2ZE87NHQyvh27jD.gJawiu8wGrFw6zNunzpNb7aXhjyU.4x/UZZvFT05rEAjzGT0";
+        hashedPassword = "$6$Yq2f2308VGQlSDxb$v6tOVrxDvVJYSB40g8t/n2ZVw9pSARf5Gxe.ph2n.TvyXDPiruSi8Y9pEuPNi0regGL8AB8dQBmge/kNTZqxh1";
+        openssh.authorizedKeys.keys = [
+          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCvQqWUftAAIIjgqAJJtliE4j8bCzOf7kwAuyyaDoT4EdceNX3ZHHWn6jv/jfBPBsyEn1PCbhu80NYExWxlSMbEQyMdbkZzj5yI19pWZkh6fXAukRYnfckO1uRIQmHKsqWv4P+ndsQ/lUNvlMyCDAO0bj/XXOTwYLrXAQQZjXV5Kj8PXgWCBqAQjC8ucfREb3QgO1jcTIerC8Q49S3pWZ3JQDzJmeqKb1nOlXwy4oh9Q3Ax8mFRCG1lE7nbtXFAHOAdpi1Jj4Y8WhXpVbfw0REDry5gP3RnH2YnLqY9oP6qLD2J851TCpoaP5Dzn9dB2KnmMSu+9VdhL9p6r4cxrosgqQEvYzn9djBQKQyX1rx0yljbT6G+FEOqrkuCZWSE6gGmii5YDqKmOJA4MzrIV6Yf4yMVGmlAQEx9z2GuirB7hOhrhWtd1raXsBlzyAtTxra+25fGGF3074L0IfNNbJMo3y54LkqzvAoLCNbBsAGfUureGTvisIm5nqaZkT9QdZxzPzLZKKGyb7o0TM2ffRiokeZNoz2WZXtlI4a5FrsBb8MrIUa+pYaR0h3vB8fgsEXe2/z2ZusdBv1ZRj+BQjHK28K5QVojEjb2as+8q78z3H0LgcPv+F6Y/BejczE0zLxA4wzwZZKJpi2oUKIfASJLmxpH2rydoYVyLAnLpFsXzQ=="
+        ];
       };
     };
   # ========== CLI 工具模块 - 命令行实用工具 ==========
@@ -28,35 +34,35 @@ let
       # Nix CLI 助手, 自动清理旧一代系统配置
       nh.enable = true;
       # cat 替代品, 带语法高亮和行号
-      bat.enable = false;
+      bat.enable = true;
       # ls 替代品, 现代文件列表工具
-      eza.enable = false;
+      eza.enable = true;
       # 命令行模糊搜索工具
-      fzf.enable = false;
+      fzf.enable = true;
       # 分布式版本控制系统
       git.enable = true;
       # 安全远程登录客户端
-      ssh.enable = false;
+      ssh.enable = true;
       # 命令运行器, 类似 Makefile
       just.enable = true;
       # 终端复用器, 可在一个终端中运行多个会话
-      tmux.enable = false;
+      tmux.enable = true;
       # 用 Rust 编写的快速文件管理器
       yazi.enable = true;
       # 系统资源监控器
-      btop.enable = false;
+      btop.enable = true;
       # 跨 Shell 的提示符定制工具
       starship.enable = true;
       # 类似 Neofetch 但更快的系统信息工具
-      fastfetch.enable = false;
+      fastfetch.enable = true;
       # AI 编程助手
-      opencode.enable = false;
+      opencode.enable = true;
       # NixOS MCP
-      mcp-nixos.enable = false;
+      mcp-nixos.enable = true;
       # Nix 包管理器配置
       nix.substituters = [
         # 上海交大镜像源
-        "https://mirror.sjtu.edu.cn/nix-channels/store"
+        # "https://mirror.sjtu.edu.cn/nix-channels/store"
         # 中科大镜像源
         # "https://mirrors.ustc.edu.cn/nix-channels/store"
         # 清华镜像源
@@ -72,11 +78,11 @@ let
       # 游戏逆向工程工具(Linux 版 Cheat Engine)
       pince.enable = false;
       # Linux 游戏平台管理工具
-      lutris.enable = false;
+      lutris.enable = true;
       # 办公套件
       onlyoffice.enable = false;
       # Clash 代理客户端
-      clash-verge.enable = false;
+      clash-verge.enable = true;
       # GUI 系统活动监控器
       mission-center.enable = false;
     };
@@ -90,16 +96,16 @@ let
   # ========== Media 模块 - 媒体应用 ==========
     media = {
       # 轻量级视频播放器
-      mpv.enable = false;
+      mpv.enable = true;
       # 录屏和直播软件
-      obs-studio.enable = false;
+      obs-studio.enable = true;
     };
   # ========== Editor 模块 - 编辑器配置 ==========
     editor = {
       # Neovim 的 Nix 配置
       nixvim.enable = false;
       # Visual Studio Code
-      vscode.enable = false;
+      vscode.enable = true;
     };
   # ========== Shell 模块 - 命令解释器 ==========
     shell = {
@@ -129,19 +135,19 @@ let
   # ========== Service 模块 - 系统服务 ==========
     service = {
       # 内网穿透工具
-      frp.enable = false;
+      frp.enable = true;
       # HTTP 和反向代理 web 服务器
       nginx.enable = false;
       # 轻量级登录管理器
       greetd.enable = true;
       # 系统登录和电源管理
-      logind.enable = false;
+      logind.enable = true;
       # SSH 服务器
       openssh.enable = true;
       # Btrfs 快照管理工具
-      snapper.enable = false;
+      snapper.enable = true;
       # U 盘自动挂载服务
-      udiskie.enable = false;
+      udiskie.enable = true;
       # 多媒体框架, 替代 PulseAudio
       pipewire.enable = true;
       # 输入设备驱动服务
@@ -149,44 +155,44 @@ let
       # 通用代理工具
       sing-box.enable = false;
       # P2P VPN 服务
-      zerotierone.enable = false;
+      zerotierone.enable = true;
       # 远程桌面服务器
       rustdesk-server.enable = false;
     };
   # ========== Internet 模块 - 网络应用 ==========
     internet = {
       # 腾讯 QQ
-      qq.enable = false;
+      qq.enable = true;
       # 微信
-      wechat.enable = false;
+      wechat.enable = true;
       # 火狐浏览器
-      firefox.enable = false;
+      firefox.enable = true;
       # 远程桌面客户端
-      rustdesk.enable = false;
+      rustdesk.enable = true;
       # 即时通讯应用
-      telegram-desktop.enable = false;
+      telegram-desktop.enable = true;
     };
   # ========== Hardware 模块 - 硬件配置 ==========
     hardware = {
       # 内存压缩配置
-      zram.enable = false;
+      zram.enable = true;
       # 蓝牙配置
-      bluetooth.enable = false;
+      bluetooth.enable = true;
       # 图形驱动配置
       graphics = {
         # 启用硬件加速
-        enable = false;
+        enable = true;
         # 启用 32 位驱动(Wine 等)
-        enable32Bit = false;
+        enable32Bit = true;
         # GPU 类型, 可选项:
         # none(默认)
         # amd
-        type = vars.gpuTypes.none;
+        type = vars.gpuTypes.amd;
       };
       # 网络配置
       networking = {
         # 主机名
-        hostName = "nixos";
+        hostName = "FL8850UA";
         # 网络连接管理
         networkmanager.enable = true;
         # 防火墙
