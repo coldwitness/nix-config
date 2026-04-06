@@ -12,7 +12,7 @@ let
 in
 {
   config = lib.mkIf finallyEnable {
-    environment.systemPackages = with pkgs; [
+    home.packages = with pkgs; [
       mcp-nixos
     ];
   };
