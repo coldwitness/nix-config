@@ -17,8 +17,8 @@ let
       config.allowUnfree = true;
     };
   };
-  # 读取当前目录下的所有文件和目录
-  entries = builtins.readDir ./.;
+  # 读取 hosts 目录下的所有文件和目录
+  entries = builtins.readDir ./hosts;
   # 筛选出所有架构目录
   platformDirs = builtins.filter (n:
     let
@@ -27,22 +27,30 @@ let
     # 是 directory
     type == "directory"
     # 存在 default.nix
-    && builtins.pathExists (./. + "/${n}/default.nix")
+    && builtins.pathExists (./hosts + "/${n}/default.nix")
   ) (builtins.attrNames entries);
   # 定义导入架构配置函数
-  importPlatform = name: import (./. + "/${name}") {
-    system = systemTypes.${name};
-    inherit lib inputs;
-    pkgSets = pkgSets systemTypes.${name};
+  importPlatform = name: {
+    # 加载该架构的主机配置
+    hosts = import ./hosts/${name} {
+      inherit lib inputs;
+      system = systemTypes.${name};
+      pkgSets = pkgSets systemTypes.${name};
+    };
+    # 加载用户配置
+    users = import ./users {
+      inherit lib inputs;
+      pkgSets = pkgSets systemTypes.${name};
+    };
   };
   # 对所有架构目录应用 importPlatform 函数
   platforms = builtins.map importPlatform platformDirs;
   # 合并所有架构的输出
   allNixosConfigurations = lib.attrsets.mergeAttrsList (
-    builtins.map (a: a.nixosConfigurations) platforms
+    builtins.map (a: a.hosts.nixosConfigurations) platforms
   );
   allHomeConfigurations = lib.attrsets.mergeAttrsList (
-    builtins.map (a: a.homeConfigurations) platforms
+    builtins.map (a: a.users.homeConfigurations) platforms
   );
 in
 {

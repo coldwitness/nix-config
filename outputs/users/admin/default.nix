@@ -3,7 +3,7 @@
   ...
 }:
 {
-  imports = [ ../../../../modules/home/modules ];
+  imports = [ ../../modules/home/modules ];
   # 用户配置
   home = {
     # 用户名
