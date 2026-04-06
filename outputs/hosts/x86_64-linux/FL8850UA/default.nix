@@ -18,7 +18,7 @@ in
         inherit inputs pkgSets hostOptions;
       };
       modules = [
-        ../../users
+        ../../../users
         ../../../../modules
         ./hardware-configuration.nix
         { system.stateVersion = "25.11"; }

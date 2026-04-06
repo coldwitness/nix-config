@@ -7,9 +7,9 @@
   # 用户配置
   home = {
     # 用户名
-    username = "admin";
+    username = "mint";
     # 用户 home 目录
-    homeDirectory = "/home/admin";
+    homeDirectory = "/home/mint";
     # 状态版本
     stateVersion = "26.05";
   };

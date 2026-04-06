@@ -52,8 +52,26 @@ let
   allHomeConfigurations = lib.attrsets.mergeAttrsList (
     builtins.map (a: a.users.homeConfigurations) platforms
   );
+  # 为每个架构的用户创建独立的顶层输出, 便于 nh 直接引用
+  # 使用方式: nh home switch .#<username>-<platform>
+  homeManagerOutputs = builtins.listToAttrs (
+    lib.flatten (
+      builtins.map (platform:
+        let
+          platformConfigs = (import ./users {
+            inherit lib inputs;
+            pkgSets = pkgSets systemTypes.${platform};
+          }).homeConfigurations;
+        in
+        builtins.map (username: {
+          name = "${username}-${platform}";
+          value = platformConfigs.${username}.activationPackage;
+        }) (builtins.attrNames platformConfigs)
+      ) platformDirs
+    )
+  );
 in
 {
   nixosConfigurations = allNixosConfigurations;
   homeConfigurations = allHomeConfigurations;
-}
+} // homeManagerOutputs
