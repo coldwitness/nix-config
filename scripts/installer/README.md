@@ -214,7 +214,7 @@ nano outputs/x86_64-linux/hosts/<host>/hostOptions.nix
 ```
 
 常用配置项包括 `desktop.*`（桌面环境）、`cli.*`（命令行工具）、`service.*`（系统服务）等模块开关。
-详细的选项说明和完整配置示例请参阅 [主机配置文档](../../outputs/hosts/README.md)。
+详细的选项说明和完整配置示例请参阅 [主机管理](../../outputs/hosts/README.md)。
 
 ---
 
@@ -264,7 +264,7 @@ nano outputs/x86_64-linux/hosts/<host>/hostOptions.nix
 
 ### 4.4 如何修改默认布局
 
-如需自定义磁盘布局，编辑 [disk-config.nix](./modules/disk-config.nix) 文件：
+如需自定义磁盘布局，编辑 [disk-config.nix](./modules/disk-config.nix) 文件。
 
 > **⚠️ 警告**：修改磁盘布局后，需要在 LiveCD 环境重新运行安装脚本才能生效。请务必备份重要数据！
 
@@ -274,6 +274,6 @@ nano outputs/x86_64-linux/hosts/<host>/hostOptions.nix
 
 ### 祝你安装顺利！🎉
 
-如有问题，欢迎查阅 [常见问题 FAQ](../../README.md#6-常见问题) 或提交 Issue
+如有问题，欢迎查阅 [常见问题](../../docs/faq.md) 或提交 Issue
 
 </div>

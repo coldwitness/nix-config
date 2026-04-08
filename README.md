@@ -13,8 +13,8 @@
 | 文档                                         | 内容                   |
 | -------------------------------------------- | ---------------------- |
 | 📦 [安装指南](./scripts/installer/README.md) | 安装及初始化           |
-| 🖥️ [管理主机](./outputs/hosts/README.md)     | 添加主机、修改主机配置 |
-| 👤 [管理用户](./outputs/users/README.md)     | 添加用户、修改用户配置 |
+| 🖥️ [主机管理](./outputs/hosts/README.md)     | 添加主机、修改主机配置 |
+| 👤 [用户管理](./outputs/users/README.md)     | 添加用户、修改用户配置 |
 | ⚙️ [模块开发](./modules/README.md)           | 自定义模块             |
 | ❓ [常见问题](./docs/faq.md)                 | 故障排查               |
 | 🏗️ [架构概览](./docs/architecture.md)        | 设计理念               |
@@ -46,7 +46,7 @@
 ├── vars/                                       # 公共变量
 ├── functions/                                  # 工具函数
 ├── secrets/                                    # 私密信息(采用子模块)
-├── installer/                                  # 安装脚本
+├── scripts/                                    # 工具脚本
 ├── flake.nix                                   # Flake 输入
 ├── flake.lock                                  # Flake 版本锁
 └── justfile                                    # 快捷命令
