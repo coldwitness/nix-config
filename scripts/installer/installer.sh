@@ -3,11 +3,13 @@
 set -e
 
 echo "========== Copy Hardware Config =========="
-sudo cp /etc/nixos/hardware-configuration.nix ../outputs/x86_64-linux/nixos/
+# 生成默认配置文件
+sudo nixos-generate-config
+sudo cp /etc/nixos/hardware-configuration.nix ../../outputs/hosts/x86_64-linux/nixos/
 
 echo "========== Generate Secrets Flake =========="
-cp ./modules/secrets-flake.nix ../secrets/flake.nix
-cd ../secrets
+cp ./modules/secrets-flake.nix ../../secrets/flake.nix
+cd ../../secrets
 if [ ! -d .git ]; then
     git init
 fi

@@ -12,7 +12,7 @@
 
 | 文档                                         | 内容                   |
 | -------------------------------------------- | ---------------------- |
-| 📦 [应用配置](./scripts/installer/README.md) | 安装及初始化           |
+| 📦 [安装指南](./scripts/installer/README.md) | 安装及初始化           |
 | 🖥️ [管理主机](./outputs/hosts/README.md)     | 添加主机、修改主机配置 |
 | 👤 [管理用户](./outputs/users/README.md)     | 添加用户、修改用户配置 |
 | ⚙️ [模块开发](./modules/README.md)           | 自定义模块             |
