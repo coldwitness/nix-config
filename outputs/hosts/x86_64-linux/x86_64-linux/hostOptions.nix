@@ -190,7 +190,7 @@ let
       # 网络配置
       networking = {
         # 主机名
-        hostName = "nixos";
+        hostName = "x86_64-linux";
         # 网络连接管理
         networkmanager.enable = true;
         # 防火墙

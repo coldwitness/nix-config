@@ -11,7 +11,7 @@ let
 in
 {
   nixosConfigurations = {
-    nixos = lib.nixosSystem {
+    x86_64-linux = lib.nixosSystem {
       inherit system;
       pkgs = pkgSets.pkgs;
       specialArgs = {

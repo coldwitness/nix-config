@@ -2,20 +2,25 @@
 
 set -e
 
+source functions/platform.sh
+
+echo "========== Select Platform =========="
+select_platform
+
 echo "========== Copy Hardware Config =========="
 # 生成默认配置文件
 sudo nixos-generate-config
-sudo cp /etc/nixos/hardware-configuration.nix ../../outputs/hosts/x86_64-linux/nixos/
+sudo cp /etc/nixos/hardware-configuration.nix ../../outputs/hosts/${PLATFORM}/${PLATFORM}/
 
 echo "========== Generate Secrets Flake =========="
-cp ./modules/secrets-flake.nix ../../secrets/flake.nix
 cd ../../secrets
-if [ ! -d .git ]; then
+if [ ! -f flake.nix ]; then
+    cp ../scripts/installer/modules/secrets-flake.nix ./flake.nix
     git init
+    git add --all
 fi
-git add --all
 
 echo "========== Rebuild System =========="
 cd ../
 git add --all -- ':!secrets'
-nix-shell -p nh --run "nh os switch . --ask --max-jobs 1"
+nix-shell -p nh --run "nh os switch .#${PLATFORM} --ask --max-jobs 1"
