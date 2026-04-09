@@ -1,4 +1,5 @@
 {
+  hostName,
   ...
 }:
 let
@@ -196,7 +197,7 @@ let
       # 网络配置
       networking = {
         # 主机名
-        hostName = "fl8850ua";
+        inherit hostName;
         # 网络连接管理
         networkmanager.enable = true;
         # 防火墙

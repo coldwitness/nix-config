@@ -1,4 +1,5 @@
 {
+  hostName,
   ...
 }:
 let
@@ -197,7 +198,7 @@ let
         # 域名
         domain = "";
         # 主机名
-        hostName = "alc";
+        inherit hostName;
         # 网络连接管理
         networkmanager.enable = false;
         # 防火墙

@@ -6,12 +6,12 @@
   ...
 }:
 let
-  inherit system;
-  opts = import ./opts.nix { inherit inputs; };
+  hostName = lib.baseNameOf (toString ./.);
+  opts = import ./opts.nix { inherit inputs hostName; };
 in
 {
   nixosConfigurations = {
-    alc = lib.nixosSystem {
+    ${hostName} = lib.nixosSystem {
       inherit system;
       pkgs = pkgSets.pkgs;
       specialArgs = {
