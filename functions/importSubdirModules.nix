@@ -1,9 +1,10 @@
 {
-  lib,
+  inputs,
   ...
 }:
 dir:
 let
+  inherit (inputs.nixpkgs) lib;
   # 获取目录下所有 .nix 文件的路径列表
   getNixFiles = d:
     let

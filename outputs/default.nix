@@ -1,7 +1,7 @@
 inputs:
 let
   inherit (inputs.nixpkgs) lib;
-  inherit (import ../vars) systemTypes;
+  inherit (import ../vars { inherit inputs; }) systemTypes;
   # 定义所有可用的 pkgs 实例
   pkgSets = system: with inputs; {
     pkgs = import nixpkgs {

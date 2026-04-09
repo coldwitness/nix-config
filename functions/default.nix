@@ -1,7 +1,8 @@
 {
-  lib,
+  inputs,
   ...
 }:
-{
-  importSubdirModules = import ./importSubdirModules.nix { inherit lib; };
-}
+let
+  importDirFiles = import ./importDirFiles.nix { inherit inputs; };
+in
+importDirFiles ./.

@@ -1,9 +1,9 @@
 {
-  lib,
+  inputs,
   ...
 }:
 let
-  inherit (import ../../../functions { inherit lib; }) importSubdirModules;
+  inherit (import ../../../functions { inherit inputs; }) importSubdirModules;
 in
 {
   imports = importSubdirModules ./.;

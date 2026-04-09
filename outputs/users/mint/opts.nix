@@ -1,8 +1,9 @@
 {
+  inputs,
   ...
 }:
 let
-  vars = import ../../../vars;
+  vars = import ../../../vars { inherit inputs; };
   opts = {
     # nix-config 仓库本身所在路径
     nixConfigPath = "/home/mint/workspace/mochen/nix-config";

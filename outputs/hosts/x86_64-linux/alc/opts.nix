@@ -1,9 +1,10 @@
 {
+  inputs,
   hostName,
   ...
 }:
 let
-  vars = import ../../../../vars;
+  vars = import ../../../../vars { inherit inputs; };
   opts = {
     # nix-config 仓库本身所在路径
     nixConfigPath = "/home/admin/workspace/nix-config";

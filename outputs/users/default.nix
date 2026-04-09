@@ -65,7 +65,7 @@ else
         users = builtins.foldl' (acc: userName:
           if userName == "root" then acc
           else acc // { ${userName} = import ./${userName}; }
-        ) {} (builtins.attrNames (cfg // {}));
+        ) { } (builtins.attrNames cfg);
         # 传递给子模块的参数
         extraSpecialArgs = {
           inherit inputs opts pkgSets;

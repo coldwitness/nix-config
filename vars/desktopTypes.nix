@@ -1,4 +1,7 @@
 {
+  ...
+}:
+{
   disable = "";
   hyprland = "hyprland";
 }
