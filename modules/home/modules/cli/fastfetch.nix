@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   hostOptions,
   ...
 }:
@@ -15,42 +16,33 @@ in
         settings = {
           "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
           display = {
+            # 分隔符
             separator = " ";
+            size = {
+              # 使用 KB/MB/GB
+              binaryPrefix = "si";
+              # 显示小数位数
+              ndigits = 1;
+            };
+            percent = {
+              # 百分比显示模式
+              type = 2;
+            };
+            bar = {
+              # 已用部分字符
+              char.elapsed = "■";
+              # 未用部分字符
+              char.total = " ";
+            };
+            key = {
+              # 键名对齐宽度
+              width = 6;
+            };
           };
           modules = [
             {
-              type = "host";
-              key = "╭─󰌢";
-              keyColor = "green";
-            }
-            {
-              type = "cpu";
-              key = "├─󰻠";
-              keyColor = "green";
-            }
-            {
-              type = "gpu";
-              key = "├─󰍛";
-              keyColor = "green";
-            }
-            {
-              type = "disk";
-              key = "├─";
-              keyColor = "green";
-            }
-            {
-              type = "memory";
-              key = "├─󰑭";
-              keyColor = "green";
-            }
-            {
-              type = "swap";
-              key = "├─󰓡";
-              keyColor = "green";
-            }
-            {
               type = "display";
-              key = "├─󰍹";
+              key = "╭─󰍹";
               keyColor = "green";
             }
             {
@@ -80,23 +72,43 @@ in
             }
             {
               type = "sound";
-              key = "╰─";
+              key = "├─";
+              keyColor = "green";
+            }
+            {
+              type = "host";
+              key = "├─󰌢";
+              keyColor = "green";
+            }
+            {
+              type = "cpu";
+              key = "├─󰻠";
+              keyColor = "green";
+            }
+            {
+              type = "gpu";
+              key = "├─󰍛";
+              keyColor = "green";
+            }
+            {
+              type = "memory";
+              key = "├─󰑭";
+              keyColor = "green";
+            }
+            {
+              type = "swap";
+              key = "├─󰓡";
+              keyColor = "green";
+            }
+            {
+              type = "disk";
+              key = "╰─";
               keyColor = "green";
             }
             "break"
             {
-              type = "shell";
-              key = "╭─";
-              keyColor = "yellow";
-            }
-            {
-              type = "terminal";
-              key = "├─";
-              keyColor = "yellow";
-            }
-            {
               type = "lm";
-              key = "├─󰧨";
+              key = "╭─󰧨";
               keyColor = "yellow";
             }
             {
@@ -125,8 +137,18 @@ in
               keyColor = "yellow";
             }
             {
+              type = "terminal";
+              key = "├─";
+              keyColor = "yellow";
+            }
+            {
               type = "terminalfont";
-              key = "╰─";
+              key = "├─";
+              keyColor = "yellow";
+            }
+            {
+              type = "shell";
+              key = "╰─";
               keyColor = "yellow";
             }
             "break"
