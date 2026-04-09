@@ -23,15 +23,8 @@ in
       # ========== Markdown ==========
         # Markdown 预览
         shd101wyy.markdown-preview-enhanced
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          # Markdown 语法规范检查
-          name = "vscode-markdownlint";
-          publisher = "DavidAnson";
-          version = "0.61.2";
-          sha256 = "sha256-RGWgY6pyq7j509UjLD3SSyOOA7cXGFFk95H1hoeKPjA=";
-        }
-      ]++ [
+        # Markdown 语法规范检查
+        davidanson.vscode-markdownlint
       # ========== JavaScript / TypeScript ==========
         # ESLint 集成
         dbaeumer.vscode-eslint
@@ -44,11 +37,11 @@ in
           # Ripple 框架辅支持
           name = "ripple-ts-vscode-plugin";
           publisher = "Ripple-TS";
-          version = "0.3.3";
-          sha256 = "sha256-Jtr4Y81T8Gb9tANq3gG6+e5HP2UBUH3cDVUYcc5eRLA=";
+          version = "0.3.6";
+          sha256 = "sha256-fTu44uDZ8pMfYaKsmfU59CNTBvmGoJGpI3r8fEl/HNU=";
         }
       ]++ [
-      # ========== Python 开发 ==========
+      # ========== Python ==========
         # Python 语言支持
         ms-python.python
         # Python 调试器
