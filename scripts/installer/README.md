@@ -194,7 +194,7 @@ git checkout -b <branch>
 
 ```bash
 # 编辑主机选项
-nano outputs/<platform>/hosts/<host>/hostOptions.nix
+nano outputs/<platform>/hosts/<host>/opts.nix
 ```
 
 详细的选项说明和完整配置示例请参阅 [主机管理](../../outputs/hosts/README.md)。

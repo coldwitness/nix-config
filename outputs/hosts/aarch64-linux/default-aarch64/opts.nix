@@ -3,7 +3,7 @@
 }:
 let
   vars = import ../../../../vars;
-  hostOptions = {
+  opts = {
     # nix-config 仓库本身所在路径
     nixConfigPath = "/home/admin/workspace/nix-config";
   # ========== Users 模块 - 用户配置 ==========
@@ -190,7 +190,7 @@ let
       # 网络配置
       networking = {
         # 主机名
-        hostName = "default-x86-64";
+        hostName = "default-aarch64";
         # 网络连接管理
         networkmanager.enable = true;
         # 防火墙
@@ -224,4 +224,4 @@ let
     };
   };
 in
-hostOptions
+opts

@@ -1,12 +1,12 @@
 {
   lib,
+  opts,
   inputs,
-  hostOptions,
   ...
 }:
 let
-  cfg = hostOptions.desktop.dms or { };
-  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
+  cfg = opts.desktop.dms or { };
+  finallyEnable = cfg.enable or false && ((opts.desktop.type or "") != "");
   softwareRenderingEnable = cfg.softwareRenderingEnable or false;
 in
 {

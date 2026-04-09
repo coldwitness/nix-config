@@ -1,11 +1,11 @@
 {
   lib,
   pkgs,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.cli.nvitop or { };
+  cfg = opts.cli.nvitop or { };
   finallyEnable = cfg.enable or false;
 in
 {

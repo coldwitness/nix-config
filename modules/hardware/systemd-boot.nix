@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.hardware.boot-loader or { };
+  cfg = opts.hardware.boot-loader or { };
   finallyEnable = (cfg.type or "systemd-boot") == "systemd-boot";
 in
 {

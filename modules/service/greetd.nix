@@ -1,12 +1,12 @@
 {
   lib,
   pkgs,
+  opts,
   config,
-  hostOptions,
   ...
 }:
 let
-  cfg = hostOptions.service.greetd or { };
+  cfg = opts.service.greetd or { };
   finallyEnable = cfg.enable or false;
 in
 {

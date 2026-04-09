@@ -1,13 +1,13 @@
 {
   lib,
   pkgs,
+  opts,
   inputs,
-  hostOptions,
   ...
 }:
 let
-  cfg = hostOptions.tool.lutris or { };
-  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
+  cfg = opts.tool.lutris or { };
+  finallyEnable = cfg.enable or false && ((opts.desktop.type or "") != "");
   nur = inputs.nur.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   inherit (nur.repos.forkprince) proton-dw-bin;
 in

@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.hardware.bluetooth or { };
+  cfg = opts.hardware.bluetooth or { };
   finallyEnable = cfg.enable or false;
 in
 {

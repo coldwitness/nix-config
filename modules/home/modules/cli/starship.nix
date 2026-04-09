@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.cli.starship or { };
+  cfg = opts.cli.starship or { };
   finallyEnable = cfg.enable or false;
 in
 {

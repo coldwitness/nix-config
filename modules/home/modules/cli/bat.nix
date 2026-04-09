@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.cli.bat or { };
+  cfg = opts.cli.bat or { };
   finallyEnable = cfg.enable or false;
 in
 {

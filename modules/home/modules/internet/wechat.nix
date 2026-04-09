@@ -1,12 +1,12 @@
 {
   lib,
   pkgs,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.internet.wechat or { };
-  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
+  cfg = opts.internet.wechat or { };
+  finallyEnable = cfg.enable or false && ((opts.desktop.type or "") != "");
 in
 {
   config = lib.mkIf finallyEnable {

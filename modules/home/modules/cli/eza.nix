@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.cli.eza or { };
+  cfg = opts.cli.eza or { };
   finallyEnable = cfg.enable or false;
 in
 {

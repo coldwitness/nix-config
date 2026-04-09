@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.cli.yazi or { };
+  cfg = opts.cli.yazi or { };
   finallyEnable = cfg.enable or false;
 in
 {

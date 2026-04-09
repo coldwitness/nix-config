@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.desktop  or { };
+  cfg = opts.desktop  or { };
   finallyEnable = (cfg.type or "") == "hyprland";
 in
 {

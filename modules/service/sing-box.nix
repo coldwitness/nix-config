@@ -1,11 +1,11 @@
 {
   lib,
+  opts,
   inputs,
-  hostOptions,
   ...
 }:
 let
-  cfg = hostOptions.service.sing-box or { };
+  cfg = opts.service.sing-box or { };
   finallyEnable = cfg.enable or false;
   settingsFile = "${inputs.secrets}/sing-box";
   settings = if builtins.pathExists settingsFile 

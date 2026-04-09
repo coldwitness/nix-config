@@ -1,14 +1,14 @@
 {
   lib,
   pkgs,
+  opts,
   config,
-  hostOptions,
   ...
 }:
 let
-  cfg = hostOptions.desktop.dms or { };
-  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
-  configPath = "${hostOptions.nixConfigPath}/modules/home/config";
+  cfg = opts.desktop.dms or { };
+  finallyEnable = cfg.enable or false && ((opts.desktop.type or "") != "");
+  configPath = "${opts.nixConfigPath}/modules/home/config";
 in
 {
   config = lib.mkIf finallyEnable {

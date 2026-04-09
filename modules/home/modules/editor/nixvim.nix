@@ -1,12 +1,12 @@
   {
   lib,
   pkgs,
+  opts,
   inputs,
-  hostOptions,
   ...
 }:
 let
-  cfg = hostOptions.editor.nixvim or { };
+  cfg = opts.editor.nixvim or { };
   finallyEnable = cfg.enable or false;
 in
 {

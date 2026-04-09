@@ -1,13 +1,13 @@
 {
   lib,
+  opts,
   inputs,
-  hostOptions,
   ...
 }:
 let
-  cfg = hostOptions.service.rustdesk-server or { };
+  cfg = opts.service.rustdesk-server or { };
   finallyEnable = cfg.enable or false;
-  settingsFile = "${inputs.secrets}/rustdesk-server/${hostOptions.hardware.networking.hostName}.nix";
+  settingsFile = "${inputs.secrets}/rustdesk-server/${opts.hardware.networking.hostName}.nix";
   settings = if builtins.pathExists settingsFile 
              then import settingsFile
              else { };

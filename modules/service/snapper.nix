@@ -1,11 +1,11 @@
 {
-  pkgs,
   lib,
-  hostOptions,
+  pkgs,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.service.snapper or { };
+  cfg = opts.service.snapper or { };
   finallyEnable = cfg.enable or false;
 in
 {

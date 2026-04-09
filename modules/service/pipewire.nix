@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.service.pipewire or { };
+  cfg = opts.service.pipewire or { };
   finallyEnable = cfg.enable or false;
 in
 {

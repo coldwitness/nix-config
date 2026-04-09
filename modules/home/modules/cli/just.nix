@@ -1,11 +1,11 @@
 {
   lib,
   pkgs,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.cli.just or { };
+  cfg = opts.cli.just or { };
   finallyEnable = cfg.enable or false;
 in
 {

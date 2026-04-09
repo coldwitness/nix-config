@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.cli.git or { };
+  cfg = opts.cli.git or { };
   finallyEnable = cfg.enable or false;
 in
 {

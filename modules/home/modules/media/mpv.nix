@@ -1,11 +1,11 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.media.mpv or { };
-  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
+  cfg = opts.media.mpv or { };
+  finallyEnable = cfg.enable or false && ((opts.desktop.type or "") != "");
 in
 {
   config = lib.mkIf finallyEnable {

@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.service.logind or { };
+  cfg = opts.service.logind or { };
   finallyEnable = cfg.enable or false;
 in
 {

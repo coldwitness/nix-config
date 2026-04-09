@@ -7,7 +7,7 @@
 }:
 let
   inherit system;
-  hostOptions = import ./hostOptions.nix { inherit inputs; };
+  opts = import ./opts.nix { inherit inputs; };
 in
 {
   nixosConfigurations = {
@@ -15,7 +15,7 @@ in
       inherit system;
       pkgs = pkgSets.pkgs;
       specialArgs = {
-        inherit inputs pkgSets hostOptions;
+        inherit inputs opts pkgSets;
       };
       modules = [
         ../../../users

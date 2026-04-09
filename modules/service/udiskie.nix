@@ -1,11 +1,11 @@
 {
-  pkgs,
   lib,
-  hostOptions,
+  pkgs,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.service.udiskie or { };
+  cfg = opts.service.udiskie or { };
   finallyEnable = cfg.enable or false;
 in
 {

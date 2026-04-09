@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.service.openssh or { };
+  cfg = opts.service.openssh or { };
   finallyEnable = cfg.enable or false;
 in
 {

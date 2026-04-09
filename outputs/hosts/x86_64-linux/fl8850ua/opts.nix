@@ -3,7 +3,7 @@
 }:
 let
   vars = import ../../../../vars;
-  hostOptions = {
+  opts = {
     # nix-config 仓库本身所在路径
     nixConfigPath = "/home/admin/workspace/nix-config";
   # ========== Users 模块 - 用户配置 ==========
@@ -230,4 +230,4 @@ let
     };
   };
 in
-hostOptions
+opts

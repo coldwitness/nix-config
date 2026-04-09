@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.service.nginx or { };
+  cfg = opts.service.nginx or { };
   finallyEnable = cfg.enable or false;
 in
 {

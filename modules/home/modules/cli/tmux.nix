@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.cli.tmux or { };
+  cfg = opts.cli.tmux or { };
   finallyEnable = cfg.enable or false;
 in
 {

@@ -1,21 +1,20 @@
 {
   lib,
   pkgs,
-  config,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.desktop or { };
+  cfg = opts.desktop or { };
   finallyEnable = (cfg.type or "") == "hyprland";
-  btopEnable = hostOptions.cli.btop.enable or false;
-  yaziEnable = hostOptions.cli.yazi.enable or false;
-  dmsEnable = hostOptions.desktop.dms.enable or false;
-  footEnable = hostOptions.terminal.foot.enable or false;
-  fcitx5Enable = hostOptions.tool.fcitx5.enable or false;
-  kittyEnable = hostOptions.terminal.kitty.enable or false;
-  udiskieEnable = hostOptions.service.udiskie.enable or false;
-  missionCenterEnable = hostOptions.tool.mission-center.enable or false;
+  btopEnable = opts.cli.btop.enable or false;
+  yaziEnable = opts.cli.yazi.enable or false;
+  dmsEnable = opts.desktop.dms.enable or false;
+  footEnable = opts.terminal.foot.enable or false;
+  fcitx5Enable = opts.tool.fcitx5.enable or false;
+  kittyEnable = opts.terminal.kitty.enable or false;
+  udiskieEnable = opts.service.udiskie.enable or false;
+  missionCenterEnable = opts.tool.mission-center.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

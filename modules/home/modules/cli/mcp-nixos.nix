@@ -1,12 +1,12 @@
 {
   lib,
   pkgs,
+  opts,
   inputs,
-  hostOptions,
   ...
 }:
 let
-  cfg = hostOptions.cli.mcp-nixos or { };
+  cfg = opts.cli.mcp-nixos or { };
   finallyEnable = cfg.enable or false;
   mcp-nixos = inputs.mcp-nixos.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in

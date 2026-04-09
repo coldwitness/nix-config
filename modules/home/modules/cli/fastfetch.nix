@@ -1,11 +1,11 @@
 {
   lib,
   pkgs,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.cli.fastfetch or { };
+  cfg = opts.cli.fastfetch or { };
   finallyEnable = cfg.enable or false;
 in
 {

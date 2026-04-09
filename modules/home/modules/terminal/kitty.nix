@@ -1,12 +1,12 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.terminal.kitty or { };
-  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
-  fishEnable = hostOptions.shell.fish.enable or false;
+  cfg = opts.terminal.kitty or { };
+  finallyEnable = cfg.enable or false && ((opts.desktop.type or "") != "");
+  fishEnable = opts.shell.fish.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

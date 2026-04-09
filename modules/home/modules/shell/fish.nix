@@ -1,13 +1,13 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.shell.fish or { };
+  cfg = opts.shell.fish or { };
   finallyEnable = cfg.enable or false;
-  batEnable = hostOptions.cli.bat.enable or false;
-  btopEnable = hostOptions.cli.btop.enable or false;
+  batEnable = opts.cli.bat.enable or false;
+  btopEnable = opts.cli.btop.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

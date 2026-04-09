@@ -2,12 +2,12 @@
   lib,
   inputs,
   pkgSets,
-  hostOptions ? null,
+  opts ? null,
   ...
 }:
 let
-  isStandAlone = hostOptions == null;
-  cfg = hostOptions.users or { };
+  isStandAlone = opts == null;
+  cfg = opts.users or { };
   # 读取当前目录下的所有文件和目录
   entries = builtins.readDir ./.;
   # 筛选出所有用户目录
@@ -22,21 +22,21 @@ let
     && name != "root"
     # 存在 default.nix
     && builtins.pathExists ./${name}/default.nix
-    # 存在 hostOptions.nix
-    && builtins.pathExists ./${name}/hostOptions.nix
+    # 存在 opts.nix
+    && builtins.pathExists ./${name}/opts.nix
   ) (builtins.attrNames entries);
   # 定义导入用户配置函数
   importUser = name:
     let
-      # 加载用户 hostOptions
-      userHostOptions = import ./${name}/hostOptions.nix { inherit inputs; };
+      # 加载用户 opts
+      userOpts = import ./${name}/opts.nix { inherit inputs; };
       # 构建 HM 配置
       hmCfg = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = pkgSets.pkgs;
         modules = [ (import ./${name}) ];
         extraSpecialArgs = {
           inherit inputs pkgSets;
-          hostOptions = userHostOptions;
+          opts = userOpts;
         };
       };
     in { ${name} = hmCfg; };
@@ -68,7 +68,7 @@ else
         ) {} (builtins.attrNames (cfg // {}));
         # 传递给子模块的参数
         extraSpecialArgs = {
-          inherit inputs pkgSets hostOptions;
+          inherit inputs opts pkgSets;
         };
       };
     };

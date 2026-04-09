@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.hardware.networking or { };
+  cfg = opts.hardware.networking or { };
 in
 {
   networking = cfg;

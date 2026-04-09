@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.cli.opencode or { };
+  cfg = opts.cli.opencode or { };
   finallyEnable = cfg.enable or false;
 in
 {

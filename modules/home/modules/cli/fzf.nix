@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.cli.fzf or { };
+  cfg = opts.cli.fzf or { };
   finallyEnable = cfg.enable or false;
 in
 {

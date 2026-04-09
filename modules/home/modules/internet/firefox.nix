@@ -1,15 +1,15 @@
 {
   lib,
   pkgs,
+  opts,
   inputs,
   pkgSets,
-  hostOptions,
   ...
 }:
 let
-  cfg = hostOptions.internet.firefox or { };
-  locale = hostOptions.i18n.locale or "en-US";
-  finallyEnable = cfg.enable or false && ((hostOptions.desktop.type or "") != "");
+  cfg = opts.internet.firefox or { };
+  locale = opts.i18n.locale or "en-US";
+  finallyEnable = cfg.enable or false && ((opts.desktop.type or "") != "");
   nur = inputs.nur.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   inherit (nur.repos.rycee.firefox-addons) kiss-translator;
 in

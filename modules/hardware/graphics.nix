@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.hardware.graphics or { };
+  cfg = opts.hardware.graphics or { };
   finallyEnable = cfg.enable or false;
 in
 {

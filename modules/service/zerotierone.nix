@@ -1,11 +1,11 @@
 {
   lib,
+  opts,
   inputs,
-  hostOptions,
   ...
 }:
 let
-  cfg = hostOptions.service.zerotierone or { };
+  cfg = opts.service.zerotierone or { };
   finallyEnable = cfg.enable or false;
   settingsFile = "${inputs.secrets}/zerotierone";
   settings = if builtins.pathExists settingsFile 

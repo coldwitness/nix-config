@@ -1,13 +1,13 @@
 {
   lib,
+  opts,
   inputs,
-  hostOptions,
   ...
 }:
 let
-  cfg = hostOptions.service.frp or { };
+  cfg = opts.service.frp or { };
   finallyEnable = cfg.enable or false;
-  settingsFile = "${inputs.secrets}/frp/${hostOptions.hardware.networking.hostName}.nix";
+  settingsFile = "${inputs.secrets}/frp/${opts.hardware.networking.hostName}.nix";
   settings = if builtins.pathExists settingsFile 
              then import settingsFile
              else { };

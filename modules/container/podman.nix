@@ -1,10 +1,10 @@
 {
   lib,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.container or { };
+  cfg = opts.container or { };
   finallyEnable = cfg.enable or false;
 in
 {

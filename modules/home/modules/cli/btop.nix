@@ -1,13 +1,13 @@
 {
   lib,
   pkgs,
-  hostOptions,
+  opts,
   ...
 }:
 let
-  cfg = hostOptions.cli.btop or { };
+  cfg = opts.cli.btop or { };
   finallyEnable = cfg.enable or false;
-  gpuType = hostOptions.hardware.graphics.type or "";
+  gpuType = opts.hardware.graphics.type or "";
 in
 {
   config = lib.mkIf finallyEnable {

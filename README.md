@@ -31,12 +31,12 @@
 │   │   └── hosts/                              # 主机
 │   │       └── <host>/                         # 具体主机
 │   │           ├── default.nix                 # 主机输出入口
-│   │           ├── hostOptions.nix             # 主机选项定义
+│   │           ├── opts.nix                    # 主机选项定义
 │   │           └── hardware-configuration.nix  # 主机硬件配置
 │   └── users/                                  # 用户
 │       └── <user>/                             # 具体用户
 │           ├── default.nix                     # 用户输出入口
-│           └── hostOptions.nix                 # 用户选项定义
+│           └── opts.nix                        # 用户选项定义
 ├── modules/                                    # 系统模块
 │   ├──<category>/                              # 模块分类
 │   └──home/
