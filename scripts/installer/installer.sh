@@ -2,15 +2,16 @@
 
 set -e
 
-source functions/platform.sh
+source functions/host.sh
 
-echo "========== Select Platform =========="
-select_platform
+echo "========== Select Host =========="
+select_host
+echo "Selected host: $HOST_NAME"
 
 echo "========== Copy Hardware Config =========="
 # 生成默认配置文件
 sudo nixos-generate-config
-sudo cp /etc/nixos/hardware-configuration.nix ../../outputs/hosts/${PLATFORM}/${PLATFORM}/
+sudo cp /etc/nixos/hardware-configuration.nix "$HOST_PATH"/
 
 echo "========== Generate Secrets Flake =========="
 cd ../../secrets
@@ -23,4 +24,4 @@ fi
 echo "========== Rebuild System =========="
 cd ../
 git add --all -- ':!secrets'
-nix-shell -p nh --run "nh os switch .#${PLATFORM} --ask --max-jobs 1"
+nix-shell -p nh --run "nh os switch .#$HOST_NAME --ask --max-jobs 1"

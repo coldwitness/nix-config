@@ -11,7 +11,7 @@ let
 in
 {
   nixosConfigurations = {
-    i686-linux = lib.nixosSystem {
+    fl8850ua = lib.nixosSystem {
       inherit system;
       pkgs = pkgSets.pkgs;
       specialArgs = {

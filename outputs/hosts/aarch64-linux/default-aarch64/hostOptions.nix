@@ -190,7 +190,7 @@ let
       # 网络配置
       networking = {
         # 主机名
-        hostName = "x86_64-linux";
+        hostName = "default-aarch64";
         # 网络连接管理
         networkmanager.enable = true;
         # 防火墙

@@ -11,7 +11,7 @@ let
 in
 {
   nixosConfigurations = {
-    FL8850UA = lib.nixosSystem {
+    alc = lib.nixosSystem {
       inherit system;
       pkgs = pkgSets.pkgs;
       specialArgs = {
