@@ -5,50 +5,33 @@
 }:
 let
   vars = import ../../../../vars { inherit inputs; };
-  opts = {
+  optSets = import ../../../optSets { inherit inputs; };
+  functions = import ../../../../functions { inherit inputs; };
+  # 预定义选项集列表
+  predefinedOptSetsList = [
+    optSets.baseEnv
+    optSets.baseUsers
+  ];
+  # 自定义选项集
+  customOptSets ={
     # nix-config 仓库本身所在路径
     nixConfigPath = "/home/admin/workspace/nix-config";
   # ========== Users 模块 - 用户配置 ==========
     users = {
-      root = {
-        # 哈希密码
-        hashedPassword = "$6$yk.jU.kxIAVwaoaj$zFEdwFofY8P88Ad7/a62sm5j3QxyXcQxKTvTpRMIYDgw6G4RDXZCQgHRyeOyZHLN10lKov55WJESL8t2Ia1US0";
-        openssh.authorizedKeys.keys = [
-          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCvQqWUftAAIIjgqAJJtliE4j8bCzOf7kwAuyyaDoT4EdceNX3ZHHWn6jv/jfBPBsyEn1PCbhu80NYExWxlSMbEQyMdbkZzj5yI19pWZkh6fXAukRYnfckO1uRIQmHKsqWv4P+ndsQ/lUNvlMyCDAO0bj/XXOTwYLrXAQQZjXV5Kj8PXgWCBqAQjC8ucfREb3QgO1jcTIerC8Q49S3pWZ3JQDzJmeqKb1nOlXwy4oh9Q3Ax8mFRCG1lE7nbtXFAHOAdpi1Jj4Y8WhXpVbfw0REDry5gP3RnH2YnLqY9oP6qLD2J851TCpoaP5Dzn9dB2KnmMSu+9VdhL9p6r4cxrosgqQEvYzn9djBQKQyX1rx0yljbT6G+FEOqrkuCZWSE6gGmii5YDqKmOJA4MzrIV6Yf4yMVGmlAQEx9z2GuirB7hOhrhWtd1raXsBlzyAtTxra+25fGGF3074L0IfNNbJMo3y54LkqzvAoLCNbBsAGfUureGTvisIm5nqaZkT9QdZxzPzLZKKGyb7o0TM2ffRiokeZNoz2WZXtlI4a5FrsBb8MrIUa+pYaR0h3vB8fgsEXe2/z2ZusdBv1ZRj+BQjHK28K5QVojEjb2as+8q78z3H0LgcPv+F6Y/BejczE0zLxA4wzwZZKJpi2oUKIfASJLmxpH2rydoYVyLAnLpFsXzQ=="
-        ];
-      };
-      admin = {
-        # 普通用户
-        isNormalUser = true;
-        # 用户描述
-        description = "管理员";
-        # 添加用户到额外组
-        extraGroups = [
-          "wheel"
-          "networkmanager"
-        ];
-        hashedPassword = "$6$Yq2f2308VGQlSDxb$v6tOVrxDvVJYSB40g8t/n2ZVw9pSARf5Gxe.ph2n.TvyXDPiruSi8Y9pEuPNi0regGL8AB8dQBmge/kNTZqxh1";
-        openssh.authorizedKeys.keys = [
-          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCvQqWUftAAIIjgqAJJtliE4j8bCzOf7kwAuyyaDoT4EdceNX3ZHHWn6jv/jfBPBsyEn1PCbhu80NYExWxlSMbEQyMdbkZzj5yI19pWZkh6fXAukRYnfckO1uRIQmHKsqWv4P+ndsQ/lUNvlMyCDAO0bj/XXOTwYLrXAQQZjXV5Kj8PXgWCBqAQjC8ucfREb3QgO1jcTIerC8Q49S3pWZ3JQDzJmeqKb1nOlXwy4oh9Q3Ax8mFRCG1lE7nbtXFAHOAdpi1Jj4Y8WhXpVbfw0REDry5gP3RnH2YnLqY9oP6qLD2J851TCpoaP5Dzn9dB2KnmMSu+9VdhL9p6r4cxrosgqQEvYzn9djBQKQyX1rx0yljbT6G+FEOqrkuCZWSE6gGmii5YDqKmOJA4MzrIV6Yf4yMVGmlAQEx9z2GuirB7hOhrhWtd1raXsBlzyAtTxra+25fGGF3074L0IfNNbJMo3y54LkqzvAoLCNbBsAGfUureGTvisIm5nqaZkT9QdZxzPzLZKKGyb7o0TM2ffRiokeZNoz2WZXtlI4a5FrsBb8MrIUa+pYaR0h3vB8fgsEXe2/z2ZusdBv1ZRj+BQjHK28K5QVojEjb2as+8q78z3H0LgcPv+F6Y/BejczE0zLxA4wzwZZKJpi2oUKIfASJLmxpH2rydoYVyLAnLpFsXzQ=="
-        ];
-      };
+      admin.extraGroups = [
+        "networkmanager"
+      ];
     };
   # ========== CLI 工具模块 - 命令行实用工具 ==========
     cli = {
-      # Nix CLI 助手, 自动清理旧一代系统配置
-      nh.enable = true;
       # cat 替代品, 带语法高亮和行号
       bat.enable = true;
       # ls 替代品, 现代文件列表工具
       eza.enable = true;
       # 命令行模糊搜索工具
       fzf.enable = true;
-      # 分布式版本控制系统
-      git.enable = true;
       # 安全远程登录客户端
       ssh.enable = true;
-      # 命令运行器, 类似 Makefile
-      just.enable = true;
       # 终端复用器, 可在一个终端中运行多个会话
       tmux.enable = true;
       # 用 Rust 编写的快速文件管理器
@@ -231,5 +214,6 @@ let
       portainer-agent.enable = false;
     };
   };
+  opts = functions.mergeOptSetsList customOptSets predefinedOptSetsList;
 in
 opts
