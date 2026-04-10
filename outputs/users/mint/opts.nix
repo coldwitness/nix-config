@@ -4,25 +4,26 @@
 }:
 let
   vars = import ../../../vars { inherit inputs; };
-  opts = {
+  optSets = import ../../optSets { inherit inputs; };
+  functions = import ../../../functions { inherit inputs; };
+  # 预定义选项集列表
+  predefinedOptSetsList = [
+    optSets.baseEnv
+  ];
+  # 自定义选项集
+  customOptSets ={
     # nix-config 仓库本身所在路径
     nixConfigPath = "/home/mint/workspace/mochen/nix-config";
     # ========== CLI 工具模块 - 命令行实用工具 ==========
     cli = {
-      # Nix CLI 助手, 自动清理旧一代系统配置
-      nh.enable = true;
       # cat 替代品, 带语法高亮和行号
       bat.enable = true;
       # ls 替代品, 现代文件列表工具
       eza.enable = true;
       # 命令行模糊搜索工具
       fzf.enable = true;
-      # 分布式版本控制系统
-      git.enable = true;
       # 安全远程登录客户端
       ssh.enable = true;
-      # 命令运行器, 类似 Makefile
-      just.enable = true;
       # 终端复用器, 可在一个终端中运行多个会话
       tmux.enable = true;
       # 用 Rust 编写的快速文件管理器
@@ -39,17 +40,6 @@ let
       opencode.enable = false;
       # NixOS MCP
       mcp-nixos.enable = false;
-      # Nix 包管理器配置
-      nix.substituters = [
-        # 上海交大镜像源
-        "https://mirror.sjtu.edu.cn/nix-channels/store"
-        # 中科大镜像源
-        # "https://mirrors.ustc.edu.cn/nix-channels/store"
-        # 清华镜像源
-        # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-        # 默认官方源
-        "https://cache.nixos.org"
-      ];
     };
   # ========== Tool 模块 - 实用工具 ==========
     tool = {
@@ -61,8 +51,6 @@ let
       lutris.enable = false;
       # 办公套件
       onlyoffice.enable = false;
-      # Clash 代理客户端
-      clash-verge.enable = false;
       # GUI 系统活动监控器
       mission-center.enable = false;
     };
@@ -92,52 +80,12 @@ let
       # 用户友好的命令行 shell
       fish.enable = true;
     };
-  # ========== Desktop 模块 - 桌面环境 ==========
-    desktop = {
-      # 桌面类型, 可选项:
-      # disable(不启用桌面, 这将连带禁用所有图形应用)
-      # hyprland
-      type = vars.desktopTypes.disable;
-      # DankMaterialShell
-      dms = {
-        enable = false;
-        # 软件渲染模式(用于无 GPU 或虚拟化环境)
-        softwareRenderingEnable = false;
-      };
-    };
   # ========== Terminal 模块 - 终端模拟器 ==========
     terminal = {
       # 轻量级终端模拟器
       foot.enable = false;
       # 跨平台 GPU 加速终端模拟器
       kitty.enable = false;
-    };
-  # ========== Service 模块 - 系统服务 ==========
-    service = {
-      # 内网穿透工具
-      frp.enable = false;
-      # HTTP 和反向代理 web 服务器
-      nginx.enable = false;
-      # 轻量级登录管理器
-      greetd.enable = false;
-      # 系统登录和电源管理
-      logind.enable = false;
-      # SSH 服务器
-      openssh.enable = false;
-      # Btrfs 快照管理工具
-      snapper.enable = false;
-      # U 盘自动挂载服务
-      udiskie.enable = false;
-      # 多媒体框架, 替代 PulseAudio
-      pipewire.enable = false;
-      # 输入设备驱动服务
-      libinput.enable = false;
-      # 通用代理工具
-      sing-box.enable = false;
-      # P2P VPN 服务
-      zerotierone.enable = false;
-      # 远程桌面服务器
-      rustdesk-server.enable = false;
     };
   # ========== Internet 模块 - 网络应用 ==========
     internet = {
@@ -154,56 +102,15 @@ let
     };
   # ========== Hardware 模块 - 硬件配置 ==========
     hardware = {
-      # 内存压缩配置
-      zram.enable = false;
-      # 蓝牙配置
-      bluetooth.enable = false;
       # 图形驱动配置
       graphics = {
-        # 启用硬件加速
-        enable = false;
-        # 启用 32 位驱动(Wine 等)
-        enable32Bit = false;
         # GPU 类型, 可选项:
         # none(默认)
         # amd
         type = vars.gpuTypes.none;
       };
-      # 网络配置
-      networking = {
-        # 主机名
-        hostName = "nixos";
-        # 网络连接管理
-        networkmanager.enable = false;
-        # 防火墙
-        firewall = {
-          enable = false;
-          # 在防火墙中打开的端口
-          # allowedTCPPorts = [ ... ];
-          # allowedUDPPorts = [ ... ];
-        };
-        # 网络代理
-        proxy = {
-          # default = "http://user:password@proxy:port/";
-          # noProxy = "127.0.0.1,localhost,internal.domain";
-        };
-      };
-      boot-loader = {
-        # EFI 系统分区挂载点
-        efiSysMountPoint = "/boot";
-        # 启动加载器, 可选项:
-        # systemd-boot(默认)
-        # grub(目前未实现)
-        type = vars.bootLoaderTypes.systemd-boot;
-      };
-    };
-  # ========== Container 模块 - 容器管理 ==========
-    container = {
-      # 容器引擎, Docker 替代品
-      podman.enable = false;
-      # Portainer 代理
-      portainer-agent.enable = false;
     };
   };
+  opts = functions.mergeOptSetsList customOptSets predefinedOptSetsList;
 in
 opts
