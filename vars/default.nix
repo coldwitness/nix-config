@@ -3,6 +3,6 @@
   ...
 }:
 let
-  inherit (import ../functions { inherit inputs; }) importDirFiles;
+  functions = import ../functions { inherit inputs; };
 in
-importDirFiles ./.
+functions.importDirFiles ./.

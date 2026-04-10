@@ -3,8 +3,8 @@
   ...
 }:
 let
-  inherit (import ../functions { inherit inputs; }) importSubdirModules;
+  functions = import ../functions { inherit inputs; };
 in
 {
-  imports = importSubdirModules ./.;
+  imports = functions.importSubdirModules ./.;
 }
