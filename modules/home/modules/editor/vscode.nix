@@ -37,8 +37,8 @@ in
           # Ripple 框架辅支持
           name = "ripple-ts-vscode-plugin";
           publisher = "Ripple-TS";
-          version = "0.3.6";
-          sha256 = "sha256-fTu44uDZ8pMfYaKsmfU59CNTBvmGoJGpI3r8fEl/HNU=";
+          version = "0.3.7";
+          sha256 = "sha256-MjC1an5KlxvMnQrVQh8I/goKVA73Ftkzur1aEUJQNZ0=";
         }
       ]++ [
       # ========== Python ==========
