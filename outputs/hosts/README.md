@@ -8,13 +8,12 @@
 
 - [1. 添加新主机](#1-添加新主机)
 - [2. 配置文件说明](#2-配置文件说明)
-- [3. 构建命令](#3-构建命令)
 
 ---
 
 ## 1. 添加新主机
 
-添加新主机仅需 **2 步**，无需修改任何其他文件：
+添加新主机仅需 **3 步**，无需修改任何其他文件：
 
 ```bash
 # 复制模板文件夹
@@ -22,7 +21,14 @@ cp -r outputs/hosts/x86_64-linux/default-x86-64/ outputs/hosts/x86_64-linux/<hos
 
 # 编辑选项
 nano outputs/hosts/x86_64-linux/<host-name>/opts.nix
+
+# 执行安装脚本
+cd scripts/installer/
+sudo bash installer.sh
+# 选择对应的主机名即可自动应用配置
 ```
+
+详情请见：[安装指南](../../scripts/installer/README.md)
 
 **无需做的操作** ❌：
 
@@ -51,19 +57,6 @@ nano outputs/hosts/x86_64-linux/<host-name>/opts.nix
 # 查看 default-x86-64/ 模板获取最完整的选项列表和注释
 cat outputs/hosts/x86_64-linux/default-x86-64/opts.nix
 ```
-
----
-
-## 3. 构建命令
-
-完成主机配置编辑后，使用以下命令应用更改：
-
-| 场景     | 命令                                                       | 说明                   |
-| -------- | ---------------------------------------------------------- | ---------------------- |
-| 首次构建 | `nix-shell -p nh --run "nh os switch .#<host-name> --ask"` | 安装 nh 工具并应用配置 |
-| 后续构建 | `just rebuild`                                             | 快速重建系统           |
-
-> **💡 提示**：将 `<host-name>` 替换为你的实际主机名
 
 ---
 

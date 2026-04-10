@@ -8,13 +8,12 @@
 
 - [1. 添加新用户](#1-添加新用户)
 - [2. 配置文件说明](#2-配置文件说明)
-- [3. 构建命令](#3-构建命令)
 
 ---
 
 ## 1. 添加新用户
 
-添加新用户仅需 **2 步**，无需修改任何其他文件：
+添加新用户仅需 **3 步**，无需修改任何其他文件：
 
 ```bash
 # 复制模板文件夹
@@ -22,7 +21,14 @@ cp -r outputs/users/default outputs/users/<user-name>
 
 # 编辑选项
 nano outputs/users/<user-name>/opts.nix
+
+# 执行安装脚本
+cd scripts/installer/
+bash user-installer.sh
+# 选择对应的用户名和平台即可自动应用配置
 ```
+
+详情请见：[安装指南](../../scripts/installer/README.md)
 
 **无需做的操作** ❌：
 
@@ -51,19 +57,6 @@ nano outputs/users/<user-name>/opts.nix
 # 查看 default/ 模板获取最完整的选项列表和注释
 cat outputs/users/default/opts.nix
 ```
-
----
-
-## 3. 构建命令
-
-完成用户配置编辑后，使用以下命令应用更改：
-
-| 场景     | 命令                                                                    | 说明                   |
-| -------- | ----------------------------------------------------------------------- | ---------------------- |
-| 首次构建 | `nix-shell -p nh --run "nh home switch .#<user-name>-<platform> --ask"` | 应用 Home Manager 配置 |
-| 后续构建 | `just home rebuild <user-name> <platform>`                              | 快速重建用户环境       |
-
-> **💡 提示**：将 `<user-name>` 替换为实际用户名，`<platform>` 替换为目标平台。
 
 <div align="center">
 
