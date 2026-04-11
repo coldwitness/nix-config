@@ -38,7 +38,7 @@ bash user-installer.sh
 
 > **💡 核心优势**：系统采用零注册设计——文件夹名称即为用户名，
 > 放入即生效，无需修改任何其他文件！
-> 可通过引用 [outputs/optSets/](../optSets/) 中的预定义模板。
+> 可通过引用 [选项集管理](../optSets/README.md) 中的预定义模板。
 
 ---
 

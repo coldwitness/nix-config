@@ -10,15 +10,16 @@
 
 ## 📑 文档索引
 
-| 文档                                         | 内容                   |
-| -------------------------------------------- | ---------------------- |
-| 📦 [安装指南](./scripts/installer/README.md) | 安装及初始化           |
-| 🖥️ [主机管理](./outputs/hosts/README.md)     | 添加主机、修改主机配置 |
-| 👤 [用户管理](./outputs/users/README.md)     | 添加用户、修改用户配置 |
-| ⚙️ [模块开发](./modules/README.md)           | 自定义模块             |
-| ❓ [常见问题](./docs/faq.md)                 | 故障排查               |
-| 🏗️ [架构概览](./docs/architecture.md)        | 设计理念               |
-| 🗺️ [未来计划](./docs/roadmap.md)             | 未来规划参考           |
+| 文档                                         | 内容                     |
+| -------------------------------------------- | ------------------------ |
+| 📦 [安装指南](./scripts/installer/README.md) | 安装及初始化             |
+| 🖥️ [主机管理](./outputs/hosts/README.md)     | 添加主机、修改主机配置   |
+| 👤 [用户管理](./outputs/users/README.md)     | 添加用户、修改用户配置   |
+| 🧩 [选项集管理](./outputs/optSets/README.md) | 组合式抽象、减少样板代码 |
+| ⚙️ [模块开发](./modules/README.md)           | 自定义模块               |
+| ❓ [常见问题](./docs/faq.md)                 | 故障排查                 |
+| 🏗️ [架构概览](./docs/architecture.md)        | 设计理念                 |
+| 🗺️ [未来计划](./docs/roadmap.md)             | 未来规划参考             |
 
 ---
 
