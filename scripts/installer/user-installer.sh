@@ -12,6 +12,15 @@ echo "========== Select Platform =========="
 select_platform
 echo "Selected platform: $PLATFORM"
 
+echo "========== Generate Secrets Flake =========="
+cd ../../secrets
+if [ ! -f flake.nix ]; then
+    cp ../scripts/installer/modules/secrets-flake.nix ./flake.nix
+    git init
+    git add --all
+fi
+
 echo "========== Apply Home Manager Config =========="
-cd ../../
+cd ../
+git add --all -- ':!secrets'
 nix-shell -p nh --run "nh home switch .#$USER_NAME-$PLATFORM --ask"

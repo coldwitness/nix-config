@@ -8,9 +8,10 @@ let
   cfg = opts.service.sing-box or { };
   finallyEnable = cfg.enable or false;
   settingsFile = "${inputs.secrets}/sing-box";
-  settings = if builtins.pathExists settingsFile 
-             then import settingsFile
-             else { };
+  settings =
+    if builtins.pathExists settingsFile 
+    then import settingsFile
+    else { };
 in
 {
   config = lib.mkIf finallyEnable {
