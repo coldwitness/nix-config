@@ -65,6 +65,8 @@ let
     media = {
       # 轻量级视频播放器
       mpv.enable = false;
+      # Spotify 音乐播放器
+      spotify.enable = false;
       # 录屏和直播软件
       obs-studio.enable = false;
     };

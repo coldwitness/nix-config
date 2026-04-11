@@ -4,7 +4,7 @@
   ...
 }:
 let
-  vars = import ../../../../vars  { inherit inputs; };
+  vars = import ../../../../vars { inherit inputs; };
   opts = {
     # nix-config 仓库本身所在路径
     nixConfigPath = "/home/admin/workspace/nix-config";
@@ -97,6 +97,8 @@ let
     media = {
       # 轻量级视频播放器
       mpv.enable = false;
+      # Spotify 音乐播放器
+      spotify.enable = false;
       # 录屏和直播软件
       obs-studio.enable = false;
     };
