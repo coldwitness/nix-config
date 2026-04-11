@@ -8,6 +8,7 @@
 
 - [1. 添加新主机](#1-添加新主机)
 - [2. 配置文件说明](#2-配置文件说明)
+- [3. 多实例输出模式](#3-多实例输出模式)
 
 ---
 
@@ -57,6 +58,57 @@ sudo bash installer.sh
 # 查看 default-x86-64/ 模板获取最完整的选项列表和注释
 cat outputs/hosts/x86_64-linux/default-x86-64/opts.nix
 ```
+
+---
+
+## 3. 多实例输出模式
+
+当需要管理大量**配置相同、仅主机名不同**的机器时（如企业办公同质化部署），可以使用多实例输出模式，一次定义即可批量生成多台主机的配置。
+
+### 启用方式
+
+编辑目标主机目录下的 [default.nix](./x86_64-linux/default-x86-64/default.nix)，修改内部变量 `count`：
+
+```nix
+let
+  count = 5;  # 生成 5 个实例
+in ...
+```
+
+| `count` 值  | 行为                                                               |
+| ----------- | ------------------------------------------------------------------ |
+| `1`（默认） | 单机模式，生成一个以目录名为名称的配置，行为与不使用该功能完全一致 |
+| `N` (>1)    | 批量模式，生成 N 个配置，命名格式为 `${目录名}-${序号}`            |
+
+### 命名规则
+
+批量生成的实例自动按以下规则命名：
+
+- 格式：`${目录名}-${序号}`
+- 序号范围：`1` ~ `N`
+- 示例：目录名 `default-x86-64`，count 为 `5` 时 → `default-x86-64-1` ~ `default-x86-64-5`
+
+每个实例独立加载 `opts.nix` 并传入各自对应的 `hostName`，确保网络配置等依赖主机名的模块正确工作。
+
+### 输出示例
+
+将 `count` 设为 `5` 后，执行 `nix flake show` 将看到：
+
+```bash
+nix flake show
+.
+└───nixosConfigurations
+    ├───default-aarch64: NixOS configuration
+    ├───default-i686: NixOS configuration
+    ├───default-x86_64-1: NixOS configuration
+    ├───default-x86_64-2: NixOS configuration
+    ├───default-x86_64-3: NixOS configuration
+    ├───default-x86_64-4: NixOS configuration
+    └───default-x86_64-5: NixOS configuration
+```
+
+> **💡 提示**：此功能仅修改单个主机目录的 `default.nix` 内部变量，
+> 不影响其他主机目录，也无需改动调用方代码。
 
 ---
 
