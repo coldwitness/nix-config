@@ -1,11 +1,8 @@
 {
-  inputs,
   ...
 }:
-let
-  vars = import ../../../vars { inherit inputs; };
-in
 {
+  # 提供一个开箱即用的 fish shell
   cli = {
     # cat 替代品, 带语法高亮和行号
     bat.enable = true;
