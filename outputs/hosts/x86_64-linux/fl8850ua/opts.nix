@@ -9,6 +9,7 @@ let
   functions = import ../../../../functions { inherit inputs; };
   predefinedOptSetsList = [
     optSets.baseEnv
+    optSets.fishShell
     optSets.baseUsers
   ];
   customOptSets ={
@@ -19,15 +20,8 @@ let
       ];
     };
     cli = {
-      bat.enable = true;
-      eza.enable = true;
-      fzf.enable = true;
       ssh.enable = true;
       tmux.enable = true;
-      yazi.enable = true;
-      btop.enable = true;
-      starship.enable = true;
-      fastfetch.enable = true;
       opencode.enable = true;
       mcp-nixos.enable = true;
       nix.substituters = [
@@ -49,9 +43,6 @@ let
     };
     editor = {
       vscode.enable = true;
-    };
-    shell = {
-      fish.enable = true;
     };
     desktop = {
       type = vars.desktopTypes.hyprland;
