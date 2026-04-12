@@ -8,7 +8,7 @@ let
   functions = import ../../../functions { inherit inputs; };
   # 预定义选项集列表
   predefinedOptSetsList = [
-    optSets.baseEnv
+    # 按需启用
   ];
   # 自定义选项集
   customOptSets ={
@@ -16,14 +16,20 @@ let
     nixConfigPath = "/path/to/nix-config";
     # ========== CLI 工具模块 - 命令行实用工具 ==========
     cli = {
+      # Nix CLI 助手, 自动清理旧一代系统配置
+      nh.enable = true;
       # cat 替代品, 带语法高亮和行号
       bat.enable = false;
       # ls 替代品, 现代文件列表工具
       eza.enable = false;
       # 命令行模糊搜索工具
       fzf.enable = false;
+      # 分布式版本控制系统
+      git.enable = true;
       # 安全远程登录客户端
       ssh.enable = false;
+      # 命令运行器, 类似 Makefile
+      just.enable = true;
       # 终端复用器, 可在一个终端中运行多个会话
       tmux.enable = false;
       # 用 Rust 编写的快速文件管理器

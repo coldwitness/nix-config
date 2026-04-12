@@ -5,7 +5,14 @@
 }:
 let
   vars = import ../../../../vars { inherit inputs; };
-  opts = {
+  optSets = import ../../../optSets { inherit inputs; };
+  functions = import ../../../../functions { inherit inputs; };
+  # 预定义选项集列表
+  predefinedOptSetsList = [
+    # 按需启用
+  ];
+  # 自定义选项集
+  customOptSets ={
     # nix-config 仓库本身所在路径
     nixConfigPath = "/home/admin/workspace/nix-config";
   # ========== Users 模块 - 用户配置 ==========
@@ -227,5 +234,6 @@ let
       portainer-agent.enable = false;
     };
   };
+  opts = functions.mergeOptSetsList customOptSets predefinedOptSetsList;
 in
 opts
