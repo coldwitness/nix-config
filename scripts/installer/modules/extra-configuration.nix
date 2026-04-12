@@ -22,13 +22,13 @@
   # Nix 包管理器配置
   nix.settings = {
     substituters = [
-    "https://mirror.sjtu.edu.cn/nix-channels/store"
-    # 添加中科大镜像源
-    "https://mirrors.ustc.edu.cn/nix-channels/store"
-    # 清华大学镜像源
-    "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-    # 默认官方源
-    "https://cache.nixos.org"
+      "https://mirror.sjtu.edu.cn/nix-channels/store"
+      # 添加中科大镜像源
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      # 清华大学镜像源
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      # 默认官方源
+      "https://cache.nixos.org"
     ];
     # 启用实验性功能
     experimental-features = [
@@ -45,18 +45,18 @@
     # 用户配置
     users = {
       root = {
-      # 哈希密码(默认 passwd)
-      hashedPassword = "$6$a46xJM8CZ80Jplk2$BiG06wUNzicRYKStqIh0vV2ZE87NHQyvh27jD.gJawiu8wGrFw6zNunzpNb7aXhjyU.4x/UZZvFT05rEAjzGT0";
-    };
+        # 哈希密码(默认 passwd)
+        hashedPassword = "$6$a46xJM8CZ80Jplk2$BiG06wUNzicRYKStqIh0vV2ZE87NHQyvh27jD.gJawiu8wGrFw6zNunzpNb7aXhjyU.4x/UZZvFT05rEAjzGT0";
+      };
       admin = {
         # 普通用户
-      isNormalUser = true;
-      # 添加用户到额外组
-      extraGroups = [
-        "wheel"
-        "networkmanager"
-      ];
-      hashedPassword = "$6$a46xJM8CZ80Jplk2$BiG06wUNzicRYKStqIh0vV2ZE87NHQyvh27jD.gJawiu8wGrFw6zNunzpNb7aXhjyU.4x/UZZvFT05rEAjzGT0";
+        isNormalUser = true;
+        # 添加用户到额外组
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+        ];
+        hashedPassword = "$6$a46xJM8CZ80Jplk2$BiG06wUNzicRYKStqIh0vV2ZE87NHQyvh27jD.gJawiu8wGrFw6zNunzpNb7aXhjyU.4x/UZZvFT05rEAjzGT0";
       };
     };
   };

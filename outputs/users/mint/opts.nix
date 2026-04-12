@@ -10,7 +10,7 @@ let
     optSets.baseEnv
     optSets.fishShell
   ];
-  customOptSets ={
+  customOptSets = {
     nixConfigPath = "/home/mint/workspace/mochen/nix-config";
     cli = {
       nvitop.enable = true;

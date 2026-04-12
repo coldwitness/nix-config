@@ -22,7 +22,8 @@ in
           cursor_shape = "beam";
           # 输入时立即隐藏鼠标
           mouse_hide_wait = -1.0;
-        } // lib.optionalAttrs fishEnable {
+        }
+        // lib.optionalAttrs fishEnable {
           # 指定 shell
           shell = "fish";
         };

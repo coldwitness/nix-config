@@ -8,10 +8,7 @@ let
   cfg = opts.service.rustdesk-server or { };
   finallyEnable = cfg.enable or false;
   settingsFile = "${inputs.secrets}/rustdesk-server/${opts.hardware.networking.hostName}.nix";
-  settings =
-    if builtins.pathExists settingsFile 
-    then import settingsFile
-    else { };
+  settings = if builtins.pathExists settingsFile then import settingsFile else { };
   relayHosts = settings.relayHosts or [ ];
 in
 {

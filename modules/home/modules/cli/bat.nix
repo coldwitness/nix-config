@@ -10,7 +10,7 @@ in
 {
   config = lib.mkIf finallyEnable {
     programs.bat = {
-      enable =true;
+      enable = true;
     };
   };
 }

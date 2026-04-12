@@ -3,24 +3,26 @@ let
   inherit (inputs.nixpkgs) lib;
   inherit (import ../vars { inherit inputs; }) systemTypes;
   # 定义所有可用的 pkgs 实例
-  pkgSets = system: with inputs; {
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
+  pkgSets =
+    system: with inputs; {
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      pkgs-2511 = import nixpkgs-2511 {
+        inherit system;
+        config.allowUnfree = true;
+      };
     };
-    pkgs-unstable = import nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-    pkgs-2511 = import nixpkgs-2511 {
-      inherit system;
-      config.allowUnfree = true;
-    };
-  };
   # 读取 hosts 目录下的所有文件和目录
   entries = builtins.readDir ./hosts;
   # 筛选出所有架构目录
-  platformDirs = builtins.filter (n:
+  platformDirs = builtins.filter (
+    n:
     let
       type = entries.${n};
     in
@@ -56,12 +58,14 @@ let
   # 使用方式: nh home switch .#<username>-<platform>
   homeManagerOutputs = builtins.listToAttrs (
     lib.flatten (
-      builtins.map (platform:
+      builtins.map (
+        platform:
         let
-          platformConfigs = (import ./users {
-            inherit lib inputs;
-            pkgSets = pkgSets systemTypes.${platform};
-          }).homeConfigurations;
+          platformConfigs =
+            (import ./users {
+              inherit lib inputs;
+              pkgSets = pkgSets systemTypes.${platform};
+            }).homeConfigurations;
         in
         builtins.map (username: {
           name = "${username}-${platform}";
@@ -74,4 +78,5 @@ in
 {
   nixosConfigurations = allNixosConfigurations;
   homeConfigurations = allHomeConfigurations;
-} // homeManagerOutputs
+}
+// homeManagerOutputs

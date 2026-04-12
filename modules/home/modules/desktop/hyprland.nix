@@ -22,35 +22,37 @@ in
       enable = true;
       xwayland.enable = true;
       settings = {
-      # ========== 显示器 ==========
+        # ========== 显示器 ==========
         monitor = [
           # 格式: 名称, 分辨率, 位置, 缩放
           ", preferred, auto, 1"
         ];
-      # ========== 变量 ==========
+        # ========== 变量 ==========
         # 终端模拟器
         "$terminal" =
-          if kittyEnable then "kitty"
-          else if footEnable then "foot"
-          else "";
+          if kittyEnable then
+            "kitty"
+          else if footEnable then
+            "foot"
+          else
+            "";
         # 系统活动监控器
         "$top" =
-          if missionCenterEnable then "missioncenter"
-          else if btopEnable then "$terminal -e btop"
-          else "$terminal -e top";
+          if missionCenterEnable then
+            "missioncenter"
+          else if btopEnable then
+            "$terminal -e btop"
+          else
+            "$terminal -e top";
         # 文件管理器
-        "$fileManager" =
-          if yaziEnable then "$terminal -e yazi"
-          else "";
+        "$fileManager" = if yaziEnable then "$terminal -e yazi" else "";
         # 程序启动菜单
-        "$menu" =
-          if dmsEnable then "dms ipc call spotlight toggle"
-          else "";
+        "$menu" = if dmsEnable then "dms ipc call spotlight toggle" else "";
         # 屏幕截图
         "$screenshot" = "dms screenshot";
         # 主修饰键
         "$mainMod" = "SUPER";
-      # ========== 自启动 ==========
+        # ========== 自启动 ==========
         exec-once = lib.filter (x: x != null) ([
           # DankMaterialShell
           (lib.mkIf dmsEnable "dms run")
@@ -59,12 +61,12 @@ in
           # 自动挂载 U 盘
           (lib.mkIf udiskieEnable "udiskie")
         ]);
-      # ========== 环境变量 ==========
+        # ========== 环境变量 ==========
         env = [
           "XCURSOR_SIZE,24"
           "HYPRCURSOR_SIZE,24"
         ];
-      # ========== 外观与视觉 ==========
+        # ========== 外观与视觉 ==========
         # 布局
         general = {
           # 窗口内边距
@@ -145,7 +147,7 @@ in
         dwindle = {
           # 伪平铺主开关, 开启后可按 mainMod + P 切换
           pseudotile = true;
-          # 保持分割状态, 建议开启 
+          # 保持分割状态, 建议开启
           preserve_split = true;
         };
         # 垂直平铺布局
@@ -159,7 +161,7 @@ in
           # 如果设置为 true, 则禁用随机显示的 Hyprland 标志/动漫女孩背景
           disable_hyprland_logo = true;
         };
-      # ========== 输入 ==========
+        # ========== 输入 ==========
         input = {
           # 键盘布局
           kb_layout = "us, cn";
@@ -190,7 +192,7 @@ in
         #     sensitivity = -0.5;
         #   }
         # ];
-      # ========== 输快捷键绑定入 ==========
+        # ========== 输快捷键绑定入 ==========
         bind = [
           # 打开终端
           "$mainMod, Q, exec, $terminal"
@@ -280,12 +282,14 @@ in
           ", XF86AudioPlay, exec, playerctl play-pause"
           ", XF86AudioPrev, exec, playerctl previous"
         ];
-      # ========== 窗口和工作区 ==========
+        # ========== 窗口和工作区 ==========
         windowrule = [
           {
             # 忽略所有应用的最大化请求
             name = "suppress-maximize-events";
-            match = { class = ".*"; };
+            match = {
+              class = ".*";
+            };
             suppress_event = "maximize";
           }
           {
@@ -304,7 +308,9 @@ in
           {
             # Hyprland-run 启动器窗口规则
             name = "move-hyprland-run";
-            match = { class = "hyprland-run"; };
+            match = {
+              class = "hyprland-run";
+            };
             move = "20 monitor_h-120";
             float = true;
           }

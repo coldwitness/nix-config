@@ -11,7 +11,7 @@ let
     # 按需启用
   ];
   # 自定义选项集
-  customOptSets ={
+  customOptSets = {
     # nix-config 仓库本身所在路径
     nixConfigPath = "/path/to/nix-config";
     # ========== CLI 工具模块 - 命令行实用工具 ==========
@@ -49,7 +49,7 @@ let
       # nix 文件批量格式化工具
       nixfmt-tree.enable = true;
     };
-  # ========== Tool 模块 - 实用工具 ==========
+    # ========== Tool 模块 - 实用工具 ==========
     tool = {
       # 模块化输入法框架, 支持多种输入法
       fcitx5.enable = false;
@@ -62,14 +62,14 @@ let
       # GUI 系统活动监控器
       mission-center.enable = false;
     };
-  # ========== i18n 模块 - 本地化和语言 ==========
+    # ========== i18n 模块 - 本地化和语言 ==========
     i18n = {
       # 语言环境, 可选项:
       # en-us
       # zh-cn
       locale = vars.localeTypes.en-us;
     };
-  # ========== Media 模块 - 媒体应用 ==========
+    # ========== Media 模块 - 媒体应用 ==========
     media = {
       # 轻量级视频播放器
       mpv.enable = false;
@@ -78,26 +78,26 @@ let
       # 录屏和直播软件
       obs-studio.enable = false;
     };
-  # ========== Editor 模块 - 编辑器配置 ==========
+    # ========== Editor 模块 - 编辑器配置 ==========
     editor = {
       # Neovim 的 Nix 配置
       nixvim.enable = false;
       # Visual Studio Code
       vscode.enable = false;
     };
-  # ========== Shell 模块 - 命令解释器 ==========
+    # ========== Shell 模块 - 命令解释器 ==========
     shell = {
       # 用户友好的命令行 shell
       fish.enable = false;
     };
-  # ========== Terminal 模块 - 终端模拟器 ==========
+    # ========== Terminal 模块 - 终端模拟器 ==========
     terminal = {
       # 轻量级终端模拟器
       foot.enable = false;
       # 跨平台 GPU 加速终端模拟器
       kitty.enable = false;
     };
-  # ========== Internet 模块 - 网络应用 ==========
+    # ========== Internet 模块 - 网络应用 ==========
     internet = {
       # 腾讯 QQ
       qq.enable = false;
@@ -110,7 +110,7 @@ let
       # 即时通讯应用
       telegram-desktop.enable = false;
     };
-  # ========== Hardware 模块 - 硬件配置 ==========
+    # ========== Hardware 模块 - 硬件配置 ==========
     hardware = {
       # 图形驱动配置
       graphics = {

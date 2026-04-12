@@ -18,7 +18,10 @@
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
-              mountOptions = [ "fmask=0022" "dmask=0022" ];
+              mountOptions = [
+                "fmask=0022"
+                "dmask=0022"
+              ];
             };
           };
           root = {
@@ -31,7 +34,10 @@
               subvolumes = {
                 "@" = {
                   mountpoint = "/";
-                  mountOptions = [ "compress=zstd" "noatime" ];
+                  mountOptions = [
+                    "noatime"
+                    "compress=zstd"
+                  ];
                 };
                 "@snapshots" = {
                   mountpoint = "/.snapshots";
@@ -47,11 +53,17 @@
                 };
                 "@nix" = {
                   mountpoint = "/nix";
-                  mountOptions = [ "compress=zstd" "noatime" ];
+                  mountOptions = [
+                    "noatime"
+                    "compress=zstd"
+                  ];
                 };
                 "@log" = {
                   mountpoint = "/var/log";
-                  mountOptions = [ "compress=zstd" "noatime" ];
+                  mountOptions = [
+                    "noatime"
+                    "compress=zstd"
+                  ];
                 };
                 "@swap" = {
                   mountpoint = "/.swap";

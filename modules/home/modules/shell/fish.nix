@@ -15,15 +15,18 @@ in
       fish = {
         enable = true;
         # 在交互式期间初始化调用的 shell 脚本代码
-        interactiveShellInit = ""
+        interactiveShellInit =
+          ""
           # 忽略问候
           + "set -g fish_greeting\n";
         # 命令别名
         shellAliases = {
           rm = "rm -i";
-        } // lib.optionalAttrs batEnable {
+        }
+        // lib.optionalAttrs batEnable {
           cat = "bat";
-        } // lib.optionalAttrs btopEnable {
+        }
+        // lib.optionalAttrs btopEnable {
           top = "btop";
         };
       };

@@ -11,31 +11,36 @@ let
 in
 {
   # 硬件自动检测模块, 会根据当前硬件生成相应的内核模块列表, 并处理一些特定硬件的配置
-  imports = [ ( modulesPath + "/installer/scan/not-detected.nix" ) ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   # 启动相关配置
   boot = {
     # Linux 内核
     kernelPackages =
       let
         # 定义一个函数, 用于构建自定义的内核包
-        linux_lqx_pkg = { fetchurl, buildLinux, ... } @ args:
+        linux_lqx_pkg =
+          { fetchurl, buildLinux, ... }@args:
           #  调用 buildLinux 函数, 传入参数并覆盖部分属性
-          buildLinux (args // rec {
-            # 内核主版本号
-            version = "6.19.11";
-            # 模块目录版本
-            modDirVersion = "${version}-lqx2";
-            # 内核源代码的获取方式
-            src = pkgs.fetchurl {
-              url = "https://github.com/zen-kernel/zen-kernel/archive/refs/tags/v${modDirVersion}.tar.gz";
-              sha256 = "sha256-SpxqXN3EE4y9sTROztmTHSinWqtEZRCUVo3emHNLVis=";
-            };
-            # 额外的内核补丁列表
-            kernelPatches = [ ];
-            #  添加内核包的元数据, 设置分支名便于识别
-            extraMeta.branch = version;
-            # 允许通过 argsOverride 进一步覆盖参数
-          } // (args.argsOverride or { }));
+          buildLinux (
+            args
+            // rec {
+              # 内核主版本号
+              version = "6.19.11";
+              # 模块目录版本
+              modDirVersion = "${version}-lqx2";
+              # 内核源代码的获取方式
+              src = pkgs.fetchurl {
+                url = "https://github.com/zen-kernel/zen-kernel/archive/refs/tags/v${modDirVersion}.tar.gz";
+                sha256 = "sha256-SpxqXN3EE4y9sTROztmTHSinWqtEZRCUVo3emHNLVis=";
+              };
+              # 额外的内核补丁列表
+              kernelPatches = [ ];
+              #  添加内核包的元数据, 设置分支名便于识别
+              extraMeta.branch = version;
+              # 允许通过 argsOverride 进一步覆盖参数
+            }
+            // (args.argsOverride or { })
+          );
         #  使用 pkgs.callPackage 调用上面定义的函数, 自动解析并传入所需的依赖
         linux_lqx = pkgs.callPackage linux_lqx_pkg { };
       in
@@ -43,7 +48,7 @@ in
       # 然后使用 recurseIntoAttrs 让该属性集在 nix-env 等命令中被正确展开
       lib.recurseIntoAttrs (pkgs.linuxPackagesFor linux_lqx);
     # initrd 阶段加载的模块(根文件系统挂载前)
-    initrd ={
+    initrd = {
       # 由 udev 自动探测加载的模块列表(会打包进 initrd)
       # 这些模块用于在早期启动时识别硬件
       availableKernelModules = [
@@ -79,42 +84,69 @@ in
     "/boot" = {
       device = systemBootDevice;
       fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
     };
     "/" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@" "compress=zstd" "noatime" ];
+      options = [
+        "subvol=@"
+        "noatime"
+        "compress=zstd"
+      ];
     };
     "/.snapshots" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@snapshots" "compress=zstd" ];
+      options = [
+        "subvol=@snapshots"
+        "compress=zstd"
+      ];
     };
     "/home" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@home" "compress=zstd" ];
+      options = [
+        "subvol=@home"
+        "compress=zstd"
+      ];
     };
     "/home/.snapshots" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@home-snapshots" "compress=zstd" ];
+      options = [
+        "subvol=@home-snapshots"
+        "compress=zstd"
+      ];
     };
     "/nix" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@nix" "compress=zstd" "noatime" ];
+      options = [
+        "subvol=@nix"
+        "noatime"
+        "compress=zstd"
+      ];
     };
     "/var/log" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@log" "compress=zstd" "noatime" ];
+      options = [
+        "subvol=@log"
+        "noatime"
+        "compress=zstd"
+      ];
     };
     "/.swap" = {
       device = systemFileDevice;
       fsType = "btrfs";
-      options = [ "subvol=@swap" "nodatacow" ];
+      options = [
+        "subvol=@swap"
+        "nodatacow"
+      ];
     };
   };
   # 交换设备和交换文件

@@ -10,7 +10,7 @@ let
 in
 {
   config = lib.mkIf finallyEnable {
-    services.snapper.configs ={
+    services.snapper.configs = {
       root = {
         # 文件系统类型
         FSTYPE = "btrfs";

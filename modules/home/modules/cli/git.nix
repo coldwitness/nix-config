@@ -12,7 +12,7 @@ in
     programs.git = {
       enable = true;
       settings = {
-        user ={
+        user = {
           name = "骑士姬";
           email = "2067834160@qq.com";
         };

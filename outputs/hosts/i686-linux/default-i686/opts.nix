@@ -12,10 +12,10 @@ let
     # 按需启用
   ];
   # 自定义选项集
-  customOptSets ={
+  customOptSets = {
     # nix-config 仓库本身所在路径
     nixConfigPath = "/home/admin/workspace/nix-config";
-  # ========== Users 模块 - 用户配置 ==========
+    # ========== Users 模块 - 用户配置 ==========
     users = {
       root = {
         # 哈希密码
@@ -34,7 +34,7 @@ let
         hashedPassword = "$6$a46xJM8CZ80Jplk2$BiG06wUNzicRYKStqIh0vV2ZE87NHQyvh27jD.gJawiu8wGrFw6zNunzpNb7aXhjyU.4x/UZZvFT05rEAjzGT0";
       };
     };
-  # ========== CLI 工具模块 - 命令行实用工具 ==========
+    # ========== CLI 工具模块 - 命令行实用工具 ==========
     cli = {
       # Nix CLI 助手, 自动清理旧一代系统配置
       nh.enable = true;
@@ -80,7 +80,7 @@ let
         "https://cache.nixos.org"
       ];
     };
-  # ========== Tool 模块 - 实用工具 ==========
+    # ========== Tool 模块 - 实用工具 ==========
     tool = {
       # 模块化输入法框架, 支持多种输入法
       fcitx5.enable = true;
@@ -95,14 +95,14 @@ let
       # GUI 系统活动监控器
       mission-center.enable = false;
     };
-  # ========== i18n 模块 - 本地化和语言 ==========
+    # ========== i18n 模块 - 本地化和语言 ==========
     i18n = {
       # 语言环境, 可选项:
       # en-us
       # zh-cn
       locale = vars.localeTypes.zh-cn;
     };
-  # ========== Media 模块 - 媒体应用 ==========
+    # ========== Media 模块 - 媒体应用 ==========
     media = {
       # 轻量级视频播放器
       mpv.enable = false;
@@ -111,19 +111,19 @@ let
       # 录屏和直播软件
       obs-studio.enable = false;
     };
-  # ========== Editor 模块 - 编辑器配置 ==========
+    # ========== Editor 模块 - 编辑器配置 ==========
     editor = {
       # Neovim 的 Nix 配置
       nixvim.enable = false;
       # Visual Studio Code
       vscode.enable = false;
     };
-  # ========== Shell 模块 - 命令解释器 ==========
+    # ========== Shell 模块 - 命令解释器 ==========
     shell = {
       # 用户友好的命令行 shell
       fish.enable = true;
     };
-  # ========== Desktop 模块 - 桌面环境 ==========
+    # ========== Desktop 模块 - 桌面环境 ==========
     desktop = {
       # 桌面类型, 可选项:
       # disable(不启用桌面, 这将连带禁用所有图形应用)
@@ -136,14 +136,14 @@ let
         softwareRenderingEnable = false;
       };
     };
-  # ========== Terminal 模块 - 终端模拟器 ==========
+    # ========== Terminal 模块 - 终端模拟器 ==========
     terminal = {
       # 轻量级终端模拟器
       foot.enable = false;
       # 跨平台 GPU 加速终端模拟器
       kitty.enable = true;
     };
-  # ========== Service 模块 - 系统服务 ==========
+    # ========== Service 模块 - 系统服务 ==========
     service = {
       # 内网穿透工具
       frp.enable = false;
@@ -170,7 +170,7 @@ let
       # 远程桌面服务器
       rustdesk-server.enable = false;
     };
-  # ========== Internet 模块 - 网络应用 ==========
+    # ========== Internet 模块 - 网络应用 ==========
     internet = {
       # 腾讯 QQ
       qq.enable = false;
@@ -183,7 +183,7 @@ let
       # 即时通讯应用
       telegram-desktop.enable = false;
     };
-  # ========== Hardware 模块 - 硬件配置 ==========
+    # ========== Hardware 模块 - 硬件配置 ==========
     hardware = {
       # 内存压缩配置
       zram.enable = false;
@@ -228,7 +228,7 @@ let
         type = vars.bootLoaderTypes.systemd-boot;
       };
     };
-  # ========== Container 模块 - 容器管理 ==========
+    # ========== Container 模块 - 容器管理 ==========
     container = {
       # 容器引擎, Docker 替代品
       podman.enable = false;

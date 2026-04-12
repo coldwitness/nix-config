@@ -12,7 +12,7 @@ let
     optSets.fishShell
     optSets.baseUsers
   ];
-  customOptSets ={
+  customOptSets = {
     nixConfigPath = "/home/admin/workspace/nix-config";
     users = {
       admin.extraGroups = [

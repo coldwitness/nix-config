@@ -11,7 +11,7 @@ let
     optSets.baseEnv
     optSets.baseUsers
   ];
-  customOptSets ={
+  customOptSets = {
     nixConfigPath = "/home/admin/workspace/nix-config";
     cli = {
       bat.enable = true;

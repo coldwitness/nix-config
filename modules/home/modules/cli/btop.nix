@@ -13,7 +13,8 @@ in
   config = lib.mkIf finallyEnable {
     programs.btop = {
       enable = true;
-    } // lib.optionalAttrs (gpuType == "amd") {
+    }
+    // lib.optionalAttrs (gpuType == "amd") {
       package = pkgs.btop-rocm;
     };
   };

@@ -11,7 +11,7 @@ in
   # 启动相关配置
   boot = {
     # initrd 阶段加载的模块(根文件系统挂载前)
-    initrd ={
+    initrd = {
       # 由 udev 自动探测加载的模块列表(会打包进 initrd)
       # 这些模块用于在早期启动时识别硬件
       availableKernelModules = [
@@ -42,7 +42,10 @@ in
     "/boot/efi" = {
       device = systemBootDevice;
       fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
     };
     "/" = {
       device = "/dev/vda3";

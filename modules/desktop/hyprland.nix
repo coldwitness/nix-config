@@ -4,7 +4,7 @@
   ...
 }:
 let
-  cfg = opts.desktop  or { };
+  cfg = opts.desktop or { };
   finallyEnable = (cfg.type or "") == "hyprland";
 in
 {

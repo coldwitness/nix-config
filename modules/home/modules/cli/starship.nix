@@ -13,7 +13,8 @@ in
       enable = true;
       settings = {
         "$schema" = "https://starship.rs/config-schema.json";
-        format = ""
+        format =
+          ""
           + "[ ](#FF69B4)"
           + "$os"
           + "$username"
@@ -39,8 +40,7 @@ in
           + "$scala"
           + "[](bg:#FFFFFF fg:#FFE1F0 )"
           + "$time"
-          + "[ ](fg:#FFFFFF)"
-        ;
+          + "[ ](fg:#FFFFFF)";
         os = {
           style = "bg:#FF69B4 fg:#FFFFFF";
           disabled = false;

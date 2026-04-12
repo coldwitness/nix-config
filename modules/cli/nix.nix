@@ -8,10 +8,7 @@ let
   cfg = opts.cli.nix or { };
   substituters = cfg.substituters or [ ];
   GITHUB_TOKEN = inputs.secrets.GITHUB_TOKEN or "";
-  accessTokens =
-    if GITHUB_TOKEN != ""
-    then "access-tokens = github.com=${GITHUB_TOKEN}"
-    else "";
+  accessTokens = if GITHUB_TOKEN != "" then "access-tokens = github.com=${GITHUB_TOKEN}" else "";
 in
 {
   nix = {

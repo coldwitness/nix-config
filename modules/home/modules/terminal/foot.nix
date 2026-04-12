@@ -25,13 +25,14 @@ in
             style = "beam";
           };
           mouse = {
-          # 输入时立即隐藏鼠标
+            # 输入时立即隐藏鼠标
             hide-when-typing = "yes";
           };
           main = {
             # DPI 感知
             dpi-aware = "yes";
-          } // lib.optionalAttrs fishEnable {
+          }
+          // lib.optionalAttrs fishEnable {
             # 指定 shell
             shell = "fish";
           };
