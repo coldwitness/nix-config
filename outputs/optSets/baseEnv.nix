@@ -2,6 +2,7 @@
   ...
 }:
 {
+  # 使用此仓库所需要的环境
   cli = {
     # Nix CLI 助手, 自动清理旧一代系统配置
     nh.enable = true;
@@ -9,7 +10,5 @@
     git.enable = true;
     # 命令运行器, 类似 Makefile
     just.enable = true;
-    # nix 文件批量格式化工具
-    nixfmt-tree.enable = true;
   };
 }

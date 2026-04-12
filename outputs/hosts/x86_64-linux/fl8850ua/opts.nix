@@ -8,6 +8,7 @@ let
   optSets = import ../../../optSets { inherit inputs; };
   functions = import ../../../../functions { inherit inputs; };
   predefinedOptSetsList = [
+    optSets.devEnv
     optSets.baseEnv
     optSets.fishShell
     optSets.baseUsers
@@ -23,7 +24,6 @@ let
       ssh.enable = true;
       tmux.enable = true;
       opencode.enable = true;
-      mcp-nixos.enable = true;
       nix.substituters = [
         "https://cache.nixos.org"
       ];
