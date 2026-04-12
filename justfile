@@ -13,3 +13,7 @@ update *args:
 # 清理系统
 clean *args:
     nh clean all --ask {{args}}
+
+# 格式化 nix 文件
+fmt:
+    treefmt .

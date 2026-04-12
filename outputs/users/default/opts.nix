@@ -46,6 +46,8 @@ let
       opencode.enable = false;
       # NixOS MCP
       mcp-nixos.enable = false;
+      # nix 文件批量格式化工具
+      nixfmt-tree.enable = true;
     };
   # ========== Tool 模块 - 实用工具 ==========
     tool = {

@@ -66,6 +66,8 @@ let
       opencode.enable = false;
       # NixOS MCP
       mcp-nixos.enable = false;
+      # nix 文件批量格式化工具
+      nixfmt-tree.enable = true;
       # Nix 包管理器配置
       nix.substituters = [
         # 上海交大镜像源
