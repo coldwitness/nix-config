@@ -1,7 +1,5 @@
 {
   inputs = {
-    self.submodules = true;
-    secrets.url = ./secrets;
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
@@ -21,6 +19,10 @@
     };
     nixvim = {
       url = "github:nix-community/nixvim/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mcp-nixos = {

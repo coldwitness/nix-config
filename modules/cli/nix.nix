@@ -1,16 +1,25 @@
 {
   lib,
   opts,
+  config,
   inputs,
   ...
 }:
 let
   cfg = opts.cli.nix or { };
   substituters = cfg.substituters or [ ];
-  GITHUB_TOKEN = inputs.secrets.GITHUB_TOKEN or "";
-  accessTokens = if GITHUB_TOKEN != "" then "access-tokens = github.com=${GITHUB_TOKEN}" else "";
 in
 {
+  sops = {
+    secrets."nix-extra-options.conf" = {
+      sopsFile = ../../secrets/nix.ini;
+      format = "ini";
+      # 只有 root 和 sudo 用户可读
+      owner = "root";
+      group = "wheel";
+      mode = "0440";
+    };
+  };
   nix = {
     settings = {
       # 源配置
@@ -23,6 +32,7 @@ in
         "flakes"
       ];
     };
-    extraOptions = accessTokens;
+    # 通过 !include 包含运行时生成的配置文件(宽容模式, 如果指定的文件不存在 Nix 会忽略该指令)
+    extraOptions = "!include ${config.sops.secrets."nix-extra-options.conf".path}";
   };
 }
