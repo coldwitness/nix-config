@@ -28,9 +28,10 @@
 graph TB
     subgraph L5["📦 Layer 5: 基础设施层"]
         direction LR
-        VARS["vars/<br/>systemTypes, desktopTypes, gpuTypes"]
+        VARS["vars/<br/>systemTypes, desktopTypes, gpuTypes<br/>frpRoleTypes, localeTypes"]
         FUNC["functions/<br/>importSubdirModules, importDirFiles<br/>mergeOptSetsList"]
-        SECRETS["secrets/<br/>Git 子模块管理"]
+        SECRETS["secrets/ + .sops.yaml<br/>sops + age 加密管理"]
+        INSTALLER["scripts/installer/<br/>系统安装器（disk/user/host）"]
     end
 
     subgraph L4["⚙️ Layer 4: 功能实现层"]
@@ -417,9 +418,9 @@ touch modules/service/my-new-service.nix
 
 ```bash
 看到这个结构，你就知道：
-- 有 3 个 CPU 架构平台
-- x86_64 下有 3 台主机
-- 有 3 个用户
+- 有 n 个架构平台
+- x86_64 下有 n 台主机
+- 有 n 个用户
 - 服务模块包括 openssh, nginx, greetd...
 ```
 
@@ -627,11 +628,11 @@ openssh.nix 不知道:
 
 #### 3. opts.nix 是唯一的通讯录
 
-```bash
-模块间的"通话"必须经过 opts:
+```txt
+模块间的“通话”必须经过 opts:
 
 openssh.nix ──► opts.service.openssh ◄── alc/opts.nix
-                                        │
+                                               │
 networking.nix ◄── opts.hardware.networking ◄──┘
 ```
 
@@ -662,20 +663,20 @@ opts.nix 扮演了**中介者（Mediator）**的角色，但比经典的 GoF 中
 
 以下是框架的关键设计决策及其理由：
 
-| 决策项           | 选择                              | 替代方案                | 理由                                                                           |
-| ---------------- | --------------------------------- | ----------------------- | ------------------------------------------------------------------------------ |
-| **组件发现机制** | 自动发现（readDir + filter）      | 显式注册（维护列表）    | 符合开闭原则，新增组件无需修改现有代码，降低遗漏风险                           |
-| **配置组织方式** | opts.nix 集中配置                 | 分散到各模块文件        | 单一数据源，配置意图一目了然，便于 Code Review 和审计                          |
-| **选项复用机制** | optSets 组合式（深度合并）        | 继承式（extends/base）  | 组合更灵活，支持任意数量的选项集混合，避免钻石继承问题                         |
-| **模块分层**     | 双层模块（系统/用户）             | 单层混合                | 关注点分离，系统配置与用户配置生命周期不同，权限边界清晰                       |
-| **用户子系统**   | 双模式单文件（isStandAlone 判断） | 分离为两个独立文件      | 避免 DRY 违反，两种模式共享发现逻辑，减少同步维护成本                          |
-| **函数库管理**   | 手动注册（default.nix）           | 自动发现                | 函数有语义和依赖关系，需要显式导出，避免命名冲突                               |
-| **选项集合并**   | mergeOptSetsList 深度合并         | 浅覆盖（// 操作符）     | 列表字段需要拼接而非覆盖（如 extraGroups、substituters），嵌套配置需要递归处理 |
-| **批量生成控制** | count 内部变量                    | 外部函数参数            | count 是主机模板的内部属性，不属于外部接口，封装性更好                         |
-| **模块激活机制** | lib.mkIf finallyEnable            | 始终加载 + 条件配置     | 未启用的模块完全不计入构建图，提升评估性能，避免副作用                         |
-| **多包实例**     | pkgSets 定义 3 套 pkgs            | 单一 nixpkgs + overlays | 版本隔离更彻底，避免 unstable 包破坏 stable 系统，支持按需选择稳定性等级       |
-| **平台映射**     | vars/systemTypes 显式映射         | 目录名直接作为系统标识  | 支持别名（如 `x86_64` → `x86_64-linux`），灵活的命名策略                       |
-| **密钥管理**     | Git 子模块（secrets/）            | sops/nage、git-crypt    | 子模型简单通用，不引入额外依赖，适合当前规模；未来可迁移                       |
+| 决策项           | 选择                              | 替代方案                    | 理由                                                                                                            |
+| ---------------- | --------------------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **组件发现机制** | 自动发现（readDir + filter）      | 显式注册（维护列表）        | 符合开闭原则，新增组件无需修改现有代码，降低遗漏风险                                                            |
+| **配置组织方式** | opts.nix 集中配置                 | 分散到各模块文件            | 单一数据源，配置意图一目了然，便于 Code Review 和审计                                                           |
+| **选项复用机制** | optSets 组合式（深度合并）        | 继承式（extends/base）      | 组合更灵活，支持任意数量的选项集混合，避免钻石继承问题                                                          |
+| **模块分层**     | 双层模块（系统/用户）             | 单层混合                    | 关注点分离，系统配置与用户配置生命周期不同，权限边界清晰                                                        |
+| **用户子系统**   | 双模式单文件（isStandAlone 判断） | 分离为两个独立文件          | 避免 DRY 违反，两种模式共享发现逻辑，减少同步维护成本                                                           |
+| **函数库管理**   | 手动注册（default.nix）           | 自动发现                    | 函数有语义和依赖关系，需要显式导出，避免命名冲突                                                                |
+| **选项集合并**   | mergeOptSetsList 深度合并         | 浅覆盖（// 操作符）         | 列表字段需要拼接而非覆盖（如 extraGroups、substituters），嵌套配置需要递归处理                                  |
+| **批量生成控制** | count 内部变量                    | 外部函数参数                | count 是主机模板的内部属性，不属于外部接口，封装性更好                                                          |
+| **模块激活机制** | lib.mkIf finallyEnable            | 始终加载 + 条件配置         | 未启用的模块完全不计入构建图，提升评估性能，避免副作用                                                          |
+| **多包实例**     | pkgSets 定义 3 套 pkgs            | 单一 nixpkgs + overlays     | 版本隔离更彻底，避免 unstable 包破坏 stable 系统，支持按需选择稳定性等级                                        |
+| **平台映射**     | vars/systemTypes 显式映射         | 目录名直接作为系统标识      | 支持别名（如 `x86_64` → `x86_64-linux`），灵活的命名策略                                                        |
+| **密钥管理**     | sops + age 加密（.sops.yaml）     | Git 子模块、git-crypt、nage | age 密钥现代且安全，sops 与 NixOS 深度集成（sops-nix），支持密钥轮换和细粒度访问控制；.sops.yaml 声明式加密规则 |
 
 ### 决策哲学
 
