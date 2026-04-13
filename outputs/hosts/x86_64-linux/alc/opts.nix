@@ -9,20 +9,13 @@ let
   functions = import ../../../../functions { inherit inputs; };
   predefinedOptSetsList = [
     optSets.baseEnv
+    optSets.fishShell
     optSets.baseUsers
   ];
   customOptSets = {
     nixConfigPath = "/home/admin/workspace/nix-config";
     cli = {
-      bat.enable = true;
-      eza.enable = true;
-      fzf.enable = true;
-      ssh.enable = true;
       tmux.enable = true;
-      yazi.enable = true;
-      btop.enable = true;
-      starship.enable = true;
-      fastfetch.enable = true;
       nix.substituters = [
         "https://mirror.sjtu.edu.cn/nix-channels/store"
         "https://cache.nixos.org"
@@ -31,12 +24,12 @@ let
     i18n = {
       locale = vars.localeTypes.en-us;
     };
-    shell = {
-      fish.enable = true;
-    };
     service = {
-      frp.enable = true;
       openssh.enable = true;
+      frp = {
+        enable = true;
+        role = vars.frpRoleTypes.server;
+      };
       zerotierone = {
         enable = true;
         joinNetworks = [ "98c7dece649d0152" ];

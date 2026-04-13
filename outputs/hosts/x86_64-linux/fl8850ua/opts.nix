@@ -54,7 +54,6 @@ let
       kitty.enable = true;
     };
     service = {
-      frp.enable = true;
       greetd.enable = true;
       logind.enable = true;
       openssh.enable = true;
@@ -62,6 +61,19 @@ let
       udiskie.enable = true;
       pipewire.enable = true;
       libinput.enable = true;
+      frp = {
+        enable = true;
+        role = vars.frpRoleTypes.client;
+        proxies = [
+          {
+            name = "ssh-fl8850ua";
+            type = "tcp";
+            localIP = "localhost";
+            localPort = 22;
+            remotePort = 2222;
+          }
+        ];
+      };
       zerotierone = {
         enable = true;
         joinNetworks = [ "98c7dece649d0152" ];

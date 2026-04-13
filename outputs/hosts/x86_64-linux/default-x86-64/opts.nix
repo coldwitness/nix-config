@@ -145,8 +145,6 @@ let
     };
     # ========== Service 模块 - 系统服务 ==========
     service = {
-      # 内网穿透工具
-      frp.enable = false;
       # HTTP 和反向代理 web 服务器
       nginx.enable = false;
       # 轻量级登录管理器
@@ -165,6 +163,12 @@ let
       libinput.enable = true;
       # 通用代理工具
       sing-box.enable = false;
+      # 内网穿透工具
+      frp = {
+        enable = false;
+        role = vars.frpRoleTypes.server;
+        proxies = [ ];
+      };
       # P2P VPN 服务
       zerotierone = {
         enable = true;

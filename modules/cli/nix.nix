@@ -10,15 +10,13 @@ let
   substituters = cfg.substituters or [ ];
 in
 {
-  sops = {
-    secrets."nix-extra-options.conf" = {
-      sopsFile = ../../secrets/nix.ini;
-      format = "ini";
-      # 只有 root 和 sudo 用户可读
-      owner = "root";
-      group = "wheel";
-      mode = "0440";
-    };
+  sops.secrets."nix-extra-options.conf" = {
+    sopsFile = ../../secrets/nix.ini;
+    format = "ini";
+    # 只有 root 和 sudo 用户可读
+    owner = "root";
+    group = "wheel";
+    mode = "0440";
   };
   nix = {
     settings = {
