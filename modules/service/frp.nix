@@ -7,7 +7,8 @@
 }:
 let
   cfg = opts.service.frp or { };
-  finallyEnable = cfg.enable or false;
+  enableSopsNix = opts.service.spos-nix.enable or false;
+  finallyEnable = cfg.enable or false && enableSopsNix;
   role = cfg.role or "server";
   proxies = cfg.proxies or [ ];
 in

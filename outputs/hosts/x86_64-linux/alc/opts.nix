@@ -26,6 +26,7 @@ let
     };
     service = {
       openssh.enable = true;
+      spos-nix.enable = true;
       frp = {
         enable = true;
         role = vars.frpRoleTypes.server;

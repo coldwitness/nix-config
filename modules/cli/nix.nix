@@ -8,9 +8,10 @@
 let
   cfg = opts.cli.nix or { };
   substituters = cfg.substituters or [ ];
+  enableSopsNix = opts.service.spos-nix.enable or false;
 in
 {
-  sops.secrets."nix-extra-options.conf" = {
+  sops.secrets."nix-extra-options.conf" = lib.mkIf enableSopsNix {
     sopsFile = ../../secrets/nix.ini;
     format = "ini";
     # 只有 root 和 sudo 用户可读
@@ -31,6 +32,8 @@ in
       ];
     };
     # 通过 !include 包含运行时生成的配置文件(宽容模式, 如果指定的文件不存在 Nix 会忽略该指令)
-    extraOptions = "!include ${config.sops.secrets."nix-extra-options.conf".path}";
+    extraOptions = lib.mkIf enableSopsNix "!include ${
+      config.sops.secrets."nix-extra-options.conf".path
+    }";
   };
 }

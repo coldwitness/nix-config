@@ -61,6 +61,7 @@ let
       udiskie.enable = true;
       pipewire.enable = true;
       libinput.enable = true;
+      spos-nix.enable = true;
       frp = {
         enable = true;
         role = vars.frpRoleTypes.client;

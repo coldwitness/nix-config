@@ -165,6 +165,8 @@ let
       libinput.enable = true;
       # 通用代理工具
       sing-box.enable = false;
+      # Spos Nix 服务
+      spos-nix.enable = false;
       # 内网穿透工具
       frp = {
         enable = false;

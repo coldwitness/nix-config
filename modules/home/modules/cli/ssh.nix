@@ -6,10 +6,8 @@
 }:
 let
   cfg = opts.cli.ssh or { };
-  finallyEnable = cfg.enable or false;
-  settingsFile = "${inputs.secrets}/ssh";
-  settings = if builtins.pathExists settingsFile then import settingsFile { inherit opts; } else { };
-  matchBlocks = settings.matchBlocks or { };
+  enableSopsNix = opts.service.spos-nix.enable or false;
+  finallyEnable = cfg.enable or false && enableSopsNix;
 in
 {
   config = lib.mkIf finallyEnable {
@@ -17,7 +15,6 @@ in
       enable = true;
       # 默认配置
       enableDefaultConfig = false;
-      inherit matchBlocks;
     };
   };
 }
