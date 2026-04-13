@@ -35,7 +35,7 @@ let
         };
         modules = [
           ../../../users
-          ../../../../modules
+          ../../../../modules/nixos
           ./hardware-configuration.nix
           { system.stateVersion = "25.11"; }
         ];

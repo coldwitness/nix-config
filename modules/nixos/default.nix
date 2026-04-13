@@ -3,7 +3,7 @@
   ...
 }:
 let
-  functions = import ../functions { inherit inputs; };
+  functions = import ../../functions { inherit inputs; };
 in
 {
   imports = functions.importSubdirModules ./.;

@@ -15,7 +15,7 @@ in
 {
   config = lib.mkIf finallyEnable {
     sops.secrets."frp.env" = {
-      sopsFile = ../../secrets/frp.env;
+      sopsFile = ../../../secrets/frp.env;
       format = "dotenv";
       owner = "root";
       group = "root";

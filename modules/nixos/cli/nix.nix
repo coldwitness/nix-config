@@ -12,7 +12,7 @@ let
 in
 {
   sops.secrets."nix-extra-options.conf" = lib.mkIf enableSopsNix {
-    sopsFile = ../../secrets/nix.ini;
+    sopsFile = ../../../secrets/nix.ini;
     format = "ini";
     # 只有 root 和 sudo 用户可读
     owner = "root";

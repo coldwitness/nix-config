@@ -7,7 +7,7 @@ let
   username = lib.baseNameOf (toString ./.);
 in
 {
-  imports = [ ../../../modules/home/modules ];
+  imports = [ ../../../modules/home ];
   # 用户配置
   home = {
     # 用户名
