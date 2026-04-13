@@ -14,7 +14,7 @@ let
   customOptSets = {
     # nix-config 仓库本身所在路径
     nixConfigPath = "/path/to/nix-config";
-    # ========== CLI 工具模块 - 命令行实用工具 ==========
+    # ========== CLI 模块 - 命令行工具 ==========
     cli = {
       # Nix CLI 助手, 自动清理旧一代系统配置
       nh.enable = true;
@@ -78,7 +78,7 @@ let
       # 录屏和直播软件
       obs-studio.enable = false;
     };
-    # ========== Editor 模块 - 编辑器配置 ==========
+    # ========== Editor 模块 - 编辑器 ==========
     editor = {
       # Neovim 的 Nix 配置
       nixvim.enable = false;
@@ -96,6 +96,11 @@ let
       foot.enable = false;
       # 跨平台 GPU 加速终端模拟器
       kitty.enable = false;
+    };
+    # ========== Service 模块 - 系统服务 ==========
+    service = {
+      # Spos Nix 服务
+      spos-nix.enable = false;
     };
     # ========== Internet 模块 - 网络应用 ==========
     internet = {

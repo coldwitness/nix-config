@@ -34,7 +34,7 @@ let
         hashedPassword = "$6$a46xJM8CZ80Jplk2$BiG06wUNzicRYKStqIh0vV2ZE87NHQyvh27jD.gJawiu8wGrFw6zNunzpNb7aXhjyU.4x/UZZvFT05rEAjzGT0";
       };
     };
-    # ========== CLI 工具模块 - 命令行实用工具 ==========
+    # ========== CLI 模块 - 命令行工具 ==========
     cli = {
       # Nix CLI 助手, 自动清理旧一代系统配置
       nh.enable = true;
@@ -113,7 +113,7 @@ let
       # 录屏和直播软件
       obs-studio.enable = false;
     };
-    # ========== Editor 模块 - 编辑器配置 ==========
+    # ========== Editor 模块 - 编辑器 ==========
     editor = {
       # Neovim 的 Nix 配置
       nixvim.enable = false;
