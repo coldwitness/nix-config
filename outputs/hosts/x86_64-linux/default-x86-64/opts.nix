@@ -166,9 +166,17 @@ let
       # 通用代理工具
       sing-box.enable = false;
       # P2P VPN 服务
-      zerotierone.enable = false;
+      zerotierone = {
+        enable = true;
+        # 加入的网络
+        joinNetworks = [ ];
+      };
       # 远程桌面服务器
-      rustdesk-server.enable = false;
+      rustdesk-server = {
+        enable = true;
+        # 中继地址
+        relayHosts = [ ];
+      };
     };
     # ========== Internet 模块 - 网络应用 ==========
     internet = {

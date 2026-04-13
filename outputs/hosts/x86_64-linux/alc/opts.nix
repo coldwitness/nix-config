@@ -37,8 +37,14 @@ let
     service = {
       frp.enable = true;
       openssh.enable = true;
-      zerotierone.enable = true;
-      rustdesk-server.enable = true;
+      zerotierone = {
+        enable = true;
+        joinNetworks = [ "98c7dece649d0152" ];
+      };
+      rustdesk-server = {
+        enable = true;
+        relayHosts = [ "knightfemale.com:21117" ];
+      };
     };
     hardware = {
       zram.enable = true;

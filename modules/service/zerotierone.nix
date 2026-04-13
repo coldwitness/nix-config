@@ -7,9 +7,7 @@
 let
   cfg = opts.service.zerotierone or { };
   finallyEnable = cfg.enable or false;
-  settingsFile = "${inputs.secrets}/zerotierone";
-  settings = if builtins.pathExists settingsFile then import settingsFile else { };
-  joinNetworks = settings.joinNetworks or [ ];
+  joinNetworks = cfg.joinNetworks or [ ];
 in
 {
   config = lib.mkIf finallyEnable {

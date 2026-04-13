@@ -62,7 +62,10 @@ let
       udiskie.enable = true;
       pipewire.enable = true;
       libinput.enable = true;
-      zerotierone.enable = true;
+      zerotierone = {
+        enable = true;
+        joinNetworks = [ "98c7dece649d0152" ];
+      };
     };
     internet = {
       qq.enable = true;
