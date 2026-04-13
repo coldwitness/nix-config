@@ -13,15 +13,7 @@ echo "========== Copy Hardware Config =========="
 sudo nixos-generate-config
 sudo cp /etc/nixos/hardware-configuration.nix "$HOST_PATH"/
 
-echo "========== Generate Secrets Flake =========="
-cd ../../secrets
-if [ ! -f flake.nix ]; then
-    cp ../scripts/installer/modules/secrets-flake.nix ./flake.nix
-    git init
-    git add --all
-fi
-
 echo "========== Rebuild System =========="
-cd ../
-git add --all -- ':!secrets'
+cd ../../
+git add --all
 nix-shell -p nh --run "nh os switch .#$HOST_NAME --ask --max-jobs 1"

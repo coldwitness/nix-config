@@ -47,10 +47,11 @@
 │      └──config/                               # 原生配置文件
 ├── vars/                                       # 公共变量
 ├── functions/                                  # 工具函数
-├── secrets/                                    # 私密信息(采用子模块)
+├── secrets/                                    # 私密文件
 ├── scripts/                                    # 工具脚本
 ├── flake.nix                                   # Flake 输入
 ├── flake.lock                                  # Flake 版本锁
+├── .sops.yaml                                  # sops 配置
 └── justfile                                    # 快捷命令
 ```
 
