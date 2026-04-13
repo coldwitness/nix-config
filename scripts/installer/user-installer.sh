@@ -15,4 +15,4 @@ echo "Selected platform: $PLATFORM"
 echo "========== Apply Home Manager Config =========="
 cd ../../
 git add --all
-nix-shell -p nh --run "nh home switch .#$USER_NAME-$PLATFORM --ask"
+nix-shell -p nh --run "nh home switch .#$USER_NAME-$PLATFORM --ask --max-jobs 1"

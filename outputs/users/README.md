@@ -28,7 +28,7 @@ bash user-installer.sh
 # 选择对应的用户名和平台即可自动应用配置
 ```
 
-详情请见：[安装指南](../../scripts/installer/README.md)
+安装脚本详情请见：[安装指南](../../scripts/installer/README.md#333-脚本自动完成的操作)
 
 **无需做的操作** ❌：
 

@@ -17,11 +17,13 @@
     - [3.1.5 脚本自动完成的操作](#315-脚本自动完成的操作)
     - [3.1.6 密码设置提示](#316-密码设置提示)
   - [3.2 host-installer.sh — 应用主机 Flake 配置](#32-host-installersh--应用主机-flake-配置)
-    - [3.2.1 重启后登录](#321-重启后登录)
-    - [3.2.2 克隆并运行配置脚本](#322-克隆并运行配置脚本)
-    - [3.2.3 自定义建议](#323-自定义建议)
-    - [3.2.4 脚本自动完成的操作](#324-脚本自动完成的操作)
+    - [3.2.1 克隆并运行配置脚本](#321-克隆并运行配置脚本)
+    - [3.2.2 自定义建议](#322-自定义建议)
+    - [3.2.3 脚本自动完成的操作](#323-脚本自动完成的操作)
   - [3.3 user-installer.sh — 应用 Home Manager 用户配置](#33-user-installersh--应用-home-manager-用户配置)
+    - [3.3.1 克隆并运行配置脚本](#331-克隆并运行配置脚本)
+    - [3.3.2 自定义建议](#332-自定义建议)
+    - [3.3.3 脚本自动完成的操作](#333-脚本自动完成的操作)
 - [4. 自定义磁盘布局](#4-自定义磁盘布局)
   - [4.1 默认 Btrfs 方案](#41-默认-btrfs-方案)
   - [4.2 分区表结构](#42-分区表结构)
@@ -166,7 +168,7 @@ Retype new password:
 
 LiveCD 安装完成后，重启进入新安装的系统，使用此脚本完成最终的主机配置初始化。
 
-#### 3.2.1 重启后登录
+#### 3.2.1 克隆并运行配置脚本
 
 安装完成后，移除 U 盘并重启系统：
 
@@ -176,8 +178,6 @@ LiveCD 安装完成后，重启进入新安装的系统，使用此脚本完成�
 | ---------- | ----------------- |
 | **用户名** | `admin` 或 `root` |
 | **密码**   | `passwd`          |
-
-#### 3.2.2 克隆并运行配置脚本
 
 登录系统后，再次克隆仓库并运行脚本：
 
@@ -194,7 +194,7 @@ cd nix-config/scripts/installer/
 sudo bash host-installer.sh
 ```
 
-#### 3.2.3 自定义建议
+#### 3.2.2 自定义建议
 
 运行脚本前，强烈建议进行以下自定义操作：
 
@@ -205,48 +205,82 @@ sudo bash host-installer.sh
 git checkout -b <branch>
 ```
 
-##### 配置主机选项
+##### 配置主机
+
+参考 [主机管理](../../outputs/hosts/README.md) 添加新的主机。
 
 编辑主机配置文件来更改所需模块：
 
 ```bash
 # 编辑主机选项
-nano outputs/<platform>/hosts/<host>/opts.nix
+nano outputs/hosts/<platform>/<host>/opts.nix
 ```
 
-详细的选项说明和完整配置示例请参阅 [主机管理](../../outputs/hosts/README.md)。
-
-#### 3.2.4 脚本自动完成的操作
+#### 3.2.3 脚本自动完成的操作
 
 [host-installer.sh](./host-installer.sh) 脚本会自动完成以下操作：
 
-| 操作内容               | 详细说明                                                                        |
-| ---------------------- | ------------------------------------------------------------------------------- |
-| **复制硬件配置**       | 将 `/etc/nixos/hardware-configuration.nix` 复制到 `outputs/x86_64-linux/nixos/` |
-| **生成 Secrets Flake** | 从模板创建 `secrets/flake.nix` 并初始化 Git 仓库                                |
-| **提交配置更改**       | 将所有配置文件添加到 Git（排除 secrets 目录）                                   |
-| **重建系统**           | 使用 `nh os switch . --ask --max-jobs 1` 应用新的 flake 配置                    |
+| 操作内容             | 详细说明                                                                        |
+| -------------------- | ------------------------------------------------------------------------------- |
+| **选择要输出的主机** | 扫描目录的主机并生成选择列表                                                    |
+| **生成默认配置**     | 使用 `sudo nixos-generate-config` 在 `/etc/nixos/` 生成默认配置                 |
+| **复制硬件配置**     | 将 `/etc/nixos/hardware-configuration.nix` 复制到 `outputs/x86_64-linux/nixos/` |
+| **暂存更改**         | 将所有文件在 Git 中暂存                                                         |
+| **重建系统**         | 使用 `nh os switch .#<host> --ask --max-jobs 1` 应用 flake 配置                 |
 
 ---
 
 ### 3.3 user-installer.sh — 应用 Home Manager 用户配置
 
-该脚本用于在已安装 NixOS 的系统上应用 **Home Manager 用户级配置**，实现个人环境的声明式管理。
+该脚本用于在已安装 NixOS 的系统或其他 Linux 发行版上应用 **Home Manager 用户级配置**，实现个人环境的声明式管理。
 
-**运行方式**：
+#### 3.3.1 克隆并运行配置脚本
 
 ```bash
-cd scripts/installer/
+# 克隆仓库
+git clone https://github.com/nix-config/nix-config.git
+# 或使用 Gitee
+git clone https://gitee.com/nix-config/nix-config.git
+
+# 进入安装目录
+cd nix-config/scripts/installer/
+
+# 运行配置脚本
 bash user-installer.sh
 ```
 
-**工作流程**：
+#### 3.3.2 自定义建议
 
-1. 交互式选择目标用户
-2. 选择目标平台
-3. 自动执行 `nh home switch` 应用配置
+运行脚本前，强烈建议进行以下自定义操作：
 
-**前提条件**：需先按 [用户管理](../../outputs/users/README.md) 文档创建用户目录和 `opts.nix` 配置文件。
+##### 创建个人分支
+
+```bash
+# 创建并切换到自己的分支
+git checkout -b <branch>
+```
+
+##### 配置用户
+
+参考 [用户管理](../../outputs/users/README.md) 添加新的用户。
+
+编辑主机配置文件来更改所需模块：
+
+```bash
+# 编辑主机选项
+nano outputs/users/<user>/opts.nix
+```
+
+#### 3.3.3 脚本自动完成的操作
+
+[user-installer.sh](./user-installer.sh) 脚本会自动完成以下操作：
+
+| 操作内容             | 详细说明                                                                     |
+| -------------------- | ---------------------------------------------------------------------------- |
+| **选择要输出的用户** | 扫描目录的用户并生成选择列表                                                 |
+| **选择要输出的架构** | 扫描目录的架构并生成选择列表                                                 |
+| **暂存更改**         | 将所有文件在 Git 中暂存                                                      |
+| **重建系统**         | 使用 `nh home switch .#<user>-<platform> --ask --max-jobs 1` 应用 flake 配置 |
 
 ---
 

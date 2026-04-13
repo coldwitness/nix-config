@@ -29,7 +29,7 @@ sudo bash installer.sh
 # 选择对应的主机名即可自动应用配置
 ```
 
-详情请见：[安装指南](../../scripts/installer/README.md)
+安装脚本详情请见：[安装指南](../../scripts/installer/README.md#323-脚本自动完成的操作)
 
 **无需做的操作** ❌：
 
