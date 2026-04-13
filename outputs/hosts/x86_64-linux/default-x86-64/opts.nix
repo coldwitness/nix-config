@@ -56,6 +56,8 @@ let
       yazi.enable = true;
       # 系统资源监控器
       btop.enable = false;
+      # 密钥管理工具
+      sops.enable = false;
       # NVIDIA GPU 监控工具
       nvitop.enable = false;
       # 跨 Shell 的提示符定制工具
