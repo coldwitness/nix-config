@@ -39,12 +39,14 @@
 │   │       ├── default.nix                     # 用户输出入口
 │   │       └── opts.nix                        # 用户选项定义
 │   └── optSets/                                # 选项集
-├── modules/                                    # 系统模块
-│   ├──<category>/                              # 模块分类
-│   └──home/
-│      ├──modules/                              # 用户模块
-│      │  └──<category>/
-│      └──config/                               # 原生配置文件
+├── modules/                                    # 模块
+│   ├──nixos/                                   # nixos 模块
+│   │  └──<category>/                           # 模块分类
+│   ├──home/                                    # home 模块
+│   │  └──<category>/                           # 模块分类
+│   ├──darwin/                                  # darwin 模块
+│   │  └──<category>/                           # 模块分类
+│   └──config/                                  # 原生配置文件
 ├── vars/                                       # 公共变量
 ├── functions/                                  # 工具函数
 ├── secrets/                                    # 私密文件

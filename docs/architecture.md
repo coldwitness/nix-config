@@ -197,16 +197,15 @@ flowchart TD
 
 松耦合的核心实现是**约定优于配置**的自动发现机制。系统在8个不同的层级实现了自动扫描和加载，使得新增组件几乎无需修改现有代码。
 
-| 层级               | 发现机制                         | 新增操作                          | 删除操作 | 发现位置                                                        |
-| ------------------ | -------------------------------- | --------------------------------- | -------- | --------------------------------------------------------------- |
-| **平台 Platform**  | `readDir ./hosts` + filter       | 创建目录 + default.nix            | 删除目录 | [outputs/default.nix](../outputs/default.nix)                   |
-| **主机 Host**      | `readDir ./.` + filter           | 创建目录 + default.nix + opts.nix | 删除目录 | [hosts/default.nix](../outputs/hosts/x86_64-linux/default.nix)  |
-| **用户 User**      | `readDir ./.` + filter(排除root) | 创建目录 + default.nix + opts.nix | 删除目录 | [users/default.nix](../outputs/users/default.nix)               |
-| **系统模块**       | `importSubdirModules` 递归扫描   | 创建 .nix 文件                    | 删除文件 | [modules/default.nix](../modules/default.nix)                   |
-| **用户模块**       | `importSubdirModules` 递归扫描   | 创建 .nix 文件                    | 删除文件 | [home/modules/default.nix](../modules/home/modules/default.nix) |
-| **选项集 OptSet**  | `importDirFiles` 扫描 .nix 文件  | 创建 .nix 文件                    | 删除文件 | [optSets/default.nix](../outputs/optSets/default.nix)           |
-| **变量 Vars**      | `importDirFiles` 扫描 .nix 文件  | 创建 .nix 文件                    | 删除文件 | [vars/default.nix](../vars/default.nix)                         |
-| **函数 Functions** | `importDirFiles` 扫描 .nix 文件  | 创建 .nix 文件                    | 删除文件 | [functions/default.nix](../functions/default.nix)               |
+| 层级               | 发现机制                         | 新增操作                          | 删除操作 | 发现位置                                                       |
+| ------------------ | -------------------------------- | --------------------------------- | -------- | -------------------------------------------------------------- |
+| **平台 Platform**  | `readDir ./hosts` + filter       | 创建目录 + default.nix            | 删除目录 | [outputs/default.nix](../outputs/default.nix)                  |
+| **主机 Host**      | `readDir ./.` + filter           | 创建目录 + default.nix + opts.nix | 删除目录 | [hosts/default.nix](../outputs/hosts/x86_64-linux/default.nix) |
+| **用户 User**      | `readDir ./.` + filter(排除root) | 创建目录 + default.nix + opts.nix | 删除目录 | [users/default.nix](../outputs/users/default.nix)              |
+| **nixos 模块等**   | `importSubdirModules` 递归扫描   | 创建 .nix 文件                    | 删除文件 | [modules/nixos/default.nix](../modules/nixos/default.nix)      |
+| **选项集 OptSet**  | `importDirFiles` 扫描 .nix 文件  | 创建 .nix 文件                    | 删除文件 | [optSets/default.nix](../outputs/optSets/default.nix)          |
+| **变量 Vars**      | `importDirFiles` 扫描 .nix 文件  | 创建 .nix 文件                    | 删除文件 | [vars/default.nix](../vars/default.nix)                        |
+| **函数 Functions** | `importDirFiles` 扫描 .nix 文件  | 创建 .nix 文件                    | 删除文件 | [functions/default.nix](../functions/default.nix)              |
 
 ### 设计思想
 
@@ -387,9 +386,9 @@ outputs/users/admin/
                 ↑
             这就是用户名
 
-modules/service/openssh.nix
-          ↑        ↑
-          分类    模块名
+modules/nixos/service/openssh.nix
+                ↑        ↑
+                分类    模块名
 ```
 
 无需在任何地方"注册"这些名称——目录名本身就是身份。
@@ -400,7 +399,7 @@ modules/service/openssh.nix
 
 ```bash
 # 1. 创建文件
-touch modules/service/my-new-service.nix
+touch modules/nixos/service/my-new-service.nix
 
 # 2. 完成！无需其他操作
 ```
@@ -522,25 +521,26 @@ Nix 模式：
 
 ### 三层分离
 
-#### 分离 1：系统模块 vs 用户模块
+#### 分离 1：nixos 模块 vs home 模块
 
 ```bash
 modules/
-├── service/openssh.nix       # 系统级：SSH 服务（需要 root）
-├── hardware/networking.nix   # 系统级：网络配置（需要 root）
-└── home/modules/
-    ├── cli/bat.nix           # 用户级：bat 配置（用户空间）
-    └── editor/nixvim.nix     # 用户级：Neovim 配置（用户空间）
+├── nixos/
+│   ├── service/openssh.nix     # 系统级：SSH 服务（需要 root）
+│   └── hardware/networking.nix # 系统级：网络配置（需要 root）
+└── home/
+    ├── cli/bat.nix             # 用户级：bat 配置（用户空间）
+    └── editor/nixvim.nix       # 用户级：Neovim 配置（用户空间）
 ```
 
-- **系统模块**：运行在系统级别，影响所有用户，需要 root 权限
-- **用户模块**：运行在用户级别，只影响当前用户，无需 root
+- **nixos 模块**：运行在系统级别，影响所有用户，需要 root 权限
+- **home 模块**：运行在用户级别，只影响当前用户，无需 root
 
 #### 分离 2：选项定义 vs 选项消费
 
 ```bash
-outputs/hosts/x86_64-linux/alc/opts.nix    # 定义：我要什么
-modules/service/openssh.nix                # 消费：如何实现
+outputs/hosts/x86_64-linux/alc/opts.nix # 定义：我要什么
+modules/nixos/service/openssh.nix       # 消费：如何实现
 ```
 
 - **定义端**（opts.nix）：声明式地描述期望状态
