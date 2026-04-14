@@ -8,6 +8,7 @@
 let
   cfg = opts.cli.nix or { };
   substituters = cfg.substituters or [ ];
+  trusted-public-keys = cfg.trusted-public-keys or [ ];
   enableSopsNix = opts.service.spos-nix.enable or false;
 in
 {
@@ -23,6 +24,7 @@ in
     settings = {
       # 源配置
       inherit substituters;
+      inherit trusted-public-keys;
       # 启用实验性功能
       experimental-features = [
         # nix 命令增强

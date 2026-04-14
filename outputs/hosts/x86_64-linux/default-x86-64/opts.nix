@@ -147,6 +147,8 @@ let
     };
     # ========== Service 模块 - 系统服务 ==========
     service = {
+      # 内核级透明代理
+      daed.enable = false;
       # HTTP 和反向代理 web 服务器
       nginx.enable = false;
       # 轻量级登录管理器
