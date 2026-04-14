@@ -174,10 +174,10 @@ LiveCD 安装完成后，重启进入新安装的系统，使用此脚本完成�
 
 首次登录信息：
 
-| 项目       | 值                |
-| ---------- | ----------------- |
-| **用户名** | `admin` 或 `root` |
-| **密码**   | `passwd`          |
+| 项目       | 值                        |
+| ---------- | ------------------------- |
+| **用户名** | `admin`（推荐） 或 `root` |
+| **密码**   | `passwd`                  |
 
 登录系统后，再次克隆仓库并运行脚本：
 
@@ -191,8 +191,10 @@ git clone https://gitee.com/nix-config/nix-config.git
 cd nix-config/scripts/installer/
 
 # 运行配置脚本
-sudo bash host-installer.sh
+bash host-installer.sh
 ```
+
+> **💡 提示**：如果使用非 root 账户，不要使用 sudo 运行此脚本。
 
 #### 3.2.2 自定义建议
 
