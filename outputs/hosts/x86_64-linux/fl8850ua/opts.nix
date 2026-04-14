@@ -24,9 +24,14 @@ let
       ssh.enable = true;
       tmux.enable = true;
       opencode.enable = true;
-      nix.substituters = [
-        "https://cache.nixos.org"
-      ];
+      nix = {
+        substituters = [
+          "https://cache.garnix.io"
+        ];
+        trusted-public-keys = [
+          "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        ];
+      };
     };
     tool = {
       fcitx5.enable = true;

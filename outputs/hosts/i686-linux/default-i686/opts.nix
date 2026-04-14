@@ -71,16 +71,21 @@ let
       # nix 文件批量格式化工具
       nixfmt-tree.enable = true;
       # Nix 包管理器配置
-      nix.substituters = [
-        # 上海交大镜像源
-        "https://mirror.sjtu.edu.cn/nix-channels/store"
-        # 中科大镜像源
-        # "https://mirrors.ustc.edu.cn/nix-channels/store"
-        # 清华镜像源
-        # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-        # 默认官方源
-        "https://cache.nixos.org"
-      ];
+      nix = {
+        substituters = [
+          # 上海交大镜像源
+          "https://mirror.sjtu.edu.cn/nix-channels/store"
+          # 中科大镜像源
+          # "https://mirrors.ustc.edu.cn/nix-channels/store"
+          # 清华镜像源
+          # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+          # garnix 缓存
+          # "https://cache.garnix.io"
+        ];
+        trusted-public-keys = [
+          # "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        ];
+      };
     };
     # ========== Tool 模块 - 实用工具 ==========
     tool = {
