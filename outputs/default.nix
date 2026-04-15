@@ -19,7 +19,7 @@ let
       };
     };
   # 读取 hosts 目录下的所有文件和目录
-  entries = builtins.readDir ./hosts;
+  entries = builtins.readDir ./nixos;
   # 筛选出所有架构目录
   platformDirs = builtins.filter (
     n:
@@ -29,18 +29,18 @@ let
     # 是 directory
     type == "directory"
     # 存在 default.nix
-    && builtins.pathExists (./hosts + "/${n}/default.nix")
+    && builtins.pathExists (./nixos + "/${n}/default.nix")
   ) (builtins.attrNames entries);
   # 定义导入架构配置函数
   importPlatform = name: {
     # 加载该架构的主机配置
-    hosts = import ./hosts/${name} {
+    hosts = import ./nixos/${name} {
       inherit lib inputs;
       system = systemTypes.${name};
       pkgSets = pkgSets systemTypes.${name};
     };
     # 加载用户配置
-    users = import ./users {
+    users = import ./home {
       inherit lib inputs;
       pkgSets = pkgSets systemTypes.${name};
     };
@@ -62,7 +62,7 @@ let
         platform:
         let
           platformConfigs =
-            (import ./users {
+            (import ./home {
               inherit lib inputs;
               pkgSets = pkgSets systemTypes.${platform};
             }).homeConfigurations;

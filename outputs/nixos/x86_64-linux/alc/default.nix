@@ -34,7 +34,7 @@ let
           inherit inputs opts pkgSets;
         };
         modules = [
-          ../../../users
+          ../../../home
           ../../../../modules/nixos
           ./hardware-configuration.nix
           { system.stateVersion = "25.11"; }
