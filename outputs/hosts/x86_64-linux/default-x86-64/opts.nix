@@ -182,13 +182,13 @@ let
       };
       # P2P VPN 服务
       zerotierone = {
-        enable = true;
+        enable = false;
         # 加入的网络
         joinNetworks = [ ];
       };
       # 远程桌面服务器
       rustdesk-server = {
-        enable = true;
+        enable = false;
         # 中继地址
         relayHosts = [ ];
       };
