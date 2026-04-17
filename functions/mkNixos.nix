@@ -14,10 +14,10 @@
 let
   inherit (inputs.nixpkgs) lib;
   # 导入辅助函数
-  generateCountNames = import ./generateCountNames.nix { inherit inputs; };
   buildPkgSets = import ./buildPkgSets.nix { inherit inputs; };
   deepMergeAttrs = import ./deepMergeAttrs.nix { inherit inputs; };
   mergeAttrsList = import ./mergeAttrsList.nix { inherit inputs; };
+  generateCountNames = import ./generateCountNames.nix { inherit inputs; };
   mkNixos =
     opts: baseName:
     let
@@ -27,10 +27,12 @@ let
       hostCustomOptSets = opts.host.customOptSets or [ ];
       hostPredefinedOptSetsList = opts.host.predefinedOptSetsList or [ ];
       nixosOpts = deepMergeAttrs (mergeAttrsList hostPredefinedOptSetsList) hostCustomOptSets;
-      # 提取所有用户的 base 配置(即 users)
-      users = lib.mapAttrs (_: user: user.base or { }) opts.users or { };
       # 根据 count 生成主机名称列表
+      # 提取所有用户的 base 配置(即 users.<name>.base)
       hostNames = generateCountNames baseName count;
+      usersBase = lib.mapAttrs (_: user: user.base or { }) opts.users or { };
+      # 筛选出非 root 用户(用于 Home Manager 配置)
+      nonRootUsers = lib.filterAttrs (name: _: name != "root") (opts.users or { });
       # 定义生成单个 nixosConfigurations 的函数
       mkSingleNixos =
         hostName:
@@ -61,11 +63,37 @@ let
                   # 设置 false 开启完全声明式管理
                   mutableUsers = false;
                   # 用户配置
-                  inherit users;
+                  users = usersBase;
                 };
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
+                  # 为每个非 root 用户生成独立的 Home Manager 模块
+                  users = lib.mapAttrs (
+                    username: userOpts:
+                    let
+                      # 合并用户级别的预定义选项列表和自定义选项
+                      homePredefined = userOpts.predefinedOptSetsList or [ ];
+                      homeCustom = userOpts.customOptSets or { };
+                      homeOpts = deepMergeAttrs (mergeAttrsList homePredefined) homeCustom;
+                      # 再与全局主机选项合并, 作为最终传递给 home 模块的 opts
+                      homeOpts' = deepMergeAttrs nixosOpts' homeOpts;
+                    in
+                    {
+                      imports = [ ../modules/home ];
+                      home = {
+                        inherit username;
+                        homeDirectory = "/home/${username}";
+                        stateVersion = "26.05";
+                      };
+                      # 通过 _module.args 将用户专属的 opts 传入 home 模块
+                      _module.args = {
+                        opts = homeOpts';
+                      };
+                    }
+                  ) nonRootUsers;
+                  # 全局 extraSpecialArgs 不传递 opts, 避免覆盖用户专属配置
+                  extraSpecialArgs = { inherit inputs pkgSets; };
                 };
               }
             ];
