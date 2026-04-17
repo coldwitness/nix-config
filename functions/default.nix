@@ -3,6 +3,6 @@
   ...
 }:
 let
-  importDirFiles = import ./importDirFiles.nix { inherit inputs; };
+  importFilesForAttrs = import ./importFilesForAttrs.nix { inherit inputs; };
 in
-importDirFiles ./.
+importFilesForAttrs ./.
