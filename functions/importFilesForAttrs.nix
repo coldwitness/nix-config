@@ -1,41 +1,76 @@
 /*
   功能:
-    导入指定目录下的 .nix 文件, 将其转换为属性集
+    递归导入指定目录下的所有 .nix 文件(除 default.nix 外)为属性集
   输入参数:
-    dir: 目标目录路径, 将扫描该目录下所有符合条件的 .nix 文件
+    dir: 目标目录路径(字符串或路径类型)
   返回值:
-    以文件名去掉 .nix 后缀为 key, 文件导入结果为 value 的属性集
+    一个嵌套属性集, 其中每个属性对应一个 .nix 文件的导入结果。
+    属性键的层级结构由文件相对于 dir 的路径决定:
+      - 若文件位于 dir/foo.nix, 则生成属性 { foo = <import 结果>; }
+      - 若文件位于 dir/bar/baz.nix, 则生成属性 { bar.baz = <import 结果>; }
+      - 若文件位于 dir/sub/dir/qux.nix, 则生成属性 { sub.dir.qux = <import 结果>; }
 */
 {
   inputs,
   ...
 }:
-dir:
 let
   inherit (inputs.nixpkgs) lib;
-  # 读取目录内容(返回 { 文件名: 类型; } 的属性集)
-  content = builtins.readDir dir;
-  # 筛选出所有符合要求的文件
-  nixFiles = builtins.attrNames (
-    lib.filterAttrs (
-      name: type:
-      # 是文件(regular)
-      type == "regular"
-      # 后缀为 .nix
-      && lib.hasSuffix ".nix" name
-      # 非 default.nix
-      && name != "default.nix"
-    ) content
-  );
-  # 去掉每个文件名的 .nix 后缀, 作为属性集的 key
-  fileNames = builtins.map (file: lib.removeSuffix ".nix" file) nixFiles;
-  # 将文件名列表转换为属性集, 每个元素导入对应的 .nix 文件
-  importFilesForAttrs = builtins.listToAttrs (
-    lib.imap0 (i: name: {
-      inherit name;
-      # 根据索引 i 从 nixFiles 中取回原始文件名, 拼接完整路径并 import
-      value = import (dir + "/${builtins.elemAt nixFiles i}") { inherit inputs; };
-    }) fileNames
-  );
+  # 导入辅助函数
+  getDirNixFiles = import ./getDirNixFiles.nix { inherit inputs; };
+  importFilesForAttrs =
+    dir:
+    let
+      allFiles = getDirNixFiles dir;
+      # 健壮的相对路径计算: 将 dir 的字符串表示规范化, 并确保以 '/' 结尾(除非是根目录)
+      dirStr = toString dir;
+      baseDir =
+        if dirStr == "/" then
+          "/"
+        else if lib.hasSuffix "/" dirStr then
+          dirStr
+        else
+          dirStr + "/";
+      # 获取相对于 baseDir 的路径, 并去除可能的前导 '/'
+      relPath =
+        fullPath:
+        let
+          fullStr = toString fullPath;
+          # 先去掉规范化的目录前缀
+          withoutBase = lib.removePrefix baseDir fullStr;
+          # 再去除可能残留的前导 '/'
+          rel =
+            if lib.hasPrefix "/" withoutBase then
+              builtins.substring 1 (builtins.stringLength withoutBase - 1) withoutBase
+            else
+              withoutBase;
+        in
+        rel;
+      # 将相对路径(如 "sub/dir/file.nix")转换为属性路径列表(如 ["sub" "dir" "file"])
+      toAttrPath =
+        rel:
+        let
+          withoutSuffix = lib.removeSuffix ".nix" rel;
+          # 按 '/' 拆分, 并过滤掉空字符串(处理连续的 '/')
+          parts = builtins.filter (s: builtins.typeOf s == "string" && s != "") (
+            builtins.split "/" withoutSuffix
+          );
+        in
+        parts;
+      # 为每个文件生成一个局部属性集, 例如 { sub.dir.file = import ...; }
+      fileAttrs = builtins.map (
+        file:
+        let
+          rel = relPath file;
+          attrPath = toAttrPath rel;
+        in
+        if attrPath == [ ] then
+          throw "importFilesForAttrs: empty attribute path for file ${toString file}"
+        else
+          lib.setAttrByPath attrPath (import file { inherit inputs; })
+      ) allFiles;
+    in
+    # 深度合并所有局部属性集, 得到完整的嵌套属性集
+    builtins.foldl' lib.recursiveUpdate { } fileAttrs;
 in
 importFilesForAttrs

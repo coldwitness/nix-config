@@ -12,10 +12,10 @@
   inputs,
   ...
 }:
-left: right:
 let
   inherit (inputs.nixpkgs) lib;
   deepMergeAttrs =
+    left: right:
     if builtins.isAttrs left && builtins.isAttrs right then
       # 两边都是属性集: 遍历 right 的每个属性, 逐个与 left 递归合并
       lib.foldl' (

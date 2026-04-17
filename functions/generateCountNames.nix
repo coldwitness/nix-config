@@ -11,10 +11,9 @@
 {
   ...
 }:
-baseName: count:
 let
   generateCountNames =
-
+    baseName: count:
     if count <= 1 then
       # 数量小于等于 1 时: 直接返回包含基础名称的单元素列表
       [ baseName ]

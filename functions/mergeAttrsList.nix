@@ -11,11 +11,10 @@
   inputs,
   ...
 }:
-attrsList:
 let
   inherit (inputs.nixpkgs) lib;
   # 导入辅助函数
   deepMergeAttrs = import ./deepMergeAttrs.nix { inherit inputs; };
-  mergeAttrsList = lib.foldl' (acc: item: deepMergeAttrs acc item) { } attrsList;
+  mergeAttrsList = attrsList: lib.foldl' (acc: item: deepMergeAttrs acc item) { } attrsList;
 in
 mergeAttrsList
