@@ -28,29 +28,35 @@ let
   # 根据 count 生成主机名称列表
   hostNames = generateCountNames baseName count;
   # 生成单个实例配置的函数
-  mkSingleNixos = hostName: {
-    ${hostName} = lib.nixosSystem {
-      inherit system;
-      pkgs = pkgSets.pkgs;
-      # 传给子模块的参数
-      specialArgs = {
-        inherit inputs pkgSets;
-        opts = nixosOpts;
+  mkSingleNixos =
+    hostName:
+    let
+      # 深度合并特定的 hostName 到原有 nixosOpts 中
+      nixosOpts' = deepMergeAttrs nixosOpts { hardware.networking.hostName = hostName; };
+    in
+    {
+      ${hostName} = lib.nixosSystem {
+        inherit system;
+        pkgs = pkgSets.pkgs;
+        # 传给子模块的参数
+        specialArgs = {
+          inherit inputs pkgSets;
+          opts = nixosOpts';
+        };
+        modules = [
+          # nixos 模块
+          ../modules/nixos
+          # 自动生成的硬件配置
+          (../outputs/nixos + "/${baseName}/hardware-configuration.nix")
+          # Home Manager 模块
+          inputs.home-manager.nixosModules.home-manager
+          {
+            # 初始状态版本
+            system.stateVersion = stateVersion;
+          }
+        ];
       };
-      modules = [
-        # nixos 模块
-        ../modules/nixos
-        # 自动生成的硬件配置
-        (../outputs/nixos + "/${baseName}/hardware-configuration.nix")
-        # Home Manager 模块
-        inputs.home-manager.nixosModules.home-manager
-        {
-          # 初始状态版本
-          system.stateVersion = stateVersion;
-        }
-      ];
     };
-  };
   # 将所有实例配置合并为一个属性集
   mkNixos = lib.foldl' (acc: name: acc // (mkSingleNixos name)) { } hostNames;
 in
