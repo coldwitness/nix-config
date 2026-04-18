@@ -1,10 +1,14 @@
+# 查看输出
+show:
+    nix flake show .
+
 # 重建系统
 rebuild *args:
     nh os switch . --ask {{args}}
 
 # 重建用户
-home rebuild name platform *args:
-    nh home switch .#{{name}}-{{platform}} --ask {{args}}
+home rebuild *args:
+    nh home switch . --ask {{args}}
 
 # 更新并重建系统
 update *args:
