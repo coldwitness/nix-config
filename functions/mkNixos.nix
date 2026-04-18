@@ -1,6 +1,7 @@
 /*
   功能:
     生成一个或多个 nixosConfigurations(根据 opts.host.count 决定实例数量)
+    并支持用户批量生成(根据 opts.users.<name>.count 展开用户实例)
   输入参数:
     opts: 原始选项属性集(必须包含 host.count 和 host.system 等)
     baseName: 基础主机名(用作实例名称前缀)
@@ -18,6 +19,18 @@ let
   deepMergeAttrs = import ./deepMergeAttrs.nix { inherit inputs; };
   mergeAttrsList = import ./mergeAttrsList.nix { inherit inputs; };
   generateCountNames = import ./generateCountNames.nix { inherit inputs; };
+  # 定义用户批量展开函数
+  expandUsers =
+    users:
+    lib.concatMapAttrs (
+      baseName: attrs:
+      let
+        # 强制 root 用户 count 为 1
+        count = if baseName == "root" then 1 else (attrs.count or 1);
+        names = generateCountNames baseName count;
+      in
+      lib.genAttrs names (_: attrs)
+    ) users;
   mkNixos =
     opts: baseName:
     let
@@ -28,11 +41,13 @@ let
       hostPredefinedOptSetsList = opts.host.predefinedOptSetsList or [ ];
       nixosOpts = deepMergeAttrs (mergeAttrsList hostPredefinedOptSetsList) hostCustomOptSets;
       # 根据 count 生成主机名称列表
-      # 提取所有用户的 base 配置(即 users.<name>.base)
       hostNames = generateCountNames baseName count;
-      usersBase = lib.mapAttrs (_: user: user.base or { }) opts.users or { };
+      # 展开后的用户属性集
+      expandedUsers = expandUsers (opts.users or { });
+      # 提取所有用户的 base 配置(即 users.<name>.base)
+      usersBase = lib.mapAttrs (_: user: user.base or { }) expandedUsers;
       # 筛选出非 root 用户(用于 Home Manager 配置)
-      nonRootUsers = lib.filterAttrs (name: _: name != "root") (opts.users or { });
+      nonRootUsers = lib.filterAttrs (name: _: name != "root") expandedUsers;
       # 定义生成单个 nixosConfigurations 的函数
       mkSingleNixos =
         hostName:
@@ -62,7 +77,7 @@ let
                 users = {
                   # 设置 false 开启完全声明式管理
                   mutableUsers = false;
-                  # 用户配置
+                  # 声明的用户
                   users = usersBase;
                 };
                 home-manager = {
@@ -70,11 +85,11 @@ let
                   useUserPackages = true;
                   # 为每个非 root 用户生成独立的 Home Manager 模块
                   users = lib.mapAttrs (
-                    username: userOpts:
+                    username: attrs:
                     let
                       # 合并用户级别的预定义选项列表和自定义选项
-                      homePredefined = userOpts.predefinedOptSetsList or [ ];
-                      homeCustom = userOpts.customOptSets or { };
+                      homePredefined = attrs.predefinedOptSetsList or [ ];
+                      homeCustom = attrs.customOptSets or { };
                       homeOpts = deepMergeAttrs (mergeAttrsList homePredefined) homeCustom;
                       # 再与全局主机选项合并, 作为最终传递给 home 模块的 opts
                       homeOpts' = deepMergeAttrs nixosOpts' homeOpts;
