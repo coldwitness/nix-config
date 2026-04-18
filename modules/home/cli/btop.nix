@@ -16,6 +16,9 @@ in
     }
     // lib.optionalAttrs (gpuType == "amd") {
       package = pkgs.btop-rocm;
+    }
+    // lib.optionalAttrs (gpuType == "nvidia") {
+      package = pkgs.btop-cuda;
     };
   };
 }
