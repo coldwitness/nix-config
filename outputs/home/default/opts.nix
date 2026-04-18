@@ -124,16 +124,16 @@ let
         # 即时通讯应用
         telegram-desktop.enable = false;
       };
-    };
-    # ========== 硬件配置 ==========
-    hardware = {
-      # 图形驱动配置
-      graphics = {
-        # GPU 类型, 可选项:
-        # none(默认)
-        # amd
-        # nvidia
-        type = vars.gpuTypes.none;
+      # ========== 硬件配置 ==========
+      hardware = {
+        # 图形驱动配置
+        graphics = {
+          # GPU 类型, 可选项:
+          # none(默认)
+          # amd
+          # nvidia
+          type = vars.gpuTypes.none;
+        };
       };
     };
   };

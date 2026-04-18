@@ -3,7 +3,7 @@
     生成一个或多个 nixosConfigurations(根据 opts.host.count 决定实例数量)
     并支持用户批量生成(根据 opts.users.<name>.count 展开用户实例)
   输入参数:
-    opts: 原始选项属性集(必须包含 host.count 和 host.system 等)
+    opts: 原始选项属性集
     baseName: 基础主机名(用作实例名称前缀)
   返回值:
     { "基础名称" = ...; } 或 { "基础名称-1" = ...; "基础名称-2" = ...; ... }
@@ -19,27 +19,29 @@ let
   deepMergeAttrs = import ./deepMergeAttrs.nix { inherit inputs; };
   mergeAttrsList = import ./mergeAttrsList.nix { inherit inputs; };
   generateCountNames = import ./generateCountNames.nix { inherit inputs; };
-  # 定义用户批量展开函数
-  expandUsers =
-    users:
-    lib.concatMapAttrs (
-      baseName: attrs:
-      let
-        # 强制 root 用户 count 为 1
-        count = if baseName == "root" then 1 else (attrs.count or 1);
-        names = generateCountNames baseName count;
-      in
-      lib.genAttrs names (_: attrs)
-    ) users;
   mkNixos =
     opts: baseName:
     let
       # 从 opts 获取信息
-      inherit (opts.host) count system stateVersion;
+      count = opts.host.count or 1;
+      system = opts.host.system or "x86_64-linux";
+      stateVersion = opts.host.stateVersion or "25.11";
       pkgSets = buildPkgSets system;
       hostCustomOptSets = opts.host.customOptSets or [ ];
       hostPredefinedOptSetsList = opts.host.predefinedOptSetsList or [ ];
       nixosOpts = deepMergeAttrs (mergeAttrsList hostPredefinedOptSetsList) hostCustomOptSets;
+      # 定义用户批量展开函数
+      expandUsers =
+        users:
+        lib.concatMapAttrs (
+          baseName: attrs:
+          let
+            # 强制 root 用户 count 为 1
+            count = if baseName == "root" then 1 else (attrs.count or 1);
+            names = generateCountNames baseName count;
+          in
+          lib.genAttrs names (_: attrs)
+        ) users;
       # 根据 count 生成主机名称列表
       hostNames = generateCountNames baseName count;
       # 展开后的用户属性集
