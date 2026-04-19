@@ -6,13 +6,13 @@
 }:
 let
   user = {
-    count = 1;
-    system = vars.systemTypes.x86_64-linux;
     predefinedOptSetsList = [
       optSets.baseEnv
       optSets.fishShell
     ];
     customOptSets = {
+      count = 1;
+      system = vars.systemTypes.x86_64-linux;
       nixConfigPath = "/home/mint/workspace/mochen/nix-config";
       cli = {
         nvitop.enable = true;

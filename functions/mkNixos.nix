@@ -23,11 +23,11 @@ let
     opts: baseName:
     let
       # 从 opts 获取信息
-      count = opts.host.count or 1;
-      system = opts.host.system or "x86_64-linux";
-      stateVersion = opts.host.stateVersion or "25.11";
-      pkgSets = buildPkgSets system;
       hostCustomOptSets = opts.host.customOptSets or [ ];
+      count = hostCustomOptSets.count or 1;
+      system = hostCustomOptSets.system or "x86_64-linux";
+      pkgSets = buildPkgSets system;
+      stateVersion = hostCustomOptSets.stateVersion or "25.11";
       hostPredefinedOptSetsList = opts.host.predefinedOptSetsList or [ ];
       nixosOpts = deepMergeAttrs (mergeAttrsList hostPredefinedOptSetsList) hostCustomOptSets;
       # 定义用户批量展开函数
@@ -37,7 +37,7 @@ let
           baseName: attrs:
           let
             # 强制 root 用户 count 为 1
-            count = if baseName == "root" then 1 else (attrs.count or 1);
+            count = if baseName == "root" then 1 else (attrs.customOptSets.count or 1);
             names = generateCountNames baseName count;
           in
           lib.genAttrs names (_: attrs)

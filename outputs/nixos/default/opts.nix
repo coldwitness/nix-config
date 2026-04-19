@@ -6,18 +6,18 @@
 }:
 let
   host = {
-    # 输出数量
-    count = 1;
-    # 输出平台
-    system = vars.systemTypes.x86_64-linux;
-    # 初始状态版本
-    stateVersion = "25.11";
     # 预定义选项集列表
     predefinedOptSetsList = [
       # 按需启用
     ];
     # 自定义选项集
     customOptSets = {
+      # 输出数量
+      count = 1;
+      # 输出平台
+      system = vars.systemTypes.x86_64-linux;
+      # 初始状态版本
+      stateVersion = "25.11";
       # nix-config 仓库路径
       nixConfigPath = "path/to/nix-config";
       # ========== 命令行工具 ==========
@@ -185,8 +185,6 @@ let
         hashedPassword = "$6$a46xJM8CZ80Jplk2$BiG06wUNzicRYKStqIh0vV2ZE87NHQyvh27jD.gJawiu8wGrFw6zNunzpNb7aXhjyU.4x/UZZvFT05rEAjzGT0";
         openssh.authorizedKeys.keys = [ ];
       };
-      # 输出数量
-      count = 1;
       # 预定义选项集列表
       predefinedOptSetsList = [
         # 提供使用此仓库所需要的环境
@@ -196,6 +194,8 @@ let
       ];
       # 自定义选项集
       customOptSets = {
+        # 输出数量
+        count = 1;
         # ========== 命令行工具 ==========
         cli = {
           # Nix CLI 助手, 自动清理旧一代系统配置

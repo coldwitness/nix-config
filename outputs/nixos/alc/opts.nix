@@ -6,10 +6,10 @@
 }:
 let
   host = {
-    count = 1;
-    system = vars.systemTypes.x86_64-linux;
-    stateVersion = "25.11";
     customOptSets = {
+      count = 1;
+      system = vars.systemTypes.x86_64-linux;
+      stateVersion = "25.11";
       nixConfigPath = "home/admin/workspace/nix-config";
       cli = {
         nix = {
@@ -82,12 +82,12 @@ let
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
         ];
       };
-      count = 1;
       predefinedOptSetsList = [
         optSets.baseEnv
         optSets.fishShell
       ];
       customOptSets = {
+        count = 1;
         cli = {
           tmux.enable = true;
         };

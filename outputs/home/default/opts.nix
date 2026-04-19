@@ -6,10 +6,6 @@
 }:
 let
   user = {
-    # 输出数量
-    count = 1;
-    # 输出平台
-    system = vars.systemTypes.x86_64-linux;
     # 预定义选项集列表
     predefinedOptSetsList = [
       # 提供使用此仓库所需要的环境
@@ -19,6 +15,10 @@ let
     ];
     # 自定义选项集
     customOptSets = {
+      # 输出数量
+      count = 1;
+      # 输出平台
+      system = vars.systemTypes.x86_64-linux;
       # nix-config 仓库路径
       nixConfigPath = "path/to/nix-config";
       # ========== 命令行工具 ==========

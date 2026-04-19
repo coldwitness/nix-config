@@ -22,11 +22,11 @@ let
     opts: baseName:
     let
       # 从 opts 获取信息
-      count = opts.user.count or 1;
-      system = opts.host.system or "x86_64-linux";
+      userCustomOptSets = opts.user.customOptSets or { };
+      count = userCustomOptSets.count or 1;
+      system = userCustomOptSets.system or "x86_64-linux";
       pkgSets = buildPkgSets system;
       userPredefinedOptSetsList = opts.user.predefinedOptSetsList or [ ];
-      userCustomOptSets = opts.user.customOptSets or { };
       homeOpts = deepMergeAttrs (mergeAttrsList userPredefinedOptSetsList) userCustomOptSets;
       # 根据 count 生成用户名称列表
       userNames = generateCountNames baseName count;
