@@ -11,16 +11,14 @@ let
       system = vars.systemTypes.x86_64-linux;
       stateVersion = "25.11";
       nixConfigPath = "home/admin/workspace/nix-config";
-      cli = {
-        nix = {
-          substituters = [
-            "https://mirror.sjtu.edu.cn/nix-channels/store"
-            "https://cache.garnix.io"
-          ];
-          trusted-public-keys = [
-            "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-          ];
-        };
+      cli.nix = {
+        substituters = [
+          "https://mirror.sjtu.edu.cn/nix-channels/store"
+          "https://cache.garnix.io"
+        ];
+        trusted-public-keys = [
+          "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        ];
       };
       tool.clash-verge.enable = true;
       i18n.locale = vars.localeTypes.en-us;
@@ -42,16 +40,12 @@ let
       };
       hardware = {
         zram.enable = true;
-        graphics = {
-          type = vars.gpuTypes.none;
-        };
+        graphics.type = vars.gpuTypes.none;
         networking = {
           domain = "";
           inherit hostName;
           networkmanager.enable = false;
-          firewall = {
-            enable = false;
-          };
+          firewall.enable = false;
         };
         boot-loader = {
           efiSysMountPoint = "/boot/efi";
@@ -88,9 +82,7 @@ let
       ];
       customOptSets = {
         count = 1;
-        cli = {
-          tmux.enable = true;
-        };
+        cli.zellij.enable = true;
       };
     };
   };

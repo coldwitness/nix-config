@@ -11,15 +11,13 @@ let
       system = vars.systemTypes.x86_64-linux;
       stateVersion = "25.11";
       nixConfigPath = "/home/admin/workspace/nix-config";
-      cli = {
-        nix = {
-          substituters = [
-            "https://cache.garnix.io"
-          ];
-          trusted-public-keys = [
-            "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-          ];
-        };
+      cli.nix = {
+        substituters = [
+          "https://cache.garnix.io"
+        ];
+        trusted-public-keys = [
+          "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        ];
       };
       tool.clash-verge.enable = true;
       i18n.locale = vars.localeTypes.zh-cn;

@@ -45,6 +45,8 @@ let
         # yazi.enable = true;
         # 系统资源监控器
         # btop.enable = true;
+        # 基于 Rust 的新一代终端复用器
+        zellij.enable = false;
         # NVIDIA GPU 监控工具
         nvitop.enable = false;
         # 跨 Shell 的提示符定制工具
