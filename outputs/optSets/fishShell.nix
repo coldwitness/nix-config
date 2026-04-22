@@ -20,7 +20,7 @@
     fastfetch.enable = true;
   };
   shell = {
-    # 用户友好的命令行 shell
+    # 用户友好的命令解释器
     fish.enable = true;
   };
 }
