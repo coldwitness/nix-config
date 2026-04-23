@@ -25,6 +25,10 @@
       url = "github:Mic92/sops-nix/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mcp-nixos = {
       url = "github:utensils/mcp-nixos/main";
       inputs.nixpkgs.follows = "nixpkgs";
