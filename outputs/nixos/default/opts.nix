@@ -22,6 +22,8 @@ let
       nixConfigPath = "path/to/nix-config";
       # ========== 命令行工具 ==========
       cli = {
+        # 在 NixOS 上运行未打补丁的动态二进制文件
+        # nix-ld.enable = true;
         # Nix 包管理器配置
         nix = {
           substituters = [
