@@ -9,7 +9,7 @@ let
   cfg = opts.cli.nix or { };
   substituters = cfg.substituters or [ ];
   trusted-public-keys = cfg.trusted-public-keys or [ ];
-  enableSopsNix = opts.service.spos-nix.enable or false;
+  enableSopsNix = opts.service.sops-nix.enable or false;
 in
 {
   sops.secrets."nix-extra-options.conf" = lib.mkIf enableSopsNix {

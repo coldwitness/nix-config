@@ -24,7 +24,7 @@ let
       i18n.locale = vars.localeTypes.en-us;
       service = {
         openssh.enable = true;
-        spos-nix.enable = true;
+        sops-nix.enable = true;
         frp = {
           enable = true;
           role = vars.frpRoleTypes.server;

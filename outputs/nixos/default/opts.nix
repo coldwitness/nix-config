@@ -86,8 +86,8 @@ let
         libinput.enable = false;
         # 通用代理工具
         sing-box.enable = false;
-        # Spos Nix 服务
-        spos-nix.enable = false;
+        # Sops Nix 服务
+        sops-nix.enable = false;
         # 内网穿透工具
         frp = {
           enable = false;
@@ -280,8 +280,8 @@ let
         };
         # ========== 系统服务 ==========
         service = {
-          # Spos Nix 服务
-          spos-nix.enable = false;
+          # Sops Nix 服务
+          sops-nix.enable = false;
         };
         # ========== 网络应用 ==========
         internet = {

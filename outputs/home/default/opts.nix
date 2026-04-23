@@ -112,8 +112,8 @@ let
       };
       # ========== 系统服务 ==========
       service = {
-        # Spos Nix 服务
-        spos-nix.enable = false;
+        # Sops Nix 服务
+        sops-nix.enable = false;
       };
       # ========== 网络应用 ==========
       internet = {
