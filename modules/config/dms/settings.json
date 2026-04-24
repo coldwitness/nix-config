@@ -68,6 +68,7 @@
   "selectedGpuIndex": 0,
   "enabledGpuPciIds": [],
   "showSystemTray": true,
+  "systemTrayMonochromeIcons": false,
   "showClock": true,
   "showNotificationButton": true,
   "showBattery": true,
@@ -214,7 +215,7 @@
   "dankLauncherV2IncludeFoldersInAll": false,
   "useAutoLocation": false,
   "weatherEnabled": true,
-  "networkPreference": "auto",
+  "networkPreference": "wifi",
   "iconTheme": "System Default",
   "cursorSettings": {
     "theme": "System Default",
