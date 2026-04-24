@@ -73,6 +73,7 @@ let
         ];
       };
       predefinedOptSetsList = [
+        optSets.devEnv
         optSets.baseEnv
         optSets.fishShell
       ];

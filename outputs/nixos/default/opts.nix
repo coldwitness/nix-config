@@ -216,6 +216,8 @@ let
           # just.enable = true;
           # 密钥管理工具
           sops.enable = false;
+          # 环境变量管理工具
+          direnv.enable = false;
           # 基于 Rust 的新一代终端复用器
           zellij.enable = false;
           # 终端复用器, 可在一个终端中运行多个会话

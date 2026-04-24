@@ -45,6 +45,8 @@ let
         # yazi.enable = true;
         # 系统资源监控器
         # btop.enable = true;
+        # 环境变量管理工具
+        direnv.enable = false;
         # 基于 Rust 的新一代终端复用器
         zellij.enable = false;
         # NVIDIA GPU 监控工具
