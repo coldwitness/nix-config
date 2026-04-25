@@ -49,6 +49,8 @@
   "popoutElevationEnabled": true,
   "barElevationEnabled": true,
   "blurEnabled": false,
+  "blurForegroundLayers": true,
+  "blurLayerOutlineOpacity": 0.12,
   "blurBorderColor": "outline",
   "blurBorderCustomColor": "#ffffff",
   "blurBorderOpacity": 1,
