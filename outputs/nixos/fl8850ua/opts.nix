@@ -118,6 +118,7 @@ let
           spotify.enable = true;
           obs-studio.enable = true;
         };
+        shell.bash.enable = true;
         editor.vscode.enable = true;
         terminal.kitty.enable = true;
         internet = {

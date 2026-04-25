@@ -91,19 +91,19 @@ let
         # 录屏和直播软件
         obs-studio.enable = false;
       };
+      # ========== 命令解释器 ==========
+      shell = {
+        # 通用的命令解释器
+        bash.enable = false;
+        # 用户友好的命令解释器
+        # fish.enable = true;
+      };
       # ========== 编辑器 ==========
       editor = {
         # Neovim 的 Nix 配置
         nixvim.enable = false;
         # Visual Studio Code
         vscode.enable = false;
-      };
-      # ========== 命令解释器 ==========
-      shell = {
-        # 通用的命令解释器
-        # bash.enable = true;
-        # 用户友好的命令解释器
-        # fish.enable = true;
       };
       # ========== 终端模拟器 ==========
       terminal = {

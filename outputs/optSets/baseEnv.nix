@@ -11,8 +11,4 @@
     # 命令运行器, 类似 Makefile
     just.enable = true;
   };
-  shell = {
-    # 通用的命令解释器
-    bash.enable = true;
-  };
 }

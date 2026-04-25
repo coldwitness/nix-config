@@ -79,6 +79,7 @@ let
       ];
       customOptSets = {
         count = 1;
+        shell.bash.enable = true;
       };
     };
   };

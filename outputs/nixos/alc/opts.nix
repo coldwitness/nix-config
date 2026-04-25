@@ -83,6 +83,7 @@ let
       customOptSets = {
         count = 1;
         cli.zellij.enable = true;
+        shell.bash.enable = true;
       };
     };
   };
