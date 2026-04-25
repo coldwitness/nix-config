@@ -79,6 +79,7 @@ let
       ];
       customOptSets = {
         count = 1;
+        cli.micromamba.enable = true;
         shell.bash.enable = true;
       };
     };

@@ -236,6 +236,8 @@ let
           opencode.enable = false;
           # NixOS MCP
           mcp-nixos.enable = false;
+          # 在 C++ 中的重新实现的 Conda 包管理器(静态链接版)
+          micromamba.enable = false;
           # nix 文件批量格式化工具
           nixfmt-tree.enable = false;
         };
