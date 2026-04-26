@@ -29,11 +29,12 @@ in
           sopsFile = ../../../secrets/ssh.yaml;
           format = "yaml";
           mode = "0400";
-          path = "${config.home.homeDirectory}/.ssh/config";
         };
       };
     programs.ssh = {
       enable = true;
+      # 导入解密后的配置
+      includes = [ config.sops.secrets."ssh/config".path ];
       # 默认配置
       enableDefaultConfig = false;
     };
