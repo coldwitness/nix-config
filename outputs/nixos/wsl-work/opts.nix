@@ -73,13 +73,15 @@ let
         ];
       };
       predefinedOptSetsList = [
-        optSets.devEnv
         optSets.baseEnv
         optSets.fishShell
       ];
       customOptSets = {
         count = 1;
-        cli.micromamba.enable = true;
+        cli = {
+          direnv.enable = true;
+          micromamba.enable = true;
+        };
         shell.bash.enable = true;
       };
     };
