@@ -4,7 +4,7 @@
 }:
 {
   nixpkgs.overlays = [
-    # 修复 openldap 测试不稳定
+    # 禁用 openldap 不稳定的测试
     (final: prev: {
       openldap = prev.openldap.overrideAttrs (_: {
         doCheck = false;
