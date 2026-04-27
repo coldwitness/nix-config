@@ -19,12 +19,12 @@ in
           + "$os"
           + "$username"
           + "$hostname"
-          + "[](bg:#FF7DBE fg:#FF69B4)"
+          + "[](bg:#FF87C3 fg:#FF69B4)"
           + "$directory"
-          + "[](bg:#FF91C8 fg:#FF7DBE)"
+          + "[](bg:#FFA5D2 fg:#FF87C3)"
           + "$git_branch"
           + "$git_status"
-          + "[](bg:#FFA5D2 fg:#FF91C8)"
+          + "[](bg:#FFC3E1 fg:#FFA5D2)"
           + "$c"
           + "$conda"
           + "$cpp"
@@ -39,7 +39,7 @@ in
           + "$nim"
           + "$rust"
           + "$scala"
-          + "[](bg:#FFFFFF fg:#FFA5D2)"
+          + "[](bg:#FFFFFF fg:#FFC3E1)"
           + "$time"
           + "[ ](fg:#FFFFFF)";
         os = {
@@ -63,7 +63,7 @@ in
           disabled = false;
         };
         directory = {
-          style = "bg:#FF7DBE fg:#FFFFFF";
+          style = "bg:#FF87C3 fg:#FFFFFF";
           format = "[ $path ]($style)";
           truncation_length = 3;
           truncation_symbol = "…/";
@@ -76,87 +76,87 @@ in
         };
         git_branch = {
           symbol = "";
-          style = "bg:#FF91C8 fg:#FFFFFF";
+          style = "bg:#FFA5D2 fg:#FFFFFF";
           format = "[ $symbol $branch ]($style)";
         };
         git_status = {
-          style = "bg:#FF91C8 fg:#FFFFFF";
+          style = "bg:#FFA5D2 fg:#FFFFFF";
           format = "[$all_status$ahead_behind ]($style)";
         };
         c = {
           symbol = " ";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol ($version) ]($style)";
         };
         conda = {
           symbol = "🅒 ";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol$environment]($style)";
         };
         cpp = {
           symbol = " ";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol ($version) ]($style)";
         };
         elixir = {
           symbol = " ";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol ($version) ]($style)";
         };
         elm = {
           symbol = " ";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol ($version) ]($style)";
         };
         golang = {
           symbol = " ";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol ($version) ]($style)";
         };
         gradle = {
           symbol = " ";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol ($version) ]($style)";
         };
         haskell = {
           symbol = " ";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol ($version) ]($style)";
         };
         java = {
           symbol = " ";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol ($version) ]($style)";
         };
         julia = {
           symbol = " ";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol ($version) ]($style)";
         };
         nodejs = {
           symbol = "";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol ($version) ]($style)";
         };
         nim = {
           symbol = "󰆥 ";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol ($version) ]($style)";
         };
         rust = {
           symbol = "";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol ($version) ]($style)";
         };
         scala = {
           symbol = " ";
-          style = "bg:#FFA5D2 fg:#FFFFFF";
+          style = "bg:#FFC3E1 fg:#FFFFFF";
           format = "[ $symbol ($version) ]($style)";
         };
         time = {
           disabled = false;
           time_format = "%R";
-          style = "bg:#FFFFFF fg:#FFA5D2";
+          style = "bg:#FFFFFF fg:#FF87C3";
           format = "[  $time ]($style)";
         };
       };
