@@ -1,33 +1,43 @@
 #!/usr/bin/env bash
 
-# 检测可用磁盘设备
+# =============================================================================
+# 磁盘检测与选择函数 (LiveCD 模式使用)
+# 依赖: 调用方需已 set -e 并定义 REPO_ROOT / MODULES_DIR
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# 检测可用磁盘设备 (通过 lsblk 列出所有磁盘)
+# 返回格式: "/dev/sda 238.5G (disk)"
+# -----------------------------------------------------------------------------
 detect_disks() {
     local disks=()
     while IFS= read -r line; do
         disks+=("$line")
-    done < <(lsblk -nd -o NAME,SIZE,TYPE | grep 'disk$' | awk '{print "/dev/" $1 " " $2 " (" $3 ")"}')
+    done < <(lsblk -nd -o NAME,SIZE,TYPE 2>/dev/null | grep 'disk$' | awk '{print "/dev/" $1 " " $2 " (" $3 ")"}')
     printf '%s\n' "${disks[@]}"
 }
 
-# 选择安装磁盘
+# -----------------------------------------------------------------------------
+# 交互式选择安装目标磁盘
+# 设置全局变量 DISK
+# -----------------------------------------------------------------------------
 select_disk() {
     local disks
     mapfile -t disks < <(detect_disks)
     local disk_count=${#disks[@]}
 
     if [ "$disk_count" -eq 0 ]; then
-        echo "Error: No disk devices found"
-        exit 1
+        die "No disk devices found"
     fi
 
     while true; do
         echo "Available disks:"
         local i=1
         for disk in "${disks[@]}"; do
-            echo "  [$i] $disk"
+            printf "  [%d] %s\n" "$i" "$disk"
             i=$((i + 1))
         done
-        read -p "Select disk number [1-$disk_count]: " selection
+        read -r -p "Select disk number [1-$disk_count]: " selection
 
         if [[ "$selection" =~ ^[0-9]+$ ]] && [ "$selection" -ge 1 ] && [ "$selection" -le "$disk_count" ]; then
             local disk_dev
@@ -45,12 +55,15 @@ select_disk() {
     done
 }
 
-# 检测并卸载已挂载的磁盘分区
+# -----------------------------------------------------------------------------
+# 检测并卸载目标磁盘上已挂载的分区
+# 参数: $1 — 磁盘设备路径 (如 /dev/sda)
+# -----------------------------------------------------------------------------
 unmount_disk() {
     local disk="$1"
     local mounted
 
-    mounted=$(lsblk -no MOUNTPOINT "$disk"* 2>/dev/null | grep -v '^$' | grep -v '^$' | sort -u)
+    mounted=$(lsblk -no MOUNTPOINT "$disk"* 2>/dev/null | grep -v '^$' | sort -u)
 
     if [ -n "$mounted" ]; then
         echo "Warning: Disk $disk has mounted partitions, unmounting..."
