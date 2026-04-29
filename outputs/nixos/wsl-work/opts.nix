@@ -46,6 +46,7 @@ let
         networking = {
           inherit hostName;
           firewall.enable = false;
+          resolvconf.enable = false;
         };
         boot-loader.type = vars.bootLoaderTypes.wsl;
       };
