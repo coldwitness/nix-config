@@ -37,6 +37,13 @@ let
               localPort = 22;
               remotePort = 2226;
             }
+            {
+              name = "test-wsl-work";
+              type = "tcp";
+              localIP = "localhost";
+              localPort = 8000;
+              remotePort = 8000;
+            }
           ];
         };
       };
@@ -80,7 +87,9 @@ let
       customOptSets = {
         count = 1;
         cli = {
+          ssh.enable = true;
           direnv.enable = true;
+          opencode.enable = true;
           micromamba.enable = true;
         };
         shell.bash.enable = true;
