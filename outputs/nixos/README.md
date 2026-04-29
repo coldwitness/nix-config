@@ -18,18 +18,17 @@
 
 ```bash
 # 复制模板文件夹
-cp -r outputs/hosts/x86_64-linux/default-x86-64/ outputs/hosts/x86_64-linux/<host-name>/
+cp -r outputs/nixos/default/ outputs/nixos/<host>/
 
 # 编辑选项
-nano outputs/hosts/x86_64-linux/<host-name>/opts.nix
+nano outputs/nixos/<host>/opts.nix
 
 # 执行安装脚本
-cd scripts/installer/
-sudo bash installer.sh
-# 选择对应的主机名即可自动应用配置
+bash scripts/installer.sh
+# 选择模式 2, 然后选择对应的主机名即可自动应用配置
 ```
 
-安装脚本详情请见：[安装指南](../../scripts/installer/README.md#323-脚本自动完成的操作)
+安装脚本详情请见：📜 [脚本指南](../../scripts/README.md)
 
 **无需做的操作** ❌：
 
@@ -37,9 +36,10 @@ sudo bash installer.sh
 - ~~修改 Flake 入口~~ — 无需在顶层声明新主机
 - ~~创建其他配置文件~~ — 只需关注 `opts.nix`
 
-> **💡 核心优势**：系统采用零注册设计——文件夹名称即为主机名，
-> 放入即生效，无需修改任何其他文件！
-> 可通过引用 [选项集管理](../optSets/README.md) 中的预定义模板。
+> **💡 核心优势**：
+> 系统采用零注册设计，文件夹名称即为主机名
+> 放入即生效，无需修改任何其他文件
+> 可通过引用 🧩 [选项集管理](../optSets/README.md) 中的预定义模板
 
 ---
 
@@ -47,16 +47,16 @@ sudo bash installer.sh
 
 每个主机目录包含两个核心文件：
 
-| 文件                                                     | 说明                                                               |
-| -------------------------------------------------------- | ------------------------------------------------------------------ |
-| [default.nix](./x86_64-linux/default-x86-64/default.nix) | NixOS 模块入口，组装模块并生成 `nixosConfigurations`，通常无需修改 |
-| [opts.nix](./x86_64-linux/default-x86-64/opts.nix)       | **主机选项配置**，控制所有功能模块的开关和参数                     |
+| 文件                         | 说明                                                      |
+| ---------------------------- | --------------------------------------------------------- |
+| `opts.nix`                   | **主机选项配置**，控制所有功能模块的开关和参数            |
+| `hardware-configuration.nix` | 硬件配置（由 `nixos-generate-config` 或安装脚本自动生成） |
 
 建议按以下方式查阅：
 
 ```bash
-# 查看 default-x86-64/ 模板获取最完整的选项列表和注释
-cat outputs/hosts/x86_64-linux/default-x86-64/opts.nix
+# 查看 default/ 模板获取最完整的选项列表和注释
+cat outputs/nixos/default/opts.nix
 ```
 
 ---
@@ -67,17 +67,18 @@ cat outputs/hosts/x86_64-linux/default-x86-64/opts.nix
 
 ### 启用方式
 
-编辑目标主机目录下的 [default.nix](./x86_64-linux/default-x86-64/default.nix)，修改内部变量 `count`：
+编辑目标主机目录下的 `opts.nix`，修改 `host.customOptSets.count`：
 
 ```nix
-let
-  count = 5;  # 生成 5 个实例
-in ...
+host.customOptSets = {
+  count = 5; # 生成 5 个实例
+  ...
+};
 ```
 
 | `count` 值  | 行为                                                               |
 | ----------- | ------------------------------------------------------------------ |
-| `1`（默认） | 单机模式，生成一个以目录名为名称的配置，行为与不使用该功能完全一致 |
+| `1`（默认） | 单体模式，生成一个以目录名为名称的配置，行为与不使用该功能完全一致 |
 | `N` (>1)    | 批量模式，生成 N 个配置，命名格式为 `${目录名}-${序号}`            |
 
 ### 命名规则
@@ -86,7 +87,7 @@ in ...
 
 - 格式：`${目录名}-${序号}`
 - 序号范围：`1` ~ `N`
-- 示例：目录名 `default-x86-64`，count 为 `5` 时 → `default-x86-64-1` ~ `default-x86-64-5`
+- 示例：目录名 `default`，count 为 `5` 时 → `default-1` ~ `default-5`
 
 每个实例独立加载 `opts.nix` 并传入各自对应的 `hostName`，确保网络配置等依赖主机名的模块正确工作。
 
@@ -98,17 +99,17 @@ in ...
 nix flake show
 .
 └───nixosConfigurations
-    ├───default-aarch64: NixOS configuration
-    ├───default-i686: NixOS configuration
-    ├───default-x86_64-1: NixOS configuration
-    ├───default-x86_64-2: NixOS configuration
-    ├───default-x86_64-3: NixOS configuration
-    ├───default-x86_64-4: NixOS configuration
-    └───default-x86_64-5: NixOS configuration
+    ├───alc: NixOS configuration
+    ├───default-1: NixOS configuration
+    ├───default-2: NixOS configuration
+    ├───default-3: NixOS configuration
+    ├───default-4: NixOS configuration
+    └───default-5: NixOS configuration
 ```
 
-> **💡 提示**：此功能仅修改单个主机目录的 `default.nix` 内部变量，
-> 不影响其他主机目录，也无需改动调用方代码。
+> **💡 提示**：
+> `count` 在 `opts.nix` 中通过 `host.customOptSets.count` 设置
+> 每个主机独立配置，互不影响
 
 ---
 
@@ -116,6 +117,6 @@ nix flake show
 
 ### 开始配置你的第一台主机吧！🚀
 
-如有问题，欢迎查阅 [常见问题](../../docs/faq.md) 或提交 Issue
+如有问题，欢迎查阅 ❓ [常见问题](../../docs/faq.md) 或提交 Issue
 
 </div>

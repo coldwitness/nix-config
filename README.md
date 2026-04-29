@@ -10,16 +10,16 @@
 
 ## 📑 文档索引
 
-| 文档                                         | 内容                     |
-| -------------------------------------------- | ------------------------ |
-| 📦 [安装指南](./scripts/installer/README.md) | 安装及初始化             |
-| 🖥️ [主机管理](./outputs/hosts/README.md)     | 添加主机、修改主机配置   |
-| 👤 [用户管理](./outputs/users/README.md)     | 添加用户、修改用户配置   |
-| 🧩 [选项集管理](./outputs/optSets/README.md) | 组合式抽象、减少样板代码 |
-| ⚙️ [模块管理](./modules/README.md)           | 自定义模块               |
-| ❓ [常见问题](./docs/faq.md)                 | 故障排查                 |
-| 🏗️ [架构概览](./docs/architecture.md)        | 设计理念                 |
-| 🗺️ [未来计划](./docs/roadmap.md)             | 未来规划参考             |
+| 文档                                         | 内容                         | 作用                               |
+| -------------------------------------------- | ---------------------------- | ---------------------------------- |
+| 📜 [脚本指南](./scripts/README.md)           | 实用脚本的使用介绍           | 一些包含安装等功能的一键脚本       |
+| 🖥️ [主机管理](./outputs/nixos/README.md)     | 增删改查主机配置             | 配置主机输出                       |
+| 👤 [用户管理](./outputs/home/README.md)      | 增删改查用户配置             | 配置用户输出                       |
+| 🧩 [选项集管理](./outputs/optSets/README.md) | 增删改查选项集               | 方便复用与减少样板代码的组合式选项 |
+| ⚙️ [模块管理](./modules/README.md)           | 增删改查 nix 模块            | 决定系统及软件行为的配置           |
+| ❓ [常见问题](./docs/faq.md)                 | 故障排查                     | 常见错误速查                       |
+| 🏗️ [架构概览](./docs/architecture.md)        | 设计理念                     | 了解由设计理念衍生出的整体架构     |
+| 🗺️ [未来计划](./docs/roadmap.md)             | 未来可能实现的一些功能和优化 | 可供参考的未来计划                 |
 
 ---
 
@@ -27,33 +27,30 @@
 
 ```bash
 .
-├── outputs/                                    # Flake 输出
-│   ├── hosts/                                  # 主机
-│   │   └── <platform>/                         # 系统架构
-│   │       └── <host>/                         # 具体主机
-│   │           ├── default.nix                 # 主机输出入口
-│   │           ├── opts.nix                    # 主机选项定义
-│   │           └── hardware-configuration.nix  # 主机硬件配置
-│   ├── users/                                  # 用户
-│   │   └── <user>/                             # 具体用户
-│   │       ├── default.nix                     # 用户输出入口
-│   │       └── opts.nix                        # 用户选项定义
-│   └── optSets/                                # 选项集
+├── functions/                                  # 工具函数
 ├── modules/                                    # 模块
-│   ├──nixos/                                   # nixos 模块
+│   ├──config/                                  # 原生配置文件
+│   ├──darwin/                                  # darwin 模块
 │   │  └──<category>/                           # 模块分类
 │   ├──home/                                    # home 模块
 │   │  └──<category>/                           # 模块分类
-│   ├──darwin/                                  # darwin 模块
-│   │  └──<category>/                           # 模块分类
-│   └──config/                                  # 原生配置文件
-├── vars/                                       # 公共变量
-├── functions/                                  # 工具函数
-├── secrets/                                    # 私密文件
+│   └──nixos/                                   # nixos 模块
+│      └──<category>/                           # 模块分类
+├── outputs/                                    # Flake 输出
+│   ├── home/                                   # 用户
+│   │   └── <user>/                             # 具体用户
+│   │       └── opts.nix                        # 用户选项定义
+│   ├── nixos/                                  # 主机
+│   │   └── <host>/                             # 具体主机
+│   │       ├── hardware-configuration.nix      # 主机硬件配置
+│   │       └── opts.nix                        # 主机选项定义
+│   └── optSets/                                # 选项集
 ├── scripts/                                    # 工具脚本
-├── flake.nix                                   # Flake 输入
-├── flake.lock                                  # Flake 版本锁
+├── secrets/                                    # 私密文件
+├── vars/                                       # 公共变量
 ├── .sops.yaml                                  # sops 配置
+├── flake.lock                                  # Flake 版本锁
+├── flake.nix                                   # Flake 输入
 └── justfile                                    # 快捷命令
 ```
 

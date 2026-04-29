@@ -8,6 +8,7 @@
 
 - [1. 添加新用户](#1-添加新用户)
 - [2. 配置文件说明](#2-配置文件说明)
+- [3. 多实例输出模式](#3-多实例输出模式)
 
 ---
 
@@ -17,18 +18,17 @@
 
 ```bash
 # 复制模板文件夹
-cp -r outputs/users/default outputs/users/<user-name>
+cp -r outputs/home/default/ outputs/home/<user>/
 
 # 编辑选项
-nano outputs/users/<user-name>/opts.nix
+nano outputs/home/<user>/opts.nix
 
 # 执行安装脚本
-cd scripts/installer/
-bash user-installer.sh
-# 选择对应的用户名和平台即可自动应用配置
+bash scripts/installer.sh
+# 选择模式 3, 然后选择对应的用户名即可自动应用配置
 ```
 
-安装脚本详情请见：[安装指南](../../scripts/installer/README.md#333-脚本自动完成的操作)
+安装脚本详情请见：📜 [脚本指南](../../scripts/README.md)
 
 **无需做的操作** ❌：
 
@@ -36,32 +36,68 @@ bash user-installer.sh
 - ~~修改 Flake 入口~~ — 无需在顶层声明新主机
 - ~~创建其他配置文件~~ — 只需关注 `opts.nix`
 
-> **💡 核心优势**：系统采用零注册设计——文件夹名称即为用户名，
-> 放入即生效，无需修改任何其他文件！
-> 可通过引用 [选项集管理](../optSets/README.md) 中的预定义模板。
+> **💡 核心优势**：
+> 系统采用零注册设计——文件夹名称即为用户名
+> 放入即生效，无需修改任何其他文件
+> 可通过引用 🧩 [选项集管理](../optSets/README.md) 中的预定义模板
 
 ---
 
 ## 2. 配置文件说明
 
-每个用户目录包含两个核心文件：
+每个用户目录包含一个核心文件：
 
-| 文件                                 | 说明                                                                                           |
-| ------------------------------------ | ---------------------------------------------------------------------------------------------- |
-| [default.nix](./default/default.nix) | Home Manager 模块入口，定义用户基本信息（username、homeDirectory、stateVersion），无需手动修改 |
-| [opts.nix](./default/opts.nix)       | **用户选项配置**，控制所有功能模块的开关和参数                                                 |
+| 文件       | 说明                                           |
+| ---------- | ---------------------------------------------- |
+| `opts.nix` | **用户选项配置**，控制所有功能模块的开关和参数 |
 
 建议按以下方式查阅：
 
 ```bash
 # 查看 default/ 模板获取最完整的选项列表和注释
-cat outputs/users/default/opts.nix
+cat outputs/home/default/opts.nix
 ```
+
+---
+
+## 3. 多实例输出模式
+
+当需要管理大量**配置相同、仅用户名不同**的机器时（如企业办公同质化部署），可以使用多实例输出模式，一次定义即可批量生成多台主机的配置。
+
+### 启用方式
+
+编辑目标主机目录下的 `opts.nix`，修改 `host.customOptSets.count`：
+
+```nix
+host.customOptSets = {
+  count = 5; # 生成 5 个实例
+  ...
+};
+```
+
+| `count` 值  | 行为                                                               |
+| ----------- | ------------------------------------------------------------------ |
+| `1`（默认） | 单体模式，生成一个以目录名为名称的配置，行为与不使用该功能完全一致 |
+| `N` (>1)    | 批量模式，生成 N 个配置，命名格式为 `${目录名}-${序号}`            |
+
+### 命名规则
+
+批量生成的实例自动按以下规则命名：
+
+- 格式：`${目录名}-${序号}`
+- 序号范围：`1` ~ `N`
+- 示例：目录名 `default`，count 为 `5` 时 → `default-1` ~ `default-5`
+
+> **💡 提示**：
+> `count` 在 `opts.nix` 中通过 `user.customOptSets.count` 设置
+> 每个用户独立配置，互不影响
+
+---
 
 <div align="center">
 
 ### 开始定制你的用户环境吧！🚀
 
-如有问题，欢迎查阅 [常见问题](../../docs/faq.md) 或提交 Issue
+如有问题，欢迎查阅 ❓ [常见问题](../../docs/faq.md) 或提交 Issue
 
 </div>
