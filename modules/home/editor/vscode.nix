@@ -40,8 +40,8 @@ in
             # Ripple 框架辅支持
             name = "ripple-ts-vscode-plugin";
             publisher = "Ripple-TS";
-            version = "1.0.14";
-            sha256 = "sha256-jkSRwh2cdrFI+KHKh5bJ84uzQp/ETA+UvQlkHBPb8yM=";
+            version = "1.0.16";
+            sha256 = "sha256-pptVceX3hOXUa4A/7jtUHoELiYA8EbZ204xvuoNfnhY=";
           }
         ]
         ++ [
