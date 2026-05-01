@@ -37,6 +37,10 @@
       url = "github:daeuniverse/flake.nix/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = inputs: import ./outputs inputs;
 }
