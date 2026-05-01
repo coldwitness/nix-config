@@ -16,24 +16,37 @@ in
   config = lib.mkIf finallyEnable {
     programs.nixvim = {
       enable = true;
-      # Tree-sitter 语法高亮
-      plugins.treesitter = {
-        enable = true;
-        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-          nix
-        ];
-      };
-      # Nix 语言服务器 nil
-      plugins.lsp = {
-        enable = true;
-        servers.nil_ls = {
+      plugins = {
+        # 为文件类型提供图标支持
+        web-devicons.enable = true;
+        # 文件资源管理器
+        neo-tree = {
           enable = true;
-          # 告诉 nil 用 alejandra 格式化代码
-          settings.formatting.command = [ "alejandra" ];
+          settings = {
+            # 当 neo-tree 是最后一个窗口时, 关闭它会直接退出 Neovim
+            close_if_last_window = true;
+            filesystem = {
+              # 启动跟踪, 自动展开当前文件目录
+              follow_current_file = {
+                enabled = true;
+                # 切换文件后, 之前的目录也不会折叠
+                leave_dirs_open = true;
+              };
+              filtered_items = {
+                # 隐藏以 . 开头的文件和目录
+                hide_dotfiles = false;
+              };
+            };
+          };
         };
       };
-      # alejandra 格式化工具可用
-      extraPackages = with pkgs; [ alejandra ];
+      autoCmd = [
+        # 启动时自动打开文件资源管理器
+        {
+          event = "VimEnter";
+          command = "Neotree";
+        }
+      ];
     };
   };
 }

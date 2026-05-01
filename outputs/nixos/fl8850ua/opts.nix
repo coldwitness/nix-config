@@ -119,7 +119,10 @@ let
           obs-studio.enable = true;
         };
         shell.bash.enable = true;
-        editor.vscode.enable = true;
+        editor = {
+          nixvim.enable = true;
+          vscode.enable = true;
+        };
         terminal.kitty.enable = true;
         internet = {
           qq.enable = true;
