@@ -25,13 +25,13 @@ in
             args
             // rec {
               # 内核主版本号
-              version = "7.0.2";
+              version = "7.0.3";
               # 模块目录版本
               modDirVersion = "${version}-zen1";
               # 内核源代码的获取方式
               src = pkgs.fetchurl {
                 url = "https://github.com/zen-kernel/zen-kernel/archive/refs/tags/v${modDirVersion}.tar.gz";
-                sha256 = "sha256-G4NnmTeQK9egBFSSjqUfiFIlHf7kIr6pMwCoFRhwgsw=";
+                sha256 = "sha256-vUae6+v6LrMhojciVF7fsVe1G/Crd0XvKGfr1b77rY0=";
               };
               # 额外的内核补丁列表
               kernelPatches = [ ];
