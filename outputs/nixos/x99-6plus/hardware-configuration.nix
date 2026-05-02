@@ -8,6 +8,7 @@
 let
   systemBootDevice = "/dev/disk/by-uuid/0042-CAFA";
   systemFileDevice = "/dev/disk/by-uuid/bd189698-a0ee-4531-9308-129574482730";
+  dataFileDevice = "/dev/disk/by-uuid/53bf12d6-ef35-41ff-93e0-f788b8a5d41b";
 in
 {
   # 硬件自动检测模块, 会根据当前硬件生成相应的内核模块列表, 并处理一些特定硬件的配置
@@ -142,6 +143,17 @@ in
       options = [
         "subvol=@swap"
         "nodatacow"
+      ];
+    };
+    "/mnt/data" = {
+      device = dataFileDevice;
+      fsType = "xfs";
+      options = [
+        "inode64"
+        "noatime"
+        "largeio"
+        "logbufs=8"
+        "allocsize=1m"
       ];
     };
   };
