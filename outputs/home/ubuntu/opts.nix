@@ -21,9 +21,7 @@ let
         locale = vars.localeTypes.zh-cn;
       };
       hardware = {
-        graphics = {
-          type = vars.gpuTypes.nvidia;
-        };
+        graphics.type = vars.gpuTypes.nvidia;
       };
     };
   };

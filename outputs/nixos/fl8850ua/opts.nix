@@ -58,11 +58,7 @@ let
       hardware = {
         zram.enable = true;
         bluetooth.enable = true;
-        graphics = {
-          enable = true;
-          enable32Bit = true;
-          type = vars.gpuTypes.amd;
-        };
+        graphics.type = vars.gpuTypes.amd;
         networking = {
           inherit hostName;
           networkmanager.enable = true;

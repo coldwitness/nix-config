@@ -23,7 +23,7 @@ let
       };
       hardware = {
         zram.enable = true;
-        graphics.type = vars.gpuTypes.none;
+        graphics.type = vars.gpuTypes.nvidia;
         networking = {
           inherit hostName;
           networkmanager.enable = false;
@@ -64,7 +64,10 @@ let
       ];
       customOptSets = {
         count = 1;
-        cli.zellij.enable = true;
+        cli = {
+          zellij.enable = true;
+          nvitop.enable = true;
+        };
         shell.bash.enable = true;
       };
     };

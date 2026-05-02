@@ -117,13 +117,10 @@ let
         bluetooth.enable = false;
         # 图形驱动配置
         graphics = {
-          # 启用硬件加速
-          enable = false;
-          # 启用 32 位驱动(Wine 等)
-          enable32Bit = false;
           # GPU 类型, 可选项:
           # none(默认)
           # amd
+          # nvidia
           type = vars.gpuTypes.none;
         };
         # 网络配置
