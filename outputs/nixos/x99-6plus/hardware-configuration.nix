@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   modulesPath,
   ...
@@ -13,6 +14,39 @@ in
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   # 启动相关配置
   boot = {
+    # Linux 内核
+    kernelPackages =
+      let
+        # 定义一个函数, 用于构建自定义的内核包
+        linux_pkg =
+          { fetchurl, buildLinux, ... }@args:
+          #  调用 buildLinux 函数, 传入参数并覆盖部分属性
+          buildLinux (
+            args
+            // rec {
+              # 内核主版本号
+              version = "7.0.3";
+              # 模块目录版本
+              modDirVersion = version;
+              # 内核源代码的获取方式
+              src = pkgs.fetchurl {
+                url = "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-${modDirVersion}.tar.xz";
+                sha256 = "sha256-C+2tv1eIaT3eu8yRPIk/Gpc0mved3ecUTCqAtAGVnxw=";
+              };
+              # 额外的内核补丁列表
+              kernelPatches = [ ];
+              #  添加内核包的元数据, 设置分支名便于识别
+              extraMeta.branch = version;
+              # 允许通过 argsOverride 进一步覆盖参数
+            }
+            // (args.argsOverride or { })
+          );
+        #  使用 pkgs.callPackage 调用上面定义的函数, 自动解析并传入所需的依赖
+        linux = pkgs.callPackage linux_pkg { };
+      in
+      # 根据自定义内核生成完整的内核包集合
+      # 然后使用 recurseIntoAttrs 让该属性集在 nix-env 等命令中被正确展开
+      lib.recurseIntoAttrs (pkgs.linuxPackagesFor linux);
     # initrd 阶段加载的模块(根文件系统挂载前)
     initrd = {
       # 由 udev 自动探测加载的模块列表(会打包进 initrd)
