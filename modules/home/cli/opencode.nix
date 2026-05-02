@@ -11,11 +11,6 @@ in
   config = lib.mkIf finallyEnable {
     programs.opencode = {
       enable = true;
-      settings = {
-        plugin = [
-          "oh-my-openagent"
-        ];
-      };
     };
   };
 }
