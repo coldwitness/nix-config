@@ -158,7 +158,12 @@ in
     };
   };
   # 交换设备和交换文件
-  swapDevices = [ { device = "/.swap/swapfile"; } ];
+  swapDevices = [
+    {
+      device = "/.swap/swapfile";
+      size = 4096;
+    }
+  ];
   # 指定 Nixpkgs 编译和打包时使用的主机平台架构
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   # 启用 Intel CPU 微码更新, 从可分发的固件中加载更新
