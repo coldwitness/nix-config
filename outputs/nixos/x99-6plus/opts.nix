@@ -20,6 +20,20 @@ let
       };
       service = {
         openssh.enable = true;
+        sops-nix.enable = true;
+        frp = {
+          enable = true;
+          role = vars.frpRoleTypes.client;
+          proxies = [
+            {
+              name = "ssh-x99-6plus";
+              type = "tcp";
+              localIP = "localhost";
+              localPort = 22;
+              remotePort = 2227;
+            }
+          ];
+        };
       };
       hardware = {
         zram.enable = true;
