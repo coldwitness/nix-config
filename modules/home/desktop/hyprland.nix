@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   opts,
   ...
 }:
@@ -14,6 +15,45 @@ let
   kittyEnable = opts.terminal.kitty.enable or false;
   udiskieEnable = opts.service.udiskie.enable or false;
   missionCenterEnable = opts.tool.mission-center.enable or false;
+  toggle-monitor = pkgs.writeShellApplication {
+    name = "toggle-monitor";
+    runtimeInputs = [ pkgs.jq ]; # 依赖 jq 解析 JSON
+    text =
+      # 默认操作第 1 个显示器
+      ''
+        n="''${1:-1}"
+      ''
+      # 获取所有当前连接的显示器名称, 按字母排序以保证顺序稳定
+      + ''
+        mapfile -t names < <(hyprctl monitors all -j | jq -r ".[].name" | sort)
+      ''
+      # 计算目标索引 (bash 数组从 0 开始)
+      + ''
+        idx=$((n - 1))
+        if [ -z "''${names[$idx]}" ]; then
+            exit 1
+        fi
+        target="''${names[$idx]}"
+      ''
+      # 切换状态: 若当前启用则禁用, 否则启用
+      + ''
+        if hyprctl monitors | grep -qF "$target"; then
+            hyprctl keyword monitor "$target",disable
+        else
+            hyprctl keyword monitor "$target",preferred,auto,1
+        fi
+      '';
+  };
+  numKeys = builtins.genList (
+    i:
+    let
+      n = i + 1;
+    in
+    {
+      key = if n == 10 then "0" else toString n;
+      num = n;
+    }
+  ) 10;
 in
 {
   config = lib.mkIf finallyEnable {
@@ -195,68 +235,52 @@ in
         bind = [
           # 打开终端
           "$mainMod, Q, exec, $terminal"
-          # 打开系统活动监控器(Super + T)
+          # 打开系统活动监控器 (Super + T)
           "$mainMod, T, exec, $top"
-          # 打开文件管理器(Super + E)
+          # 打开文件管理器 (Super + E)
           "$mainMod, E, exec, $fileManager"
-          # 打开程序启动菜单(Super + R)
+          # 打开程序启动菜单 (Super + R)
           "$mainMod, R, exec, $menu"
-          # 区域截图保存到剪贴板(PrintScreen)
+          # 区域截图保存到剪贴板 (PrintScreen)
           ", Print, exec,  $screenshot region --no-file"
-          # 区域截图保存到文件(CTRL + PrintScreen)
+          # 区域截图保存到文件 (CTRL + PrintScreen)
           "CTRL, Print, exec, $screenshot region --dir ~/Pictures/Screenshots"
-          # 关闭窗口(Super + C)
+          # 关闭窗口 (Super + C)
           "$mainMod, C, killactive,"
-          # 退出 Hyprland(Super + M)
+          # 退出 Hyprland (Super + M)
           "$mainMod, M, exec, command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"
-          # 切换浮动窗口(Super + V)
+          # 切换浮动窗口 (Super + V)
           "$mainMod, V, togglefloating,"
-          # 伪平铺模式(Super + P)
+          # 伪平铺模式 (Super + P)
           # "$mainMod, P, pseudo,"
-          # 切换分割(Super + J)
+          # 切换分割 (Super + J)
           # "$mainMod, J, togglesplit,"
-          # 移动焦点(方向键)
+          # 移动焦点 (方向键)
           "$mainMod, left, layoutmsg, focus l"
           "$mainMod, right, layoutmsg, focus r"
           "$mainMod, up, layoutmsg, focus u"
           "$mainMod, down, layoutmsg, focus d"
-          # 使用数字键切换工作区(Super + 数字)
-          "$mainMod, 1, workspace, 1"
-          "$mainMod, 2, workspace, 2"
-          "$mainMod, 3, workspace, 3"
-          "$mainMod, 4, workspace, 4"
-          "$mainMod, 5, workspace, 5"
-          "$mainMod, 6, workspace, 6"
-          "$mainMod, 7, workspace, 7"
-          "$mainMod, 8, workspace, 8"
-          "$mainMod, 9, workspace, 9"
-          "$mainMod, 0, workspace, 10"
-          # 移动窗口到工作区(Super + Shift + 数字)
-          "$mainMod SHIFT, 1, movetoworkspace, 1"
-          "$mainMod SHIFT, 2, movetoworkspace, 2"
-          "$mainMod SHIFT, 3, movetoworkspace, 3"
-          "$mainMod SHIFT, 4, movetoworkspace, 4"
-          "$mainMod SHIFT, 5, movetoworkspace, 5"
-          "$mainMod SHIFT, 6, movetoworkspace, 6"
-          "$mainMod SHIFT, 7, movetoworkspace, 7"
-          "$mainMod SHIFT, 8, movetoworkspace, 8"
-          "$mainMod SHIFT, 9, movetoworkspace, 9"
-          "$mainMod SHIFT, 0, movetoworkspace, 10"
-          # 特殊工作区(便签本)
-          # 切换(Super + S)
+          # 使用数字键切换工作区 (Super + 数字)
+          (map (x: "$mainMod, ${x.key}, workspace, ${toString x.num}") numKeys)
+          # 移动窗口到工作区 (Super + Shift + 数字)
+          (map (x: "$mainMod SHIFT, ${x.key}, movetoworkspace, ${toString x.num}") numKeys)
+          # 切换屏幕开关 (Super + ALT + 数字)
+          (map (x: "$mainMod ALT, ${x.key}, exec, ${lib.getExe toggle-monitor} ${toString x.num}") numKeys)
+          # 特殊工作区 (便签本)
+          # 切换 (Super + S)
           # "$mainMod, S, togglespecialworkspace, magic"
-          # 移入(Super + Shift + S)
+          # 移入 (Super + Shift + S)
           # $mainMod SHIFT, S, movetoworkspace, special:magic
-          # 使用鼠标滚轮在垂直方向滚动工作区(Super + 滚轮)
+          # 使用鼠标滚轮在垂直方向滚动工作区 (Super + 滚轮)
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
-          # 增加当前窗口列宽度 10%(Super + +)
+          # 增加当前窗口列宽度 10% (Super + +)
           "$mainMod, equal, layoutmsg, colresize +0.1"
-          # 减小当前窗口列宽度 10%(Super + -)
+          # 减小当前窗口列宽度 10% (Super + -)
           "$mainMod, minus, layoutmsg, colresize -0.1"
-          # 将当前列与左侧邻居交换(Super + CTRL + ←)
+          # 将当前列与左侧邻居交换 (Super + CTRL + ←)
           "$mainMod CTRL, left, layoutmsg, swapcol l"
-          # 将当前列与右侧邻居交换(Super + CTRL + →)
+          # 将当前列与右侧邻居交换 (Super + CTRL + →)
           "$mainMod CTRL, right, layoutmsg, swapcol r"
         ];
         bindm = [
@@ -275,7 +299,7 @@ in
           ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
         ];
         bindl = [
-          # 播放器控制(需要 playerctl)
+          # 播放器控制 (需要 playerctl)
           ", XF86AudioNext, exec, playerctl next"
           ", XF86AudioPause, exec, playerctl play-pause"
           ", XF86AudioPlay, exec, playerctl play-pause"
