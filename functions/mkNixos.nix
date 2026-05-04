@@ -20,7 +20,7 @@ let
   mergeAttrsList = import ./mergeAttrsList.nix { inherit inputs; };
   generateCountNames = import ./generateCountNames.nix { inherit inputs; };
   mkNixos =
-    opts: baseName:
+    opts: baseName: vars:
     let
       # 从 opts 获取信息
       hostCustomOptSets = opts.host.customOptSets or [ ];
@@ -63,7 +63,7 @@ let
             pkgs = pkgSets.pkgs;
             # 传给子模块的参数
             specialArgs = {
-              inherit inputs pkgSets;
+              inherit vars inputs pkgSets;
               opts = nixosOpts';
             };
             modules = [
@@ -110,7 +110,7 @@ let
                     }
                   ) nonRootUsers;
                   # 全局 extraSpecialArgs 不传递 opts, 避免覆盖用户专属配置
-                  extraSpecialArgs = { inherit inputs pkgSets; };
+                  extraSpecialArgs = { inherit vars inputs pkgSets; };
                 };
               }
             ];

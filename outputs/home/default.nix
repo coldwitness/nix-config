@@ -27,7 +27,7 @@ let
         hostName = dir;
       };
     in
-    acc // (functions.mkHome opts dir)
+    acc // (functions.mkHome opts dir vars)
   ) { } userDirs;
 in
 homeConfigurations

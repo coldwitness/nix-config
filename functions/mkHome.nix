@@ -19,7 +19,7 @@ let
   mergeAttrsList = import ./mergeAttrsList.nix { inherit inputs; };
   generateCountNames = import ./generateCountNames.nix { inherit inputs; };
   mkHome =
-    opts: baseName:
+    opts: baseName: vars:
     let
       # 从 opts 获取信息
       userCustomOptSets = opts.user.customOptSets or { };
@@ -45,7 +45,7 @@ let
             }
           ];
           extraSpecialArgs = {
-            inherit inputs pkgSets;
+            inherit vars inputs pkgSets;
             opts = homeOpts;
           };
         };

@@ -29,7 +29,7 @@ let
         hostName = dir;
       };
     in
-    acc // (functions.mkNixos opts dir)
+    acc // (functions.mkNixos opts dir vars)
   ) { } hostDirs;
 in
 nixosConfigurations
