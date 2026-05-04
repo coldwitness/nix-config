@@ -131,6 +131,25 @@
     "MD024": false, // 禁用重复标题检查
   },
 
+  // ==================== Nix 相关 ====================
+  // 默认格式化工具
+  "[nix]": {
+    "editor.defaultFormatter": "jnoortheen.nix-ide",
+  },
+  // 开启语言服务器(LSP)
+  "nix.enableLanguageServer": true,
+  // 指定 LSP 程序
+  "nix.serverPath": "nixd",
+  // LSP 的配置
+  "nix.serverSettings": {
+    "nixd": {
+      // 格式化工具
+      "formatting": {
+        "command": ["nixfmt"],
+      },
+    },
+  },
+
   // ==================== Python 相关 ====================
   // 显示函数返回类型内联提示
   "python.analysis.inlayHints.functionReturnTypes": true,

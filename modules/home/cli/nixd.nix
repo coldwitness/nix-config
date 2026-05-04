@@ -5,14 +5,13 @@
   ...
 }:
 let
-  cfg = opts.cli.nixfmt-tree or { };
+  cfg = opts.cli.nixd or { };
   finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {
     home.packages = with pkgs; [
-      nixfmt
-      nixfmt-tree
+      nixd
     ];
   };
 }

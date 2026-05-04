@@ -213,6 +213,8 @@ let
           # just.enable = true;
           # 密钥管理工具
           sops.enable = false;
+          # nix LSP 程序
+          nixd.enable = false;
           # 环境变量管理工具
           direnv.enable = false;
           # 基于 Rust 的新一代终端复用器
