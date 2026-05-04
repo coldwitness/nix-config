@@ -231,14 +231,18 @@ let
           # starship.enable = true;
           # 类似 Neofetch 但更快的系统信息工具
           # fastfetch.enable = true;
-          # AI 编程助手
-          opencode.enable = false;
           # NixOS MCP
           mcp-nixos.enable = false;
           # 在 C++ 中的重新实现的 Conda 包管理器(静态链接版)
           micromamba.enable = false;
           # nix 文件批量格式化工具
           # nixfmt-tree.enable = false;
+          # AI 编程助手
+          opencode = {
+            enable = false;
+            # 对支持 AVX 指令集的 CPU 开启优化
+            avx = true;
+          };
         };
         # ========== 实用工具 ==========
         tool = {

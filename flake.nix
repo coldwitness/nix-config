@@ -41,6 +41,10 @@
       url = "github:NousResearch/hermes-agent/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    opencode-flake = {
+      url = "github:noblepayne/opencode-flake/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = inputs: import ./outputs inputs;
 }
