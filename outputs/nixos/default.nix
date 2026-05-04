@@ -1,7 +1,6 @@
 {
   lib,
   vars,
-  inputs,
   optSets,
   functions,
   ...

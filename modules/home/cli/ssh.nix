@@ -22,7 +22,7 @@ in
         sopsFile = ../../../secrets/ssh.yaml;
         format = "yaml";
         mode = "0400";
-        path = "${config.home.homeDirectory}/.ssh/${builtins.baseNameOf name}";
+        path = "${config.home.homeDirectory}/.ssh/${baseNameOf name}";
       })
       // {
         "ssh/config" = {

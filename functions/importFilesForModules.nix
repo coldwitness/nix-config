@@ -11,7 +11,6 @@
   ...
 }:
 let
-  inherit (inputs.nixpkgs) lib;
   # 导入辅助函数
   getDirNixFiles = import ./getDirNixFiles.nix { inherit inputs; };
   importFilesForModules =
@@ -21,6 +20,6 @@ let
       allModulePaths = getDirNixFiles dir;
     in
     # 逐个 import 并返回结果列表
-    builtins.map (path: import path) allModulePaths;
+    map (path: import path) allModulePaths;
 in
 importFilesForModules

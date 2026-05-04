@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   opts,
   inputs,
   ...

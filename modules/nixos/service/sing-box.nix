@@ -1,7 +1,6 @@
 {
   lib,
   opts,
-  inputs,
   ...
 }:
 let

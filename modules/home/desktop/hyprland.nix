@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   opts,
   ...
 }:
@@ -53,14 +52,14 @@ in
         # 主修饰键
         "$mainMod" = "SUPER";
         # ========== 自启动 ==========
-        exec-once = lib.filter (x: x != null) ([
+        exec-once = lib.filter (x: x != null) [
           # DankMaterialShell
           (lib.mkIf dmsEnable "dms run")
           # 输入法
           (lib.mkIf fcitx5Enable "fcitx5")
           # 自动挂载 U 盘
           (lib.mkIf udiskieEnable "udiskie")
-        ]);
+        ];
         # ========== 环境变量 ==========
         env = [
           "XCURSOR_SIZE,24"

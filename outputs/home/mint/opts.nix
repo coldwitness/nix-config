@@ -1,7 +1,6 @@
 {
   vars,
   optSets,
-  hostName,
   ...
 }:
 let

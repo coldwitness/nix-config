@@ -105,7 +105,7 @@ in
               };
             };
             # 安装扩展
-            extensions.packages = with pkgs; [
+            extensions.packages = [
               # 详情: https://nur.nix-community.org/repos/rycee/
               # 简约翻译
               kiss-translator
