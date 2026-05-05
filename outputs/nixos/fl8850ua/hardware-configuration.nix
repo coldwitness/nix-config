@@ -16,7 +16,7 @@ in
   # 启动相关配置
   boot = {
     # Linux 内核
-    kernelPackages = vars.kernelPackages.zen_latest pkgs;
+    kernelPackages = (vars.kernelPackages pkgs).latest;
     # initrd 阶段加载的模块(根文件系统挂载前)
     initrd = {
       # 由 udev 自动探测加载的模块列表(会打包进 initrd)
@@ -48,6 +48,15 @@ in
     # 额外的第三方内核模块包
     # 如需在 initrd 阶段加载其中的模块, 请加入 initrd.kernelModules
     extraModulePackages = with config.boot.kernelPackages; [ ];
+  };
+  # 生成多套启动配置
+  specialisation = {
+    lqx.configuration = {
+      boot.kernelPackages = lib.mkForce (vars.kernelPackages pkgs).lqx_latest;
+    };
+    zen.configuration = {
+      boot.kernelPackages = lib.mkForce (vars.kernelPackages pkgs).zen_latest;
+    };
   };
   # 要挂载的文件系统
   fileSystems = {
