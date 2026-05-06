@@ -1,7 +1,5 @@
 {
   lib,
-  pkgs,
-  vars,
   config,
   modulesPath,
   ...
@@ -11,8 +9,6 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   # 启动相关配置
   boot = {
-    # Linux 内核
-    kernelPackages = (vars.kernelPackages pkgs).latest;
     # initrd 阶段加载的模块 (根文件系统挂载前)
     initrd = {
       # 由 udev 自动探测加载的模块列表 (会打包进 initrd)
@@ -34,11 +30,6 @@
     # 额外的第三方内核模块包
     # 如需在 initrd 阶段加载其中的模块, 请加入 initrd.kernelModules
     extraModulePackages = [ ];
-  };
-  # 生成多套内核启动配置
-  specialisation = {
-    zen.configuration.boot.kernelPackages = lib.mkForce (vars.kernelPackages pkgs).zen_latest;
-    lqx.configuration.boot.kernelPackages = lib.mkForce (vars.kernelPackages pkgs).lqx_latest;
   };
   # 指定 Nixpkgs 编译和打包时使用的主机平台架构
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

@@ -60,6 +60,11 @@ let
         bluetooth.enable = true;
         graphics.type = vars.gpuTypes.amd;
         disk.main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
+        kernel = [
+          vars.kernelTypes.latest
+          vars.kernelTypes.zen-latest
+          vars.kernelTypes.lqx-latest
+        ];
         networking = {
           inherit hostName;
           networkmanager.enable = true;

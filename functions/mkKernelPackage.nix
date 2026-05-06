@@ -1,7 +1,7 @@
 /*
   功能:
-    根据指定版本和源码构建自定义 Linux 内核, 并生成完整的内核包集合
-  输入参数:
+     根据指定版本和源码构建自定义 Linux 内核, 并生成完整的内核包集合
+  输入参数 (属性集):
     pkgs: nixpkgs 包集合
     version: 内核版本号
     modDirVersion: 内核模块目录版本号
@@ -17,7 +17,13 @@
 let
   inherit (inputs.nixpkgs) lib;
   mkKernelPackage =
-    pkgs: version: modDirVersion: url: sha256:
+    {
+      pkgs,
+      version,
+      modDirVersion,
+      url,
+      sha256,
+    }:
     let
       # 定义一个函数, 用于构建自定义的内核包
       linux_pkg =

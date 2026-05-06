@@ -41,6 +41,9 @@ let
         disk = {
           main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/nvme0n1"; };
         };
+        kernel = [
+          vars.kernelTypes.latest
+        ];
         networking = {
           inherit hostName;
           networkmanager.enable = false;

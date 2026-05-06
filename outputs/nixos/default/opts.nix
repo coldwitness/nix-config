@@ -115,6 +115,12 @@ let
         zram.enable = false;
         # 蓝牙配置
         bluetooth.enable = false;
+        # 内核配置, 具体定义查看: vars/kernelTypes
+        # kernel = [
+        #   vars.kernelTypes.latest
+        #   vars.kernelTypes.zen-latest
+        #   vars.kernelTypes.lqx-latest
+        # ];
         # 图形驱动配置
         graphics = {
           # GPU 类型, 可选项:

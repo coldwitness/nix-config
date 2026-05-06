@@ -1,7 +1,5 @@
 {
   lib,
-  pkgs,
-  vars,
   config,
   modulesPath,
   ...
@@ -11,8 +9,6 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   # 启动相关配置
   boot = {
-    # Linux 内核
-    kernelPackages = (vars.kernelPackages pkgs).latest;
     # initrd 阶段加载的模块 (根文件系统挂载前)
     initrd = {
       # 由 udev 自动探测加载的模块列表 (会打包进 initrd)
