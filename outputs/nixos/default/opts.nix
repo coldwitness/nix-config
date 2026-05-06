@@ -115,6 +115,10 @@ let
         zram.enable = false;
         # 蓝牙配置
         bluetooth.enable = false;
+        # 磁盘配置, 具体定义查看: vars/diskPartitionTypes
+        disk = {
+          main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
+        };
         # 内核配置, 具体定义查看: vars/kernelTypes
         # kernel = [
         #   vars.kernelTypes.latest

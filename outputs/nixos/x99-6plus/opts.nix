@@ -49,10 +49,7 @@ let
           networkmanager.enable = false;
           firewall.enable = false;
         };
-        boot-loader = {
-          efiSysMountPoint = "/boot";
-          type = vars.bootLoaderTypes.systemd-boot;
-        };
+        boot-loader.type = vars.bootLoaderTypes.systemd-boot;
       };
     };
   };

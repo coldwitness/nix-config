@@ -41,16 +41,17 @@ let
       hardware = {
         zram.enable = true;
         graphics.type = vars.gpuTypes.none;
+        disk.main = vars.diskPartitionTypes.efi-ext4 {
+          device = "/dev/vda";
+          espSize = "100M";
+        };
         networking = {
           domain = "";
           inherit hostName;
           networkmanager.enable = false;
           firewall.enable = false;
         };
-        boot-loader = {
-          efiSysMountPoint = "/boot/efi";
-          type = vars.bootLoaderTypes.systemd-boot;
-        };
+        boot-loader.type = vars.bootLoaderTypes.systemd-boot;
       };
     };
   };
