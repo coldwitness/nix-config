@@ -40,6 +40,10 @@ let
         graphics.type = vars.gpuTypes.nvidia;
         disk = {
           main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/nvme0n1"; };
+          data = vars.diskPartitionTypes.xfs {
+            device = "/dev/sda";
+            mountpoint = "/mnt/data";
+          };
         };
         kernel = [
           vars.kernelTypes.latest
