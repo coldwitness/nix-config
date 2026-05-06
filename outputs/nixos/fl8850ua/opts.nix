@@ -59,6 +59,7 @@ let
         zram.enable = true;
         bluetooth.enable = true;
         graphics.type = vars.gpuTypes.amd;
+        disk.main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
         networking = {
           inherit hostName;
           networkmanager.enable = true;

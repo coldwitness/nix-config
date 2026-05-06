@@ -38,6 +38,9 @@ let
       hardware = {
         zram.enable = true;
         graphics.type = vars.gpuTypes.nvidia;
+        disk = {
+          main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/nvme0n1"; };
+        };
         networking = {
           inherit hostName;
           networkmanager.enable = false;
