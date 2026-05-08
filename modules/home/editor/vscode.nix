@@ -40,8 +40,8 @@ in
             # Ripple 框架辅支持
             name = "ripple-ts-vscode-plugin";
             publisher = "Ripple-TS";
-            version = "1.0.24";
-            sha256 = "sha256-aTIWtHVYJtNeeh1OAw/FdP8UFIfgiYmhA/x7+fj4FGc=";
+            version = "2.0.0";
+            sha256 = "sha256-H53+KxmN9QYfeqiwh5a5EJ549JeRxFheuJab3YWaNOA=";
           }
         ]
         ++ [
@@ -60,8 +60,8 @@ in
             # Python 环境管理
             name = "vscode-python-envs";
             publisher = "ms-python";
-            version = "1.31.2026050502";
-            sha256 = "sha256-ZOXptlGv3FbyZjjnKTtAPHYKLSUDzH+wMnlYswvMeNM=";
+            version = "1.31.2026050701";
+            sha256 = "sha256-1lyW1zD4rfiAEl77DV57yx7UXmYhCEA6/uBB+u6hKRs=";
           }
           {
             # Manim 动画侧边实时预览
