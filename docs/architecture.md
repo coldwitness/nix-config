@@ -542,7 +542,7 @@ networking.nix ◄── opts.hardware.networking ◄──┘
 
 ### 轻量级中介者模式
 
-opts.nix 扮演了**中介者（Mediator）**的角色，但比经典的 GoF 中介者模式更轻量：
+opts.nix 扮演了 **中介者（Mediator）** 的角色，但比经典的 GoF 中介者模式更轻量：
 
 | 经典中介者                       | 本框架的 opts           |
 | -------------------------------- | ----------------------- |
