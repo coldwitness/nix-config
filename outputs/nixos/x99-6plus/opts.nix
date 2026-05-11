@@ -21,6 +21,7 @@ let
       service = {
         openssh.enable = true;
         sops-nix.enable = true;
+        openlist.enable = true;
         frp = {
           enable = true;
           role = vars.frpRoleTypes.client;

@@ -90,6 +90,8 @@ let
         sing-box.enable = false;
         # Sops Nix 服务
         sops-nix.enable = false;
+        # 支持多种存储的文件列表程序
+        openlist.enable = false;
         # 内网穿透工具
         frp = {
           enable = false;
