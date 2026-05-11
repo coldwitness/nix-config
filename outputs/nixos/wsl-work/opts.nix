@@ -81,6 +81,7 @@ let
         ];
       };
       predefinedOptSetsList = [
+        optSets.devEnv
         optSets.baseEnv
         optSets.fishShell
       ];
@@ -90,7 +91,10 @@ let
           ssh.enable = true;
           direnv.enable = true;
           opencode.enable = true;
-          micromamba.enable = true;
+          python = {
+            poetry.enable = true;
+            micromamba.enable = true;
+          };
         };
         shell.bash.enable = true;
       };

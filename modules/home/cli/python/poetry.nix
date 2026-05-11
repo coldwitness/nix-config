@@ -5,13 +5,13 @@
   ...
 }:
 let
-  cfg = opts.cli.micromamba or { };
+  cfg = opts.cli.python.poetry or { };
   finallyEnable = cfg.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {
     home.packages = with pkgs; [
-      micromamba
+      poetry
     ];
   };
 }
