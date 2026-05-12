@@ -58,14 +58,14 @@ let
         mcp-nixos.enable = false;
         # nix 文件批量格式化工具
         # nixfmt-tree.enable = false;
-          # 分布式版本控制系统
-          # git = {
-          #   enable = true;
-          #   user = {
-          #     name = "";
-          #     email = "";
-          #   };
-          # };
+        # 分布式版本控制系统
+        # git = {
+        #   enable = true;
+        #   user = {
+        #     name = "";
+        #     email = "";
+        #   };
+        # };
         # Python 相关命令行工具
         python = {
           # Python 项目依赖管理和打包工具

@@ -2,6 +2,7 @@
   lib,
   pkgs,
   opts,
+  config,
   inputs,
   ...
 }:
@@ -21,7 +22,7 @@ in
       group = "alist";
       mode = "0400";
     };
-    sops.templates."jwt_secret" = {
+    sops.templates."alist-jwt_secret" = {
       content = ''
         ${config.sops.placeholder."alist/jwt_secret"}
       '';
@@ -32,7 +33,7 @@ in
     services.alist = {
       enable = true;
       package = pkgs.openlist;
-      settings.jwt_secret._secret = config.sops.templates."alist-jwt".path;
+      settings.jwt_secret._secret = config.sops.templates."alist-jwt_secret".path;
     };
   };
 }
