@@ -91,12 +91,17 @@ let
           ssh.enable = true;
           direnv.enable = true;
           opencode.enable = true;
+          git.user = {
+            name = "Knight";
+            email = "2067834160@qq.com";
+          };
           python = {
             poetry.enable = true;
             micromamba.enable = true;
           };
         };
         shell.bash.enable = true;
+        editor.nixvim.enable = true;
       };
     };
   };

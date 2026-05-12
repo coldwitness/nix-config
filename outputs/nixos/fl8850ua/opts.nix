@@ -107,6 +107,10 @@ let
           ssh.enable = true;
           zellij.enable = true;
           opencode.enable = true;
+          git.user = {
+            name = "骑士姬";
+            email = "2067834160@qq.com";
+          };
         };
         tool = {
           fcitx5.enable = true;
