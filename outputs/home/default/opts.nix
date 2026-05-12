@@ -30,8 +30,6 @@ let
         # eza.enable = true;
         # 命令行模糊搜索工具
         # fzf.enable = true;
-        # 分布式版本控制系统
-        # git.enable = true;
         # 安全远程登录客户端
         ssh.enable = false;
         # 命令运行器, 类似 Makefile
@@ -60,6 +58,14 @@ let
         mcp-nixos.enable = false;
         # nix 文件批量格式化工具
         # nixfmt-tree.enable = false;
+          # 分布式版本控制系统
+          # git = {
+          #   enable = true;
+          #   user = {
+          #     name = "";
+          #     email = "";
+          #   };
+          # };
         # Python 相关命令行工具
         python = {
           # Python 项目依赖管理和打包工具
