@@ -33,6 +33,13 @@ let
               localPort = 22;
               remotePort = 2227;
             }
+            {
+              name = "openlist";
+              type = "tcp";
+              localIP = "localhost";
+              localPort = 5244;
+              remotePort = 5244;
+            }
           ];
         };
       };
